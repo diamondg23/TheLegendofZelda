@@ -13,10 +13,10 @@ public class EditorUI {
 	public static void InitializeElements(EditorPanel Epanel) {
 		panel = Epanel;
 		
-		downButton = new MyButton();
+		downButton = new MyButton(panel);
 		downButton.setSize(panel.tileSize*2, panel.screenHeight/30);
 		downButton.setLocation(0, panel.screenHeight-downButton.getHeight());
-		upButton = new MyButton();
+		upButton = new MyButton(panel);
 		upButton.setSize(panel.tileSize*2, panel.screenHeight/30);
 		upButton.setLocation(0, 0 );
 		downButton.setFocusable(false);

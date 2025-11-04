@@ -34,7 +34,7 @@ public class MouseController implements MouseListener, MouseMotionListener{
 		int col;
 		col = x/panel.tileSize;
 		row = (y - panel.upBuffer)/panel.tileSize;
-		if(MouseEvent.BUTTON1 == e.getButton() ) {
+		if(MouseEvent.BUTTON1 == e.getButton() || e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK ) {
 			
 		
 		
@@ -74,6 +74,7 @@ public class MouseController implements MouseListener, MouseMotionListener{
 			
 		}
 		
+		
 	
 		
 	}
@@ -101,6 +102,7 @@ public class MouseController implements MouseListener, MouseMotionListener{
 	public void mouseDragged(MouseEvent e) {
 		x = e.getX();
 		y = e.getY();
+		
 		mouseClicked(e);
 	}
 	@Override

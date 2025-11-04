@@ -127,9 +127,10 @@ public class EditorPanel extends JPanel implements Runnable{
 			super.paintComponent(g);
 			
 			EditorTileRenderer.RenderTileMenu(this.sprites, (Graphics2D)g, upBuffer, tileSize);
+			
+			EditorTileRenderer.RenderCurrentMap((Graphics2D)g, mapTiles, tileSize, leftBuffer, upBuffer);
 			if(selectedTile != null)
 				EditorTileRenderer.RenderCurrentTile((Graphics2D)g, selectedTile, mouseController.x, mouseController.y, tileSize);
-			EditorTileRenderer.RenderCurrentMap((Graphics2D)g, mapTiles, tileSize, leftBuffer, upBuffer);
 			
 		}
 		
