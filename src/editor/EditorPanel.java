@@ -18,7 +18,7 @@ import tile.Sprite;
 import tile.SpriteSheet;
 import tile.Tile;
 
-public class EditorPanel extends JPanel implements Runnable, ActionListener{
+public class EditorPanel extends JPanel implements Runnable{
 	Thread gameThread;
 	public int fps = 30;
 	final int originalTileSize = 16; //16x16 tile 
@@ -34,8 +34,6 @@ public class EditorPanel extends JPanel implements Runnable, ActionListener{
 	MouseController mouseController = new MouseController(this);
 	KeyboardController keyboardController = new KeyboardController(this);
 	Sprite currTile = null;
-	JButton downButton;
-	JButton upButton;
 	int leftBuffer;
 	public int upBuffer;
 	
@@ -59,19 +57,11 @@ public class EditorPanel extends JPanel implements Runnable, ActionListener{
 		}catch(Exception e) {
 			
 		}
-		downButton = new JButton();
-		downButton.setSize(tileSize*2, screenHeight/30);
-		downButton.setLocation(0, screenHeight-downButton.getHeight());
+		EditorUI.InitializeElements(this);
 		
-		this.add(downButton);
 		
-		upButton = new JButton();
-		upButton.setSize(tileSize*2, screenHeight/30);
-		upButton.setLocation(0, 0 );
-		this.add(upButton);
-		
-		leftBuffer = upButton.getWidth();
-		upBuffer = upButton.getHeight();
+		leftBuffer = EditorUI.upButton.getWidth();
+		upBuffer = EditorUI.upButton.getHeight();
 		
 		for(int i = 0; i < sprites.length; i++) {
 			for(int j = 0; j < sprites[i].length; j++) {
@@ -79,12 +69,10 @@ public class EditorPanel extends JPanel implements Runnable, ActionListener{
 			}
 			
 		}
-		downButton.addActionListener(this);
-		upButton.addActionListener(this);
-		downButton.setFocusable(false);
-		upButton.setFocusable(false);
 		
 		
+		this.add(EditorUI.upButton);
+		this.add(EditorUI.downButton);
 	}
 	public void startGameThread() {
 		gameThread = new Thread(this);
@@ -144,17 +132,7 @@ public class EditorPanel extends JPanel implements Runnable, ActionListener{
 			EditorTileRenderer.RenderCurrentMap((Graphics2D)g, mapTiles, tileSize, leftBuffer, upBuffer);
 			
 		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource().equals(downButton)) {
-				scrollDown();
-				
-			}
-			else if(e.getSource().equals(upButton)) {
-				scrollUp();
-			}
-			
-		}
+		
 		public void scrollDown() {
 			int lastSpriteIndex = sheet.sprites.indexOf(sprites[sprites.length-1][1]);
 			if(lastSpriteIndex+2 > sheet.sprites.size()) {

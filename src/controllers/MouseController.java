@@ -34,8 +34,14 @@ public class MouseController implements MouseListener, MouseMotionListener{
 		int col;
 		col = x/panel.tileSize;
 		row = (y - panel.upBuffer)/panel.tileSize;
+		if(MouseEvent.BUTTON1 == e.getButton() ) {
+			
+		
+		
 		System.out.println("Selected row: " + row);
 		System.out.println("Selected col: " + col);
+		if(col < 0 || row < 0)
+			return;
 		if(col >1 && row < 11) {
 			System.out.println(panel.selectedTile);
 			if(panel.selectedTile != null) {
@@ -49,6 +55,23 @@ public class MouseController implements MouseListener, MouseMotionListener{
 			Tile selectedTile = new Tile(panel.sprites[row][col]);
 			selectedTile.spriteIndex = panel.sheet.sprites.indexOf(selectedTile.sprite);
 			panel.selectedTile = selectedTile;
+		}
+		}
+		else if (MouseEvent.BUTTON2 == e.getButton()) {
+			if(col < 2 || row < 0)
+				return;
+			if(col-2 > panel.maxScreenCol || row > panel.maxScreenRow) {
+				return;
+			}
+			col -=2;
+			if(panel.mapTiles[row][col] == null) {
+				return;
+			}
+			Tile currentTile = panel.mapTiles[row][col];
+			
+			
+			
+			
 		}
 		
 	

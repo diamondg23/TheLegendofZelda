@@ -17,7 +17,7 @@ public class TileManager {
 		
 		tiles = new Tile[gp.maxScreenCol][gp.maxScreenRow];
 		
-		loadMap("/maps/test5.txt");
+		loadMap("/maps/test6.txt");
 	}
 	public void loadMap(String map) {
 		System.out.println(map);
@@ -30,28 +30,26 @@ public class TileManager {
 			
 			while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
 				String line = br.readLine();
-				
+			
 				while(col < gp.maxScreenCol) {
-					String numbers[] = line.split(" ");
-					
-					int num = Integer.parseInt(numbers[col]);
-					tiles[col][row] = new Tile(null);
-					tiles[col][row].spriteIndex = num;
-					
+					String intTiles[] = line.split(" ");
+					Tile CurrTile = new Tile(null);
+					tiles[col][row] = CurrTile.resolveBehavior(intTiles[col]);
 					col++;
-					
 					
 				}
 				if(col == gp.maxScreenCol) {
 					col = 0;
-					System.out.println();
+					
 					row++;
 				}
 			}
 			br.close();
 		}catch(Exception e) {
+			System.out.println(e.getMessage());
 			
 		}
+		
 	}
 	public void collisionCheck(int col, int row) {
 		switch(tiles[col][row].spriteIndex) {

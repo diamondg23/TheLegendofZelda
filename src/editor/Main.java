@@ -11,7 +11,7 @@ public class Main {
 		
 		frame.add(gamepanel); 
 		
-		frame.pack();
+		frame.pack();	
 		
 		
 		gamepanel.startGameThread();

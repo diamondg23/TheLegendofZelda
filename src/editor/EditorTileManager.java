@@ -33,6 +33,19 @@ public class EditorTileManager {
       			for(int i = 0; i < tileMap.length; i++) {
       				for(int j = 0; j < tileMap[i].length;j++) {
       					line += tileMap[i][j].spriteIndex;
+      					line += ",";
+      					line += tileMap[i][j].room;
+      					line += ",";
+      					if(tileMap[i][j].hasCollision)
+      						line +="1";
+      					else
+      						line += "0";
+      					line += ",";
+      					if(tileMap[i][j].canExplode)
+      						line += "1";
+      					else
+      						line += "0";
+      					
       					line += " ";
       				}
       				BW.write(line);
