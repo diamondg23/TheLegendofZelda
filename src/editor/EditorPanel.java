@@ -70,9 +70,10 @@ public class EditorPanel extends JPanel implements Runnable{
 			
 		}
 		
-		
-		this.add(EditorUI.upButton);
-		this.add(EditorUI.downButton);
+		for(int i = 0; i < EditorUI.buttons.length; i++) {
+			if(EditorUI.buttons[i] != null)
+				this.add(EditorUI.buttons[i]);
+		}
 	}
 	public void startGameThread() {
 		gameThread = new Thread(this);
@@ -124,6 +125,8 @@ public class EditorPanel extends JPanel implements Runnable{
 		}
 		public void paintComponent(Graphics g) {
 			
+			
+			
 			super.paintComponent(g);
 			
 			EditorTileRenderer.RenderTileMenu(this.sprites, (Graphics2D)g, upBuffer, tileSize);
@@ -131,7 +134,7 @@ public class EditorPanel extends JPanel implements Runnable{
 			EditorTileRenderer.RenderCurrentMap((Graphics2D)g, mapTiles, tileSize, leftBuffer, upBuffer);
 			if(selectedTile != null)
 				EditorTileRenderer.RenderCurrentTile((Graphics2D)g, selectedTile, mouseController.x, mouseController.y, tileSize);
-			
+	
 		}
 		
 		public void scrollDown() {

@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import editor.EditorPanel;
+import editor.EditorUI;
+import tile.Tile;
 
 public class MyButton extends JButton implements ActionListener{
 	 String text;
@@ -16,6 +18,7 @@ public class MyButton extends JButton implements ActionListener{
 	    private static int buttonCount = 0;
 	    private int buttonID;
 	    private EditorPanel panel;
+	    public boolean isPressed = false;
 	    public MyButton(String text, int x, int y, int width, int height, EditorPanel panel){
 	    	this.panel = panel;
 	        this.setText(text);
@@ -50,8 +53,62 @@ public class MyButton extends JButton implements ActionListener{
 			case 2:
 				scrollUp();
 				break;
+			case 3:
+				roomDropDownMenu();
+				break;
 			}
 	    }
+		
+		public void roomDropDownMenu() {
+			if(isPressed) {
+				for(int i = 0; i < EditorUI.tempButtons.length; i++) {
+					if(EditorUI.tempButtons[i] != null)
+						panel.remove(EditorUI.tempButtons[i]);
+					EditorUI.tempButtons[i] = null;
+					
+				}	
+				isPressed = false;
+				return;
+			}
+			System.out.println("Room button pressed");
+			isPressed = true;
+			for(int i = 0; i < Tile.rooms.values().length; i++) {
+				String room = findRoom(i);
+				System.out.println(room);
+				EditorUI.tempButtons[i] = new MyButton(room,EditorUI.roomButton.getX()  , ((panel.screenHeight - EditorUI.roomButton.getHeight()) + i * panel.tileSize/2), EditorUI.roomButton.width, panel.tileSize/2, panel);
+				
+				EditorUI.tempButtons[i].setVisible(true);
+			}
+			for(int i = 0; i < EditorUI.tempButtons.length; i++) {
+				if(EditorUI.tempButtons[i] != null) {
+					panel.add(EditorUI.tempButtons[i]);
+				}
+			}
+			
+			panel.revalidate();
+			panel.repaint();
+		}
+		public String findRoom(int i) {
+			switch(i) {
+			case 0:
+				return "No Room";
+				
+			case 1:
+				return "Old Man Heart Room";
+			case 2:
+				return "Old Woman Map Room";
+			case 3:
+				return "Old Woman Shop Room";
+			case 4:
+				return "Secret Punishment Room";
+			case 5:
+				return "Secret Reward Room";
+			case 6:
+				return "Shop Room";
+					
+			}
+			return "Error";
+		}
 		public void scrollDown() {
 			int lastSpriteIndex = panel.sheet.sprites.indexOf(panel.sprites[panel.sprites.length-1][1]);
 			if(lastSpriteIndex+2 > panel.sheet.sprites.size()) {

@@ -1,7 +1,7 @@
 package tile;
 
 public class Tile {
-	enum rooms{
+	public static enum rooms{
 		NOROOM(),
 		OLDMANHEART(),
 		OLDWOMANMAP(),
