@@ -16,6 +16,9 @@ public class EditorTileManager {
 	
 	}
 	public static boolean SaveMap(Tile[][] tileMap) {
+		if(!checkIfNull(tileMap)) {
+			return false;
+		}
 		JFileChooser chooser = new JFileChooser();
 		chooser.setCurrentDirectory(new File("res/maps"));
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -59,9 +62,7 @@ public class EditorTileManager {
       			e.printStackTrace();
       		}
           }
-		if(!checkIfNull(tileMap)) {
-			return false;
-		}
+		
 		
 		
 	

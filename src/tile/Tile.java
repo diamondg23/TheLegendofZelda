@@ -1,6 +1,9 @@
 package tile;
 
 public class Tile {
+	
+	// DO NOT CHANGE ORDERING OF THE ROOMS BECAUSE IT WILL CHANGE THE RESULTING INT IN THE FILE, IF YOU CHANGE ORDERINGS YOU HAVE TO REMAKE ALL THE FILES
+	//if you want to add more rooms in the future add them at the bottom.
 	public enum rooms{
 		NOROOM(),
 		OLDMANHEART(),
