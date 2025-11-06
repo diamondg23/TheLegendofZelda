@@ -25,7 +25,7 @@ public class EditorPanel extends JPanel implements Runnable{
 	final int scale = 3;
 	public final int tileSize = originalTileSize*scale;
 	
-	public final int maxScreenCol = 18; //16 tiles horizontally
+	public final int maxScreenCol = 18; //18 tiles horizontally
 	public final int maxScreenRow = 11;
 	public final int screenWidth = tileSize * maxScreenCol; //768 pixels
 	public final int screenHeight = tileSize * maxScreenRow + (tileSize * 2); //576 pixels
@@ -169,7 +169,9 @@ public class EditorPanel extends JPanel implements Runnable{
 			sprites[0][1] = sheet.sprites.get(lastSpriteIndex - 1);
 		}
 		public void placeTile(int col, int row) {
+			selectedTile.room = EditorUI.roomButton.room;
 			Tile currentTile = selectedTile;
+			
 			if(row < mapTiles.length && col <mapTiles[row].length) {
 				mapTiles[row][col] = currentTile;
 			}
@@ -179,7 +181,7 @@ public class EditorPanel extends JPanel implements Runnable{
 						System.out.print("null ");
 					
 					else
-						System.out.print(mapTiles[i][j].spriteIndex + " ");
+						System.out.print(mapTiles[i][j].spriteIndex + "," + mapTiles[i][j].room.ordinal() + " ");
 				}
 				System.out.println();
 			}

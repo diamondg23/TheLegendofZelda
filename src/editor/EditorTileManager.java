@@ -34,7 +34,7 @@ public class EditorTileManager {
       				for(int j = 0; j < tileMap[i].length;j++) {
       					line += tileMap[i][j].spriteIndex;
       					line += ",";
-      					line += tileMap[i][j].room;
+      					line += tileMap[i][j].room.ordinal();
       					line += ",";
       					if(tileMap[i][j].hasCollision)
       						line +="1";

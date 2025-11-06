@@ -8,26 +8,24 @@ import javax.swing.JButton;
 import editor.EditorPanel;
 import editor.EditorUI;
 import tile.Tile;
+import tile.Tile.rooms;
 
 public class MyButton extends JButton implements ActionListener{
 	 String text;
-	    int x;
-	    int y;
-	    int width;
-	    int height;
+	
+
 	    private static int buttonCount = 0;
 	    private int buttonID;
 	    private EditorPanel panel;
 	    public boolean isPressed = false;
+	    public rooms room = Tile.rooms.NOROOM;
 	    public MyButton(String text, int x, int y, int width, int height, EditorPanel panel){
 	    	this.panel = panel;
 	        this.setText(text);
 	        this.setBounds(x, y, width, height);
 	        this.addActionListener(this);
-	        this.x = x;
-	        this.y = y;
-	        this.width = width;
-	        this.height = height;
+
+	
 	        this.text = text;
 	        this.setVisible(true);
 	        buttonCount++;
@@ -46,6 +44,7 @@ public class MyButton extends JButton implements ActionListener{
 
 		@Override
 	    public void actionPerformed(ActionEvent e) {
+			
 			switch(buttonID) {
 			case 1:
 				scrollDown();
@@ -60,6 +59,7 @@ public class MyButton extends JButton implements ActionListener{
 	    }
 		
 		public void roomDropDownMenu() {
+			
 			if(isPressed) {
 				for(int i = 0; i < EditorUI.tempButtons.length; i++) {
 					if(EditorUI.tempButtons[i] != null)
@@ -67,32 +67,52 @@ public class MyButton extends JButton implements ActionListener{
 					EditorUI.tempButtons[i] = null;
 					
 				}	
+				
+				panel.repaint();
+				panel.getParent().revalidate();
+				panel.getParent().repaint();
 				isPressed = false;
 				return;
 			}
 			System.out.println("Room button pressed");
 			isPressed = true;
+			
 			for(int i = 0; i < Tile.rooms.values().length; i++) {
 				String room = findRoom(i);
-				System.out.println(room);
-				EditorUI.tempButtons[i] = new MyButton(room,EditorUI.roomButton.getX()  , ((panel.screenHeight - EditorUI.roomButton.getHeight()) + i * panel.tileSize/2), EditorUI.roomButton.width, panel.tileSize/2, panel);
 				
+				EditorUI.tempButtons[i] = new MyButton(room,EditorUI.roomButton.getX()  , ((panel.screenHeight - EditorUI.roomButton.getHeight()) - (i+1) * panel.tileSize/2), EditorUI.roomButton.getWidth(), panel.tileSize/2, panel);
+				EditorUI.tempButtons[i].setToolTipText(room);
 				EditorUI.tempButtons[i].setVisible(true);
+				EditorUI.tempButtons[i].room = Tile.rooms.values()[i];
+				EditorUI.tempButtons[i].addActionListener(e -> {
+					MyButton clicked = (MyButton) e.getSource();
+				    MyButton mainB = EditorUI.roomButton;
+				    	mainB.setText(clicked.getText());
+				    	mainB.setBackground(clicked.getBackground());
+				    	mainB.setForeground(clicked.getForeground());
+				    	mainB.room = clicked.room;
+				    	mainB.setFont(clicked.getFont());
+				    	mainB.setIcon(clicked.getIcon());
+				    
+				        // Update the main room button’s text
+				        roomDropDownMenu();
+				    });
 			}
 			for(int i = 0; i < EditorUI.tempButtons.length; i++) {
 				if(EditorUI.tempButtons[i] != null) {
 					panel.add(EditorUI.tempButtons[i]);
+					System.out.println(EditorUI.tempButtons[i].getText());
 				}
 			}
 			
-			panel.revalidate();
 			panel.repaint();
+			panel.getParent().revalidate();
+			panel.getParent().repaint();
 		}
 		public String findRoom(int i) {
 			switch(i) {
 			case 0:
 				return "No Room";
-				
 			case 1:
 				return "Old Man Heart Room";
 			case 2:

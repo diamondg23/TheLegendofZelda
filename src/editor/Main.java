@@ -6,8 +6,9 @@ import main.MyFrame;
 public class Main {
 	
 	public static void main(String[] args) {
-		MyFrame frame = new MyFrame();
+		
 		EditorPanel gamepanel = new EditorPanel();
+		MyFrame frame = new MyFrame();
 		
 		frame.add(gamepanel); 
 		
