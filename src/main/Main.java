@@ -12,7 +12,7 @@ public class Main {
 		MyFrame frame = new MyFrame();
 		frame.add(gamepanel); 
 		
-		//frame.pack();
+		frame.pack();
 		
 		
 		gamepanel.startGameThread();
