@@ -48,7 +48,15 @@ public class EditorTileManager {
       						line += "1";
       					else
       						line += "0";
-      					
+      					line+= ",";
+      					line+= tileMap[i][j].direction.ordinal();
+      					line+= ",";
+      					if(tileMap[i][j].isFlammable == true) {
+      						line += "1";
+      					}
+      					else {
+      						line += "0";
+      					}
       					line += " ";
       				}
       				BW.write(line);

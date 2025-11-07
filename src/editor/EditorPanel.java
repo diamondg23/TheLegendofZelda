@@ -172,6 +172,7 @@ public class EditorPanel extends JPanel implements Runnable{
 			selectedTile.room = EditorUI.roomButton.room;
 			selectedTile.canExplode = EditorUI.explodeButton.explosion;
 			selectedTile.hasCollision = EditorUI.collisionButton.collision;
+			
 			Tile currentTile = selectedTile;
 			
 			if(row < mapTiles.length && col <mapTiles[row].length) {

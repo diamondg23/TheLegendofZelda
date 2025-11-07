@@ -16,6 +16,15 @@ public class Tile {
 
 		
 	};
+	public enum directionMove{
+		NODIRECTION(),
+		NORTH(),
+		SOUTH(),
+		EAST(),
+		WEST()
+	};
+	public directionMove direction = directionMove.NODIRECTION;
+	public boolean isFlammable = false;
 	int x, y;
 	int screenX,screenY;
 	public int spriteIndex = 0;
@@ -42,14 +51,40 @@ public class Tile {
 			this.hasCollision = true;
 		else
 			this.hasCollision = false;
-		int canExplode = Integer.parseInt(currTile[2]);
+		int canExplode = Integer.parseInt(currTile[3]);
 		if(canExplode == 1)
 			this.canExplode = true;
 		else
 			this.canExplode = false;
+		int direction = Integer.parseInt(currTile[4]);
+		switch(direction) {
+		case 0:
+			this.direction =directionMove.NODIRECTION;
+			break;
+		case 1:
+			this.direction = directionMove.NORTH;
+			break;
+		case 2:
+			this.direction = directionMove.SOUTH;
+			break;
+		case 3:
+			this.direction = directionMove.EAST;
+			break;
+		case 4:
+			this.direction = directionMove.WEST;
+			break;
+		default:
+			this.direction = directionMove.NODIRECTION;
+		}
+		int flammable = Integer.parseInt(currTile[5]);
+		if(flammable == 0) {
+			this.isFlammable = false;
+		}
+		else {
+			this.isFlammable = true;
+		}
 		return this;
-		// WILL NEED TO ADD MORE BEHAVIORS TO THE TILES probably need to do more splicing :(
-		//BEHAVIOR OF MOVING BLOCKS AND BEING ABLE TO BE LIT ON FIRE.
+		
 	}
 	private rooms findRoom(int room) {
 		switch(room) {
