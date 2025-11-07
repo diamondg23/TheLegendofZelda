@@ -16,6 +16,9 @@ public class Tile {
 
 		
 	};
+	public enum specialBehavior{
+		
+	}
 	public enum directionMove{
 		NODIRECTION(),
 		NORTH(),
@@ -23,6 +26,7 @@ public class Tile {
 		EAST(),
 		WEST()
 	};
+	public specialBehavior behavior;
 	public directionMove direction = directionMove.NODIRECTION;
 	public boolean isFlammable = false;
 	int x, y;
@@ -33,10 +37,14 @@ public class Tile {
 	
 	public Sprite sprite;
 	public boolean hasCollision = false;
+	public boolean isVisible = true;
+	public boolean isEnabled = true;
 	public Tile(Sprite sprite) {
 		this.sprite = sprite;
 		
 	}
+	
+	
 	
 	public Tile resolveBehavior(String tileString ) {
 		
@@ -86,27 +94,6 @@ public class Tile {
 		return this;
 		
 	}
-	private rooms findRoom(int room) {
-		switch(room) {
-		case 0:
-			return rooms.NOROOM;
-		case 1:
-			return rooms.OLDMANHEART;
-			
-		case 2:
-			return rooms.OLDWOMANMAP;
-		case 3:
-			return rooms.OLDWOMANSHOP;
-		case 4:
-			return rooms.SECRETPUNISHMENT;
-		case 5:
-			return rooms.SECRETREWARD;
-		case 6:
-			return rooms.SHOP;
-		default:
-			return rooms.NOROOM;
-			
-		}
-	}
+
 
 }
