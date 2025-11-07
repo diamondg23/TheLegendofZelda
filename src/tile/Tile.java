@@ -48,6 +48,8 @@ public class Tile {
 		else
 			this.canExplode = false;
 		return this;
+		// WILL NEED TO ADD MORE BEHAVIORS TO THE TILES probably need to do more splicing :(
+		//BEHAVIOR OF MOVING BLOCKS AND BEING ABLE TO BE LIT ON FIRE.
 	}
 	private rooms findRoom(int room) {
 		switch(room) {

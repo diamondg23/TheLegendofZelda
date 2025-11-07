@@ -40,7 +40,7 @@ public class EditorUI {
 		explodeButton.setSize(panel.tileSize*3, panel.screenHeight/20);
 		explodeButton.setLocation(panel.screenWidth/2 + panel.screenWidth/5, panel.screenHeight - explodeButton.getHeight());
 		explodeButton.setFocusable(false);
-		explodeButton.setText("No Explode");
+		explodeButton.setText("No Explosion");
 
 		
 		buttons[0] = downButton;
