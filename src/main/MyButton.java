@@ -11,7 +11,7 @@ import tile.Tile;
 import tile.Tile.rooms;
 
 public class MyButton extends JButton implements ActionListener{
-	 String text;
+
 	
 
 	    private static int buttonCount = 0;
@@ -19,6 +19,8 @@ public class MyButton extends JButton implements ActionListener{
 	    private EditorPanel panel;
 	    public boolean isPressed = false;
 	    public rooms room = Tile.rooms.NOROOM;
+	    public boolean collision = false;
+	    public boolean explosion = false;
 	    public MyButton(String text, int x, int y, int width, int height, EditorPanel panel){
 	    	this.panel = panel;
 	        this.setText(text);
@@ -26,7 +28,7 @@ public class MyButton extends JButton implements ActionListener{
 	        this.addActionListener(this);
 
 	
-	        this.text = text;
+	       
 	        this.setVisible(true);
 	        buttonCount++;
 	        buttonID = buttonCount;
@@ -55,16 +57,40 @@ public class MyButton extends JButton implements ActionListener{
 			case 3:
 				roomDropDownMenu();
 				break;
+			case 4:
+				collisionButton();
+				break;
+			case 5:
+				explodeButton();
 			}
 	    }
-		
+		public void collisionButton() {
+			if(this.getText() == "No Collision") {
+				this.setText("Collision On");
+				this.collision = true;
+			}
+			else {
+				this.setText("No Collision");
+				this.collision = false;
+			}
+		}
+		public void explodeButton() {
+			if(this.getText() == "No Explosion") {
+				this.setText("Explosion on");
+				this.explosion = true;
+			}
+			else {
+				this.setText("No Explosion");
+				this.explosion = false;
+			}
+		}
 		public void roomDropDownMenu() {
 			
 			if(isPressed) {
-				for(int i = 0; i < EditorUI.tempButtons.length; i++) {
-					if(EditorUI.tempButtons[i] != null)
-						panel.remove(EditorUI.tempButtons[i]);
-					EditorUI.tempButtons[i] = null;
+				for(int i = 0; i < EditorUI.tempRoomButtons.length; i++) {
+					if(EditorUI.tempRoomButtons[i] != null)
+						panel.remove(EditorUI.tempRoomButtons[i]);
+					EditorUI.tempRoomButtons[i] = null;
 					
 				}	
 				
@@ -80,11 +106,11 @@ public class MyButton extends JButton implements ActionListener{
 			for(int i = 0; i < Tile.rooms.values().length; i++) {
 				String room = findRoom(i);
 				
-				EditorUI.tempButtons[i] = new MyButton(room,EditorUI.roomButton.getX()  , ((panel.screenHeight - EditorUI.roomButton.getHeight()) - (i+1) * panel.tileSize/2), EditorUI.roomButton.getWidth(), panel.tileSize/2, panel);
-				EditorUI.tempButtons[i].setToolTipText(room);
-				EditorUI.tempButtons[i].setVisible(true);
-				EditorUI.tempButtons[i].room = Tile.rooms.values()[i];
-				EditorUI.tempButtons[i].addActionListener(e -> {
+				EditorUI.tempRoomButtons[i] = new MyButton(room,EditorUI.roomButton.getX()  , ((panel.screenHeight - EditorUI.roomButton.getHeight()) - (i+1) * panel.tileSize/2), EditorUI.roomButton.getWidth(), panel.tileSize/2, panel);
+				EditorUI.tempRoomButtons[i].setToolTipText(room);
+				EditorUI.tempRoomButtons[i].setVisible(true);
+				EditorUI.tempRoomButtons[i].room = Tile.rooms.values()[i];
+				EditorUI.tempRoomButtons[i].addActionListener(e -> {
 					MyButton clicked = (MyButton) e.getSource();
 				    MyButton mainB = EditorUI.roomButton;
 				    	mainB.setText(clicked.getText());
@@ -98,10 +124,10 @@ public class MyButton extends JButton implements ActionListener{
 				        roomDropDownMenu();
 				    });
 			}
-			for(int i = 0; i < EditorUI.tempButtons.length; i++) {
-				if(EditorUI.tempButtons[i] != null) {
-					panel.add(EditorUI.tempButtons[i]);
-					System.out.println(EditorUI.tempButtons[i].getText());
+			for(int i = 0; i < EditorUI.tempRoomButtons.length; i++) {
+				if(EditorUI.tempRoomButtons[i] != null) {
+					panel.add(EditorUI.tempRoomButtons[i]);
+					System.out.println(EditorUI.tempRoomButtons[i].getText());
 				}
 			}
 			

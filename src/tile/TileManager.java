@@ -17,7 +17,7 @@ public class TileManager {
 		
 		tiles = new Tile[gp.maxScreenCol][gp.maxScreenRow];
 		
-		loadMap("/maps/World.txt");
+		loadMap("/maps/test13.txt");
 	}
 	public void loadMap(String map) {
 		System.out.println(map);
