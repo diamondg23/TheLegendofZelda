@@ -17,6 +17,7 @@ public class Tile {
 		
 	};
 	public enum specialBehavior{
+		NOBEHEAVIOR()
 		
 	}
 	public enum directionMove{
