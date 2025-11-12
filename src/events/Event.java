@@ -1,6 +1,6 @@
-package main;
+package events;
 
-public class Event {
+public abstract class Event {
 	public enum events {
 		PLAYERMOVEMENT(),
 		ENEMYMOVEMENT(),
@@ -20,4 +20,5 @@ public class Event {
 		this.eventID = eventID;
 		
 	}
+	abstract <T> T getEvent();
 }
