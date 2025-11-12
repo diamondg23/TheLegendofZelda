@@ -1,5 +1,6 @@
 package entity;
 
+import main.Animation;
 import tile.Sprite;
 
 public abstract class Entity {
@@ -12,16 +13,17 @@ public abstract class Entity {
 	public Direction directionFacing;
 	public int x;
 	public int y;
-	public Sprite sprite;
+	public Animation sprites;
+	
 	public Entity(int x, int y) {
 		this.x = x;
 		this.y = y;
 		directionFacing = Direction.NORTH;
 	}
-	public Entity(int x, int y, Sprite sprite) {
+	public Entity(int x, int y, Animation animation) {
 		this.x = x;
 		this.y = y;
-		this.sprite = sprite;
+		this.sprites = animation;
 		directionFacing = Direction.NORTH;
 	}
 
