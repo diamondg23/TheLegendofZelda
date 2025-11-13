@@ -34,5 +34,9 @@ public class Animation {
 			currentSprite = sprites[currentIndex];
 		}
 	}
+	public void changeAnimation(Sprite[] animation) {
+		this.sprites = animation;
+	}
+	
 
 }
