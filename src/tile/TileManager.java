@@ -33,7 +33,7 @@ public class TileManager {
 			
 				while(col < gp.maxTileScreenCol) {
 					String intTiles[] = line.split(" ");
-					Tile CurrTile = new Tile(null);
+					Tile CurrTile = new Tile(new Sprite(null));
 					tiles[col][row] = CurrTile.resolveBehavior(intTiles[col]);
 					col++;
 					

@@ -53,6 +53,12 @@ public class Tile {
 		this.sprite = sprite;
 		
 	}
+    public Tile(Tile other) {
+        this.sprite = other.sprite;              // sharing sprite is fine
+        this.room = other.room;
+        this.canExplode = other.canExplode;
+        this.hasCollision = other.hasCollision;
+    }
 	
 	
 	

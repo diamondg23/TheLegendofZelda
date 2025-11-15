@@ -50,7 +50,7 @@ public class MouseController implements MouseListener, MouseMotionListener{
 			return;
 		}
 		if(col <= 1 && row <= 11) {
-			Tile selectedTile = new Tile(panel.sprites[row][col]);
+		    Tile selectedTile = new Tile(panel.sprites[row][col]);
 			selectedTile.spriteIndex = panel.sheet.sprites.indexOf(selectedTile.sprite);
 			panel.selectedTile = selectedTile;
 		}
