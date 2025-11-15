@@ -151,6 +151,24 @@ public class MyButton extends JButton implements ActionListener{
 				return "Secret Reward Room";
 			case 6:
 				return "Shop Room";
+			case 7:
+				return "Level 1";
+			case 8:
+				return "Level 2";
+			case 9:
+				return "Level 3";
+			case 10:
+				return "Level 4";
+			case 11:
+				return "Level 5";
+			case 12:
+				return "Level 6";
+			case 13:
+				return "Level 7";
+			case 14:
+				return "Level 8";
+			case 15:
+				return "Level 9";
 					
 			}
 			return "Error";

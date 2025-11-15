@@ -34,13 +34,19 @@ public class Player extends Entity implements Moveable{
 		}
 		//if the button is held down, this function should be called every frame
 		// this should create a event and stack it onto a queue to be processed.
+		//will need to check bounds check and also if there is collision
+		
+	}
+	@Override
+	public void changeDirection(Direction direction) {
+		// this will change the direction the player is facing. This should change the sprite of the player as well to the corresponding one of the correct direction.
+		 this.directionFacing = direction;
 		
 	}
 
 	@Override
-	public void changeDirection(Direction direction) {
-		// this will change the direction the player is facing. This should change the sprite of the player as well to the corresponding one of the correct direction.
-		
+	public void changeSprites(Animation animation) {
+		this.sprites = animation;
 		
 	}
 

@@ -20,5 +20,5 @@ public abstract class Event {
 		this.eventID = eventID;
 		
 	}
-	abstract <T> T getEvent();
+	abstract public events getEvent();
 }

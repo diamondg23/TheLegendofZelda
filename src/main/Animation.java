@@ -8,10 +8,22 @@ public class Animation {
 	Sprite currentSprite;
 	int currentIndex;
 	boolean isRunning = false;
-	public Animation(int amountOfSprites) {
-	sprites = new Sprite[amountOfSprites];
-	currentSprite = sprites[0];
+	public Animation(int amountOfSprites, Sprite[] sprites) {
+		if(amountOfSprites < 1) {
+			System.err.println("You cant make a animation with less than one sprite ");
+		}
+	this.sprites = new Sprite[amountOfSprites];
+	populateArray(sprites);
+	currentSprite = this.sprites[0];
 	currentIndex = 0;
+	}
+	private void populateArray(Sprite[] currentSprites) {
+		if(currentSprites.length != this.sprites.length) {
+			System.err.println("You have a mismatch size in your two arrays in your animation class");
+		}
+		for(int i = 0; i < sprites.length; i++) {
+			this.sprites[i] = currentSprites[i];
+		}
 	}
 	public void incrementSprite() {
 		if(currentIndex >= sprites.length-1) {

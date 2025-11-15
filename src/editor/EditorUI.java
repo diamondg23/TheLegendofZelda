@@ -2,6 +2,7 @@ package editor;
 
 import main.MyButton;
 import main.MyLabel;
+import tile.Tile;
 
 
 public class EditorUI {
@@ -10,7 +11,7 @@ public class EditorUI {
 	public static MyButton upButton;
 	public static MyButton[] buttons = new MyButton[20];
 	public static MyButton roomButton;
-	public static MyButton[] tempRoomButtons = new MyButton[10];
+	public static MyButton[] tempRoomButtons = new MyButton[Tile.rooms.values().length];
 	public static MyButton collisionButton;
 	public static MyButton explodeButton;
 	public static void InitializeElements(EditorPanel Epanel) {

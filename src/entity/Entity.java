@@ -37,5 +37,6 @@ public abstract class Entity {
 		directionFacing = Direction.NORTH;
 	}
 	public abstract void changeDirection(Direction direction);
+	public abstract void changeSprites(Animation animation);
 
 }

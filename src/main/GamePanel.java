@@ -6,16 +6,23 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import entity.Player;
+import events.Event;
+import events.PlayerMovementEvent;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.TileManager;
 import tile.TileRenderer;
 
 public class GamePanel extends JPanel implements Runnable,ActionListener{
+	
+	
+	
 	final int originalTileSize = 16; //16x16 tile 
 	final int scale = 3;
 	public final int tileSize = originalTileSize*scale;
@@ -32,7 +39,9 @@ public class GamePanel extends JPanel implements Runnable,ActionListener{
 	TileManager tileM = new TileManager(this);
 	TileRenderer tileR = new TileRenderer(this);
 	SpriteSheet sheet;
+	public Player player = new Player(200,200,16,16);
 	
+	public LinkedList<Event> eventList = new LinkedList<Event>();
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -85,8 +94,26 @@ public class GamePanel extends JPanel implements Runnable,ActionListener{
 
 }
 	public void update() {
-		
-		
+
+		while(eventList.size() != 0) {
+			switch(eventList.getFirst().getEvent()) {
+			case BOMBPLACED:
+				break;
+			case ENEMYMOVEMENT:
+				break;
+			case MISCMOVEMENT:
+				break;
+			case PLAYERMOVEMENT:
+				// safely type cast it to player movement event
+				PlayerMovementEvent currentEvent =(PlayerMovementEvent)eventList.getFirst();
+				currentEvent.resolveEvent(player);
+				eventList.remove();
+				break;
+			default:
+				break;
+			
+			}
+		}
 		
 	}
 public void paintComponent(Graphics g) {
