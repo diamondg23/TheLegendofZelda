@@ -12,8 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controllers.KeyboardController;
-import controllers.MouseController;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.Tile;

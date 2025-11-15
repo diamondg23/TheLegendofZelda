@@ -15,9 +15,9 @@ public class TileManager {
 		this.gp = gp;
 		
 		
-		tiles = new Tile[gp.maxScreenCol][gp.maxScreenRow];
+		tiles = new Tile[gp.maxTileScreenCol][gp.maxTileScreenRow];
 		
-		loadMap("/maps/test13.txt");
+		loadMap("/maps/start.txt");
 	}
 	public void loadMap(String map) {
 		System.out.println(map);
@@ -28,17 +28,17 @@ public class TileManager {
 			int col = 0;
 			int row = 0;
 			
-			while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
+			while(col < gp.maxTileScreenCol && row < gp.maxTileScreenRow) {
 				String line = br.readLine();
 			
-				while(col < gp.maxScreenCol) {
+				while(col < gp.maxTileScreenCol) {
 					String intTiles[] = line.split(" ");
 					Tile CurrTile = new Tile(null);
 					tiles[col][row] = CurrTile.resolveBehavior(intTiles[col]);
 					col++;
 					
 				}
-				if(col == gp.maxScreenCol) {
+				if(col == gp.maxTileScreenCol) {
 					col = 0;
 					
 					row++;

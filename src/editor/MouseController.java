@@ -1,4 +1,4 @@
-package controllers;
+package editor;
 
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -11,8 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import editor.EditorPanel;
-import editor.EditorTileRenderer;
 import main.GamePanel;
 import tile.Sprite;
 import tile.Tile;

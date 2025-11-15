@@ -18,16 +18,16 @@ public class TileRenderer {
 		int screenRow = 0;
 		int tileIndex = 0;
 
-		while(screenCol < gp.maxScreenCol && screenRow < gp.maxScreenRow) {
+		while(screenCol < gp.maxTileScreenCol && screenRow < gp.maxTileScreenRow) {
 			
 			 tileIndex = tileM.tiles[screenCol][screenRow].spriteIndex;
 		
-				g2.drawImage(sheet.sprites.get(tileIndex).image, screenCol*gp.tileSize,screenRow*gp.tileSize,gp.tileSize,gp.tileSize,null);
+				g2.drawImage(sheet.sprites.get(tileIndex).image, (screenCol*gp.tileSize) + gp.maxUIScreenCol , (screenRow*gp.tileSize) + gp.maxUIScreenRow ,gp.tileSize,gp.tileSize,null);
 			
 			
 				
 			screenCol++;
-			if(screenCol == gp.maxScreenCol) { 
+			if(screenCol == gp.maxTileScreenCol) { 
 				screenCol = 0;
 				
 				screenRow++;

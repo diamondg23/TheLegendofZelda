@@ -20,10 +20,12 @@ public class GamePanel extends JPanel implements Runnable,ActionListener{
 	final int scale = 3;
 	public final int tileSize = originalTileSize*scale;
 	final int fps = 30;
-	public final int maxScreenCol = 16; //16 tiles horizontally
-	public final int maxScreenRow = 11;
-	public final int screenWidth = tileSize * maxScreenCol; //768 pixels
-	public final int screenHeight = tileSize * maxScreenRow; //576 pixels
+	public final int maxUIScreenCol = 0;
+	public final int maxUIScreenRow = 200;
+	public final int maxTileScreenCol = 16; //16 tiles horizontally
+	public final int maxTileScreenRow = 11;
+	public final int screenWidth = (tileSize * maxTileScreenCol) + maxUIScreenCol; //768 pixels
+	public final int screenHeight = (tileSize * maxTileScreenRow) + maxUIScreenRow; //576 pixels
 	
 	Thread gameThread;
 	
