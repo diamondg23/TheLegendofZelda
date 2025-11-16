@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.GamePanel;
+import panels.GamePanel;
 import tile.Sprite;
 import tile.Tile;
 

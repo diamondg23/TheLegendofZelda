@@ -7,30 +7,45 @@ import tile.Tile;
 
 public class EditorUI {
 	static EditorPanel panel;
-	public static MyButton downButton;
-	public static MyButton upButton;
-	public static MyButton[] buttons = new MyButton[20];
-	public static MyButton roomButton;
-	public static MyButton[] tempRoomButtons = new MyButton[Tile.rooms.values().length];
-	public static MyButton collisionButton;
-	public static MyButton explodeButton;
-	public static void InitializeElements(EditorPanel Epanel) {
+	public MyButton downButton;
+	public MyButton upButton;
+	public MyButton[] buttons = new MyButton[20];
+	public MyButton roomButton;
+	public MyButton[] roomOptions = new MyButton[Tile.rooms.values().length];
+	public MyButton collisionButton;
+	public MyButton explodeButton;
+	public void InitializeElements(EditorPanel Epanel) {
 		panel = Epanel;
 		
-		downButton = new MyButton(panel);
-		downButton.setSize(panel.tileSize*2, panel.screenHeight/30);
-		downButton.setLocation(0, panel.screenHeight-downButton.getHeight());
-		upButton = new MyButton(panel);
-		upButton.setSize(panel.tileSize*2, panel.screenHeight/30);
-		upButton.setLocation(0, 0 );
+		downButton = new MyButton(
+			    "",
+			    0,
+			    panel.screenHeight - (panel.screenHeight / 30),
+			    panel.tileSize * 2,
+			    panel.screenHeight / 30,
+			    () -> Epanel.scrollDown()
+			);
+		upButton = new MyButton(
+			    "",
+			    0,
+			    0,
+			    panel.tileSize * 2,
+			    panel.screenHeight / 30,
+			    () -> Epanel.scrollUp()
+			);
 		downButton.setFocusable(false);
 		upButton.setFocusable(false);
-		roomButton = new MyButton(panel);
-		roomButton.setSize(panel.tileSize*3, panel.screenHeight/20);
-		roomButton.setLocation(panel.screenWidth/5, panel.screenHeight- roomButton.getHeight());
+		roomButton = new MyButton(
+			    "No Room",
+			    panel.screenWidth/5,
+			    panel.screenHeight-  panel.screenHeight / 20,
+			    panel.tileSize*3,
+			    panel.screenHeight/20,
+			    () -> Epanel.toggleRoomMenu()
+			);
+	
 		roomButton.setFocusable(false);
-		roomButton.setText("No Room");
-		
+
 		collisionButton = new MyButton(panel);
 		collisionButton.setSize(panel.tileSize*3, panel.screenHeight/20);
 		collisionButton.setLocation(panel.screenWidth/2 - panel.screenWidth/20, panel.screenHeight - collisionButton.getHeight());

@@ -1,7 +1,7 @@
 package editor;
 
-import main.GamePanel;
 import main.MyFrame;
+import panels.GamePanel;
 
 public class Main {
 	

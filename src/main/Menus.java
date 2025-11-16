@@ -1,5 +1,7 @@
 package main;
 
+import panels.GamePanel;
+
 public class Menus {
 	public static enum GameMenus {
 		STARTMENU(),

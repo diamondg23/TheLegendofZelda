@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.MyButton;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.Tile;
@@ -38,6 +39,9 @@ public class EditorPanel extends JPanel implements Runnable{
 	public Tile selectedTile;
 	public Sprite[][] sprites = new Sprite[12][2];
 	public Tile[][] mapTiles = new Tile[11][16];
+	EditorUI editorUI = new EditorUI();
+	
+	public boolean roomMenuOpen = false;
 	
 	public EditorPanel() {
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -55,11 +59,11 @@ public class EditorPanel extends JPanel implements Runnable{
 		}catch(Exception e) {
 			
 		}
-		EditorUI.InitializeElements(this);
+		editorUI.InitializeElements(this);
 		
 		
-		leftBuffer = EditorUI.upButton.getWidth();
-		upBuffer = EditorUI.upButton.getHeight();
+		leftBuffer = editorUI.upButton.getWidth();
+		upBuffer = editorUI.upButton.getHeight();
 		
 		for(int i = 0; i < sprites.length; i++) {
 			for(int j = 0; j < sprites[i].length; j++) {
@@ -68,9 +72,9 @@ public class EditorPanel extends JPanel implements Runnable{
 			
 		}
 		
-		for(int i = 0; i < EditorUI.buttons.length; i++) {
-			if(EditorUI.buttons[i] != null)
-				this.add(EditorUI.buttons[i]);
+		for(int i = 0; i < editorUI.buttons.length; i++) {
+			if(editorUI.buttons[i] != null)
+				this.add(editorUI.buttons[i]);
 		}
 	}
 	public void startGameThread() {
@@ -167,9 +171,9 @@ public class EditorPanel extends JPanel implements Runnable{
 			sprites[0][1] = sheet.sprites.get(lastSpriteIndex - 1);
 		}
 		public void placeTile(int col, int row) {
-			selectedTile.room = EditorUI.roomButton.room;
-			selectedTile.canExplode = EditorUI.explodeButton.explosion;
-			selectedTile.hasCollision = EditorUI.collisionButton.collision;
+			selectedTile.room = editorUI.roomButton.room;
+			selectedTile.canExplode = editorUI.explodeButton.explosion;
+			selectedTile.hasCollision = editorUI.collisionButton.collision;
 			
 			Tile currentTile = new Tile(selectedTile);
 			
@@ -188,5 +192,67 @@ public class EditorPanel extends JPanel implements Runnable{
 			}
 		
 		}
+		public void toggleRoomMenu() {
+	        if (roomMenuOpen) {
+	            closeRoomMenu();
+	        } else {
+	            openRoomMenu();
+	        }
+	    }
+	    private void openRoomMenu() {
 
-}
+	        int buttonHeight = tileSize / 2;
+
+	        for (int i = 0; i < Tile.rooms.values().length; i++) {
+
+	            Tile.rooms roomType = Tile.rooms.values()[i];
+	            String roomName = roomType.toString();
+
+	            int x = editorUI.roomButton.getX();
+	            int y = editorUI.roomButton.getY() - ((i+1) * buttonHeight);
+	            int w = editorUI.roomButton.getWidth();
+	            int h = buttonHeight;
+	            final int index = i;
+	            editorUI.roomOptions[i] = new MyButton(
+	                roomName,
+	                x, y, w, h,
+	                () -> selectRoom(index)
+	            );
+
+	            add(editorUI.roomOptions[i]);
+	        }
+
+	        roomMenuOpen = true;
+	        revalidate();
+	        repaint();
+	    }
+	    private void selectRoom(int index) {
+
+	        Tile.rooms selected = Tile.rooms.values()[index];
+
+	        editorUI.roomButton.setText(selected.toString());
+
+	        // Save it for the editor’s current tile placement
+	        editorUI.roomButton.room = selected;
+
+	        closeRoomMenu();
+	    }
+	    private void closeRoomMenu() {
+
+	        for (int i = 0; i < editorUI.roomOptions.length; i++) {
+	            if (editorUI.roomOptions[i] != null) {
+	                remove(editorUI.roomOptions[i]);
+	                editorUI.roomOptions[i] = null;
+	            }
+	        }
+
+	        roomMenuOpen = false;
+	        revalidate();
+	        repaint();
+	    }
+	}
+
+
+
+
+

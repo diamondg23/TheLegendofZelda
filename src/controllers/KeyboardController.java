@@ -4,7 +4,7 @@ import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import main.GamePanel;
+import panels.GamePanel;
 
 public class KeyboardController extends Component implements KeyListener {
 	private GamePanel panel;

@@ -1,4 +1,4 @@
-package main;
+package panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,6 +19,7 @@ import tile.SpriteSheet;
 import tile.TileManager;
 import tile.TileRenderer;
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable,ActionListener{
 	
 	
@@ -37,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener{
 	Thread gameThread;
 	
 	TileManager tileM = new TileManager(this);
-	TileRenderer tileR = new TileRenderer(this);
+	TileRenderer tileR = new TileRenderer();
 	SpriteSheet sheet;
 	public Player player = new Player(200,200,16,16);
 	
@@ -121,7 +122,7 @@ public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
-		tileR.draw(g2, sheet,tileM);
+		tileR.draw(g2, sheet,tileM, tileSize,maxTileScreenCol,maxTileScreenRow,maxUIScreenCol,maxUIScreenRow);
 		g2.dispose();
 	}
 @Override
