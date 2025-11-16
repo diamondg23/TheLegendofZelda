@@ -1,5 +1,8 @@
 package entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import main.Animation;
 import tile.Sprite;
 
@@ -18,8 +21,9 @@ public abstract class Entity {
 	public int width;
 	public int height;
 	
+	public Animation.AnimationType currentType;
 	
-	public Animation sprites;
+	public Map<Animation.AnimationType, Animation> animations = new HashMap<>();
 	
 	public Entity(int x, int y, int width, int height) {
 		this.x = x;
@@ -28,15 +32,20 @@ public abstract class Entity {
 		this.width = width;
 		this.height = height;
 	}
-	public Entity(int x, int y,int width, int height, Animation animation) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-		this.sprites = animation;
-		directionFacing = Direction.NORTH;
+
+	public void setAnimation(Animation.AnimationType name) {
+	    currentType = name;
+
+	    Animation anim = animations.get(name);
+	    if (anim != null) {
+	        anim.reset();
+	    }
 	}
+
+
+    public Animation getAnimation() {
+    	return animations.get(currentType);
+    }
 	public abstract void changeDirection(Direction direction);
-	public abstract void changeSprites(Animation animation);
 
 }

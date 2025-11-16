@@ -2,6 +2,7 @@ package tile;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
@@ -41,6 +42,8 @@ public class SpriteSheet {
 				
 		}
 		System.out.println(sprites.size());
+		
+
 	}
 	
 	public void assignSprite(int currentY, int currentX, int spriteHeight, int spriteWidth) {

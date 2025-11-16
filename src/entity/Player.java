@@ -22,10 +22,7 @@ public class Player extends Entity implements Moveable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Player(int x, int y, int width, int height, Animation sprites) {
-		super(x, y, width, height, sprites);
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	@Override
 	public void Move(Direction directionMoving, int amount) {
@@ -44,10 +41,6 @@ public class Player extends Entity implements Moveable{
 		
 	}
 
-	@Override
-	public void changeSprites(Animation animation) {
-		this.sprites = animation;
-		
-	}
+
 
 }
