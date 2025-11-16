@@ -250,6 +250,26 @@ public class EditorPanel extends JPanel implements Runnable{
 	        revalidate();
 	        repaint();
 	    }
+	    public void collisionButton() {
+			if(editorUI.collisionButton.getText() == "No Collision") {
+				editorUI.collisionButton.setText("Collision On");
+				editorUI.collisionButton.collision = true;
+			}
+			else {
+				editorUI.collisionButton.setText("No Collision");
+				editorUI.collisionButton.collision = false;
+			}
+		}
+		public void explodeButton() {
+			if(editorUI.explodeButton.getText() == "No Explosion") {
+				editorUI.explodeButton.setText("Explosion on");
+				editorUI.explodeButton.explosion = true;
+			}
+			else {
+				editorUI.explodeButton.setText("No Explosion");
+				editorUI.explodeButton.explosion = false;
+			}
+		}
 	}
 
 

@@ -46,18 +46,25 @@ public class EditorUI {
 	
 		roomButton.setFocusable(false);
 
-		collisionButton = new MyButton(panel);
-		collisionButton.setSize(panel.tileSize*3, panel.screenHeight/20);
-		collisionButton.setLocation(panel.screenWidth/2 - panel.screenWidth/20, panel.screenHeight - collisionButton.getHeight());
+		collisionButton = new MyButton(
+			    "No Collision",
+			    panel.screenWidth/2 - panel.screenWidth/20,
+			    panel.screenHeight - panel.screenHeight / 20,
+			    panel.tileSize*3,
+			    panel.screenHeight/20,
+			    () -> Epanel.collisionButton()
+			);
 		collisionButton.setFocusable(false);
-		collisionButton.setText("No Collision");
 		
-		explodeButton = new MyButton(panel);
-		explodeButton.setSize(panel.tileSize*3, panel.screenHeight/20);
-		explodeButton.setLocation(panel.screenWidth/2 + panel.screenWidth/5, panel.screenHeight - explodeButton.getHeight());
+		explodeButton = new MyButton(
+				"No Explosion",
+				 panel.screenWidth/2 + panel.screenWidth/5,
+				 panel.screenHeight - panel.screenHeight / 20,
+			     panel.tileSize*3,
+				 panel.screenHeight/20,
+			     () -> Epanel.explodeButton()
+					);
 		explodeButton.setFocusable(false);
-		explodeButton.setText("No Explosion");
-
 		
 		buttons[0] = downButton;
 		buttons[1] = upButton;
