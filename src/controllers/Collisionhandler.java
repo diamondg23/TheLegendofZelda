@@ -23,6 +23,7 @@ public class Collisionhandler {
 	}
 	private static boolean checkTileCollision(Moveable m, int amountX, int amountY, TileManager tileM, Direction direction) {
 
+		// after looking at it more i think its because of the 2d array of tiles is broken NEEDS FIXING
 		//TODO ITS COMPLETELY BROKEN I DONT KNOW WHY I THINK ITS BECAUSE POTENTIALLY OF THE OFFSET OF THE DRAWING SINCE WHEN DRAWING TILES THERE IS A OFFSET OF WHERE TO DRAW
 		int hitLeft = m.getX() + m.getRectangle().x;
 	    int hitRight = hitLeft + m.getRectangle().width;
@@ -36,11 +37,11 @@ public class Collisionhandler {
 
 	    int leftCol = futureLeft / tileSize;
 	    int rightCol = futureRight / tileSize;
-	    int topRow = futureTop / tileSize - 4;
-	    int bottomRow = futureBottom / tileSize - 4;
+	    int topRow = futureTop / tileSize;
+	    int bottomRow = futureBottom / tileSize ;
 
 	    Tile tile1, tile2;
-	    System.out.println("top row: " + topRow);
+	    System.out.println("right col: " + rightCol);
 	    if (amountY < 0) {              // NORTH
 	        tile1 = tileM.tiles[topRow][leftCol];
 	        tile2 = tileM.tiles[topRow][rightCol];
