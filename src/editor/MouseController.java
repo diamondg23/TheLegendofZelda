@@ -44,6 +44,7 @@ public class MouseController implements MouseListener, MouseMotionListener{
 			System.out.println(panel.selectedTile);
 			if(panel.selectedTile != null) {
 				col -=2;
+				
 				panel.placeTile(col,row);
 				return;
 			}

@@ -1,12 +1,14 @@
 package interfaces;
 
+import java.awt.Rectangle;
+
 import entity.Entity.Direction;
+import tile.TileManager;
 
 public interface Moveable {
     int getX();
     int getY();
-    int getWidth();
-    int getHeight();
+    Rectangle getRectangle();
 
-	public void Move(Direction directionMoved, int amount);
+	public void Move(Direction directionMoved, int amount, TileManager tileM);
 }

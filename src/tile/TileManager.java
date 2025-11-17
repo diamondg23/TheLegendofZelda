@@ -17,7 +17,7 @@ public class TileManager {
 		
 		tiles = new Tile[gp.maxTileScreenCol][gp.maxTileScreenRow];
 		
-		loadMap("/maps/start.txt");
+		loadMap("/maps/collisiontest.txt");
 	}
 	public void loadMap(String map) {
 		System.out.println(map);

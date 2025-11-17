@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	TileRenderer tileR = new TileRenderer();
 	SpriteSheet openWorldTileSheet;
 	SpriteSheet greenLinkTileSheet;
-	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,16,16);
+	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
 	
@@ -149,7 +149,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 			case PLAYERMOVEMENT:
 				// safely type cast it to player movement event
 				PlayerMovementEvent currentEvent =(PlayerMovementEvent)eventList.getFirst();
-				currentEvent.resolveEvent(player);
+				currentEvent.resolveEvent(player, tileM);
 				eventList.remove();
 				break;
 			default:
@@ -174,10 +174,17 @@ public void paintComponent(Graphics g) {
                 player.getAnimation().getCurrentFrame().image,
                 player.x,
                 player.y,
-                player.width*3,
-                player.height*3,
+                player.width,
+                player.height,
                 null
             );
+		g.setColor(Color.RED);
+		g.drawRect(
+		    player.x + player.getRectangle().x,
+		    player.y + player.getRectangle().y,
+		    player.getRectangle().width,
+		    player.getRectangle().height
+		);
 		g2.dispose();
 	}
 @Override

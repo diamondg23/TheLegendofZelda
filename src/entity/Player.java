@@ -1,8 +1,12 @@
 package entity;
 
+import java.awt.Rectangle;
+
+import controllers.Collisionhandler;
 import interfaces.Moveable;
 import main.Animation;
 import tile.Sprite;
+import tile.TileManager;
 
 public class Player extends Entity implements Moveable{
 	
@@ -28,36 +32,52 @@ public class Player extends Entity implements Moveable{
 	
 
 	@Override
-	public void Move(Direction directionMoving, int amount) {
+	public void Move(Direction directionMoving, int amount,TileManager tileM) {
 		if(directionMoving != this.directionFacing) {
 			changeDirection(directionMoving);
 		}
 		switch(directionMoving) {
 		case EAST:
-			this.x += amount;
-			isMoving = true;
+			if(Collisionhandler.canMove(this, amount, 0, tileM, directionMoving)) {
+				this.x += amount;
+				isMoving = true;
+				break;
+			}
 			break;
+			
 		case NORTH:
-			this.y -= amount;
-			isMoving = true;
+			if(Collisionhandler.canMove(this, 0, -amount, tileM, directionMoving)) {
+				this.y -= amount;
+				isMoving = true;
+				break;
+			}
 			break;
+
 		case SOUTH:
-			this.y += amount;
-			isMoving = true;
+			if(Collisionhandler.canMove(this, 0, amount, tileM, directionMoving)) {
+				this.y += amount;
+				isMoving = true;
+				break;
+			}
 			break;
+
 		case WEST:
-			this.x -= amount;
-			isMoving = true;
+			if(Collisionhandler.canMove(this, -amount, 0, tileM, directionMoving)) {
+				this.x -= amount;
+				isMoving = true;
+				break;
+		}
 			break;
 		default:
 			System.err.println("ERROR ERROR WRONG DIRECTION GIVEN");
+			
 			break;
 		
 		}
 		//if the button is held down, this function should be called every frame
 		// this should create a event and stack it onto a queue to be processed.
 		//will need to check bounds check and also if there is collision
-		
+		System.out.println("Player coordinates: " + this.x + "," + this.y);
 	}
 	@Override
 	public void changeDirection(Direction direction) {
@@ -92,17 +112,9 @@ public class Player extends Entity implements Moveable{
 		// TODO Auto-generated method stub
 		return this.y;
 	}
-	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
-		return this.hitboxWidth;
+	public Rectangle getRectangle() {
+		return solidArea;
 	}
-	@Override
-	public int getHeight() {
-		// TODO Auto-generated method stub
-		return this.hitboxWidth;
-	}
-
 
 
 }

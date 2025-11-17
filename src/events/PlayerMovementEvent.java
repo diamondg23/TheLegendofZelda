@@ -2,6 +2,7 @@ package events;
 
 import entity.Entity.Direction;
 import entity.Player;
+import tile.TileManager;
 
 public class PlayerMovementEvent extends Event {
 
@@ -29,8 +30,8 @@ public class PlayerMovementEvent extends Event {
 	public int getAmountMoved() {
 		return moveAmount;
 	}
-	public void resolveEvent(Player player) {
-		player.Move(directionMoved, moveAmount);
+	public void resolveEvent(Player player, TileManager tileM) {
+		player.Move(directionMoved, moveAmount, tileM);
 	}
 
 }

@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +22,7 @@ public abstract class Entity {
 	public int width;
 	public int height;
 	public int imageScale = 3;
-	public int hitboxWidth;
-	public int hitboxHeight;
+	public Rectangle solidArea;
 	public Animation.AnimationType currentType;
 	
 	public Map<Animation.AnimationType, Animation> animations = new HashMap<>();
@@ -33,8 +33,7 @@ public abstract class Entity {
 		directionFacing = Direction.NORTH;
 		this.width = width;
 		this.height = height;
-		this.hitboxWidth = (width*imageScale)-width/2;
-		this.hitboxHeight = (height*imageScale)-height/2;
+		solidArea = new Rectangle(0 ,0,width,height);
 	}
 
 	public void setAnimation(Animation.AnimationType name) {
