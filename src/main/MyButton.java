@@ -25,8 +25,6 @@ public class MyButton extends JButton implements ActionListener{
 	        
 	        
 	    }
-
-	    
 	    public MyButton(String text, Runnable action) {
 	    	super(text);
 	    	this.addActionListener(e -> action.run());

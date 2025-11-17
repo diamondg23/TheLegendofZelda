@@ -20,9 +20,14 @@ public class MainPanel extends JPanel{
 		this.add(startingPanel, "start");
 		this.add(namePanel, "nameSelection");
 		cardLayout.show(this, "start");
+		
 	}
 	public void showGame() {
 		cardLayout.show(this, "game");
+		gamePanel.requestFocusInWindow();  
+	}
+	public void showInventory() {
+		
 	}
 
 }

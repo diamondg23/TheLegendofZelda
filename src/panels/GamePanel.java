@@ -6,21 +6,25 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import entity.Entity.Direction;
 import entity.Player;
 import events.Event;
 import events.PlayerMovementEvent;
+import main.Animation;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.TileManager;
 import tile.TileRenderer;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements Runnable,ActionListener{
+public class GamePanel extends JPanel implements Runnable,ActionListener, KeyListener{
 	
 	
 	
@@ -34,13 +38,14 @@ public class GamePanel extends JPanel implements Runnable,ActionListener{
 	public final int maxTileScreenRow = 11;
 	public final int screenWidth = (tileSize * maxTileScreenCol) + maxUIScreenCol; //768 pixels
 	public final int screenHeight = (tileSize * maxTileScreenRow) + maxUIScreenRow; //576 pixels
-	
+	boolean upHeld, downHeld, leftHeld, rightHeld;
 	Thread gameThread;
 	
 	TileManager tileM = new TileManager(this);
 	TileRenderer tileR = new TileRenderer();
-	SpriteSheet sheet;
-	public Player player = new Player(200,200,16,16);
+	SpriteSheet openWorldTileSheet;
+	SpriteSheet greenLinkTileSheet;
+	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,16,16);
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
 	
@@ -52,10 +57,34 @@ public class GamePanel extends JPanel implements Runnable,ActionListener{
 	
 		this.setFocusable(true);
 		try {
-			sheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResourceAsStream("/spritesheet/overworldtiles.png"))), 16, 16, 128, 1,1, 8);
+			openWorldTileSheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResourceAsStream("/spritesheet/overworldtiles.png"))), 16, 16, 128, 1,1, 8);
+			greenLinkTileSheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResource("/spritesheet/legendofzelda_link_sheet_green.png"))),16,16,12,14,14,3);
 		}catch(Exception e) {
 			
 		}
+		Sprite[] northWalking = new Sprite[2];
+		Sprite[] eastWalking = new Sprite[2];
+		Sprite[] southWalking = new Sprite[2];
+		Sprite[] westWalking = new Sprite[2];
+		northWalking[0] = greenLinkTileSheet.sprites.get(2);
+		northWalking[1] = greenLinkTileSheet.sprites.get(6);
+		player.addAnimation(Animation.AnimationType.WALK_NORTH, new Animation(northWalking));
+		eastWalking[0] = greenLinkTileSheet.sprites.get(3);
+		eastWalking[1] = greenLinkTileSheet.sprites.get(7);
+		player.addAnimation(Animation.AnimationType.WALK_EAST, new Animation(eastWalking));
+
+		westWalking[0] = greenLinkTileSheet.sprites.get(1);
+		westWalking[1] = greenLinkTileSheet.sprites.get(5);
+		player.addAnimation(Animation.AnimationType.WALK_WEST, new Animation(westWalking));
+		
+		southWalking[0] = greenLinkTileSheet.sprites.get(0);
+		southWalking[1] = greenLinkTileSheet.sprites.get(4);
+		player.addAnimation(Animation.AnimationType.WALK_SOUTH, new Animation(southWalking));
+		player.setAnimation(Animation.AnimationType.WALK_SOUTH);
+		startGameThread();
+		setFocusable(true);  
+       
+        addKeyListener(this);
 		
 	}
 	public void startGameThread() {
@@ -95,7 +124,20 @@ public class GamePanel extends JPanel implements Runnable,ActionListener{
 
 }
 	public void update() {
+		player.isMoving = false;
+		if (upHeld)
+		    eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.NORTH, 5));
+		
 
+		else if (downHeld)
+		    eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.SOUTH, 5));
+
+		else if (leftHeld)
+		    eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.WEST, 5));
+
+		else if (rightHeld)
+		    eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.EAST, 5));
+		
 		while(eventList.size() != 0) {
 			switch(eventList.getFirst().getEvent()) {
 			case BOMBPLACED:
@@ -115,6 +157,11 @@ public class GamePanel extends JPanel implements Runnable,ActionListener{
 			
 			}
 		}
+		if (player.isMoving) {
+		    player.getAnimation().update();
+		} else {
+		    player.getAnimation().reset();
+		}
 		
 	}
 public void paintComponent(Graphics g) {
@@ -122,11 +169,62 @@ public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
-		tileR.draw(g2, sheet,tileM, tileSize,maxTileScreenCol,maxTileScreenRow,maxUIScreenCol,maxUIScreenRow);
+		tileR.draw(g2, openWorldTileSheet,tileM, tileSize,maxTileScreenCol,maxTileScreenRow,maxUIScreenCol,maxUIScreenRow);
+		g2.drawImage(
+                player.getAnimation().getCurrentFrame().image,
+                player.x,
+                player.y,
+                player.width*3,
+                player.height*3,
+                null
+            );
 		g2.dispose();
 	}
 @Override
 public void actionPerformed(ActionEvent e) {
+	
+}
+@Override
+public void keyTyped(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+@Override
+public void keyPressed(KeyEvent e) {
+	switch(e.getKeyCode()) {
+	case KeyEvent.VK_W:
+		upHeld = true;
+		break;
+	case KeyEvent.VK_A:
+		leftHeld = true;
+		break;
+	case KeyEvent.VK_S:
+		downHeld = true;
+		break;
+	case KeyEvent.VK_D:
+		rightHeld = true;
+		break;
+	
+	}
+	
+}
+@Override
+public void keyReleased(KeyEvent e) {
+	switch(e.getKeyCode()) {
+	case KeyEvent.VK_W:
+		upHeld = false;
+		break;
+	case KeyEvent.VK_A:
+		leftHeld = false;
+		break;
+	case KeyEvent.VK_S:
+		downHeld = false;
+		break;
+	case KeyEvent.VK_D:
+		rightHeld = false;
+		break;
+	
+	}
 	
 }
 }

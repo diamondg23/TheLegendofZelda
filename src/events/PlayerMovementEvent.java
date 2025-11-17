@@ -30,7 +30,6 @@ public class PlayerMovementEvent extends Event {
 		return moveAmount;
 	}
 	public void resolveEvent(Player player) {
-		player.changeDirection(directionMoved);
 		player.Move(directionMoved, moveAmount);
 	}
 

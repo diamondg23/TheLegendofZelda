@@ -16,11 +16,13 @@ public abstract class Entity {
 	public Direction directionFacing;
 	public int x;
 	public int y;
-	
+	public boolean isMoving = false;
 	//this should be the hitbox;
 	public int width;
 	public int height;
-	
+	public int imageScale = 3;
+	public int hitboxWidth;
+	public int hitboxHeight;
 	public Animation.AnimationType currentType;
 	
 	public Map<Animation.AnimationType, Animation> animations = new HashMap<>();
@@ -31,6 +33,8 @@ public abstract class Entity {
 		directionFacing = Direction.NORTH;
 		this.width = width;
 		this.height = height;
+		this.hitboxWidth = (width*imageScale)-width/2;
+		this.hitboxHeight = (height*imageScale)-height/2;
 	}
 
 	public void setAnimation(Animation.AnimationType name) {
