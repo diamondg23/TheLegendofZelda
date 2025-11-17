@@ -32,38 +32,42 @@ public class Player extends Entity implements Moveable{
 	
 
 	@Override
-	public void Move(Direction directionMoving, int amount,TileManager tileM) {
+	public void Move(Direction directionMoving, int amount,int offsetX,int offsetY, TileManager tileM) {
 		if(directionMoving != this.directionFacing) {
 			changeDirection(directionMoving);
 		}
 		switch(directionMoving) {
 		case EAST:
-			if(Collisionhandler.canMove(this, amount, 0, tileM, directionMoving)) {
+			if(Collisionhandler.canMove(this, amount, 0,offsetX,offsetY, tileM, directionMoving)) {
 				this.x += amount;
+				this.getRectangle().x += amount;
 				isMoving = true;
 				break;
 			}
 			break;
 			
 		case NORTH:
-			if(Collisionhandler.canMove(this, 0, -amount, tileM, directionMoving)) {
+			if(Collisionhandler.canMove(this, 0, -amount,offsetX,offsetY, tileM, directionMoving)) {
 				this.y -= amount;
+				this.getRectangle().y -=amount;
 				isMoving = true;
 				break;
 			}
 			break;
 
 		case SOUTH:
-			if(Collisionhandler.canMove(this, 0, amount, tileM, directionMoving)) {
+			if(Collisionhandler.canMove(this, 0, amount,offsetX,offsetY, tileM, directionMoving)) {
 				this.y += amount;
+				this.getRectangle().y += amount;
 				isMoving = true;
 				break;
 			}
 			break;
 
 		case WEST:
-			if(Collisionhandler.canMove(this, -amount, 0, tileM, directionMoving)) {
+			if(Collisionhandler.canMove(this, -amount, 0,offsetX,offsetY, tileM, directionMoving)) {
 				this.x -= amount;
+				this.getRectangle().x -= amount;
 				isMoving = true;
 				break;
 		}
@@ -77,7 +81,6 @@ public class Player extends Entity implements Moveable{
 		//if the button is held down, this function should be called every frame
 		// this should create a event and stack it onto a queue to be processed.
 		//will need to check bounds check and also if there is collision
-		System.out.println("Player coordinates: " + this.x + "," + this.y);
 	}
 	@Override
 	public void changeDirection(Direction direction) {

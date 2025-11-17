@@ -85,11 +85,18 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		setFocusable(true);  
        
         addKeyListener(this);
+        for(int i =0; i < tileM.tiles.length; i++) {
+			for(int j = 0; j < tileM.tiles[i].length; j++) {
+				System.out.print(tileM.tiles[i][j].spriteIndex + " ");
+			}
+			System.out.println();
+		}
 		
 	}
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
+		
 	}
 	@Override
 	public void run() {
@@ -149,7 +156,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 			case PLAYERMOVEMENT:
 				// safely type cast it to player movement event
 				PlayerMovementEvent currentEvent =(PlayerMovementEvent)eventList.getFirst();
-				currentEvent.resolveEvent(player, tileM);
+				currentEvent.resolveEvent(player, tileM, maxUIScreenCol, maxUIScreenRow);
 				eventList.remove();
 				break;
 			default:
@@ -180,11 +187,18 @@ public void paintComponent(Graphics g) {
             );
 		g.setColor(Color.RED);
 		g.drawRect(
-		    player.x + player.getRectangle().x,
-		    player.y + player.getRectangle().y,
+		    player.getRectangle().x ,
+		    player.getRectangle().y ,
 		    player.getRectangle().width,
 		    player.getRectangle().height
 		);
+		for(int i = 0; i < tileM.tiles.length; i++){
+			for(int j = 0; j < tileM.tiles[i].length; j++) {
+				if(tileM.tiles[i][j].hasCollision) {
+					g.drawRect(tileM.tiles[i][j].collisionHitbox.x, tileM.tiles[i][j].collisionHitbox.y, tileM.tiles[i][j].collisionHitbox.width, tileM.tiles[i][j].collisionHitbox.height);
+				}
+			}
+		}
 		g2.dispose();
 	}
 @Override

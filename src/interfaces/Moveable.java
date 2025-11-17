@@ -10,5 +10,5 @@ public interface Moveable {
     int getY();
     Rectangle getRectangle();
 
-	public void Move(Direction directionMoved, int amount, TileManager tileM);
+	public void Move(Direction directionMoved, int amount,int offsetX, int offsetY, TileManager tileM);
 }

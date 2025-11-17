@@ -1,5 +1,7 @@
 package tile;
 
+import java.awt.Rectangle;
+
 public class Tile {
 	
 	// DO NOT CHANGE ORDERING OF THE ROOMS BECAUSE IT WILL CHANGE THE RESULTING INT IN THE FILE, IF YOU CHANGE ORDERINGS YOU HAVE TO REMAKE ALL THE FILES
@@ -41,7 +43,7 @@ public class Tile {
 	public directionMove direction = directionMove.NODIRECTION;
 	public boolean isFlammable = false;
 	int x, y;
-	int screenX,screenY;
+
 	public int spriteIndex = 0;
 	public rooms room;
 	public boolean canExplode = false;
@@ -50,20 +52,38 @@ public class Tile {
 	public boolean hasCollision = false;
 	public boolean isVisible = true;
 	public boolean isEnabled = true;
+	public Rectangle collisionHitbox;
+	public Rectangle roomHitbox;
 	public Tile(Sprite sprite) {
 		this.sprite = sprite;
 		
 	}
     public Tile(Tile other) {
-        this.sprite = other.sprite;              // sharing sprite is fine
+        this.sprite = other.sprite;            
         this.room = other.room;
         this.canExplode = other.canExplode;
         this.hasCollision = other.hasCollision;
     }
 	
-	
-	
-	public Tile resolveBehavior(String tileString ) {
+	private void determineCollisionHitBox() {
+		// if it has collision it will make the collision box unique for whatever sprite it is 
+		if(hasCollision) {
+			switch(spriteIndex) {
+			case 54:
+				collisionHitbox = new Rectangle(x+5,y,43,25);
+				break;
+			case 56:
+				collisionHitbox = new Rectangle(x,y,36,40);
+				break;
+			default:
+				collisionHitbox = new Rectangle(x,y,48,48);
+			}
+		}
+	}
+	private void determineRoomHitBox() {
+		
+	}
+	public Tile resolveBehavior(String tileString, int x, int y) {
 		
 		//This takes a string and will have switch statement for each behavior it will have.
 		String[] currTile = tileString.split(",");
@@ -108,6 +128,9 @@ public class Tile {
 		else {
 			this.isFlammable = true;
 		}
+		this.x = x;
+		this.y = y;
+		determineCollisionHitBox();
 		return this;
 		
 	}

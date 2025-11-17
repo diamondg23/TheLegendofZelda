@@ -16,7 +16,7 @@ public class TileRenderer {
         for (int col = 0; col < cols; col++) {
             for (int row = 0; row < rows; row++) {
 
-                Tile tile = tileM.tiles[col][row];
+                Tile tile = tileM.tiles[row][col];
                 int index = tile.spriteIndex;
 
                 g2.drawImage(

@@ -30,8 +30,8 @@ public class PlayerMovementEvent extends Event {
 	public int getAmountMoved() {
 		return moveAmount;
 	}
-	public void resolveEvent(Player player, TileManager tileM) {
-		player.Move(directionMoved, moveAmount, tileM);
+	public void resolveEvent(Player player, TileManager tileM, int offsetX, int offsetY) {
+		player.Move(directionMoved, moveAmount,offsetX,offsetY, tileM);
 	}
 
 }

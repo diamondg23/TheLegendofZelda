@@ -33,7 +33,7 @@ public abstract class Entity {
 		directionFacing = Direction.NORTH;
 		this.width = width;
 		this.height = height;
-		solidArea = new Rectangle(0 ,0,width,height);
+		solidArea = new Rectangle(x + 10 ,y + 10,width- width/2,height - height/2);
 	}
 
 	public void setAnimation(Animation.AnimationType name) {
