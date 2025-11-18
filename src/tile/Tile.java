@@ -23,8 +23,11 @@ public class Tile {
 		LEVEL6(),
 		LEVEL7(),
 		LEVEL8(),
-		LEVEL9()
-		
+		LEVEL9(),
+		SCREENPANNORTH(),
+		SCREENPANSOUTH(),
+		SCREENPANWEST(),
+		SCREENPANEAST()
 
 		
 	};
@@ -81,7 +84,21 @@ public class Tile {
 		}
 	}
 	private void determineRoomHitBox() {
+		switch(this.room) {
+		case SCREENPANEAST:
+			this.roomHitbox = new Rectangle(this.x+20, this.y, 48,48);
+			break;
+		case SCREENPANNORTH:
+			this.roomHitbox = new Rectangle(this.x, this.y, 48,20);
+			break;
+		case SCREENPANSOUTH:
+			this.roomHitbox = new Rectangle(this.x, this.y+20, 48,48);
+			break;
+		case SCREENPANWEST:
+			this.roomHitbox = new Rectangle(this.x, this.y, 20,48);
+			break;
 		
+		}
 	}
 	public Tile resolveBehavior(String tileString, int x, int y) {
 		
@@ -91,6 +108,7 @@ public class Tile {
 		this.spriteIndex = spriteIndex;
 		int roomNum = Integer.parseInt(currTile[1]);
 		this.room = rooms.values()[roomNum];
+		
 		int hasCollision = Integer.parseInt(currTile[2]);
 		if(hasCollision == 1)
 			this.hasCollision = true;
@@ -131,6 +149,7 @@ public class Tile {
 		this.x = x;
 		this.y = y;
 		determineCollisionHitBox();
+		determineRoomHitBox();
 		return this;
 		
 	}

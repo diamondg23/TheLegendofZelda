@@ -1,6 +1,9 @@
-/controllers/
+/config/
+/entity/
+/events/
+/interfaces/
+/panels/
 /editor/
-/main/
-/maps/
-/spritesheet/
 /tile/
+/main/
+/controllers/

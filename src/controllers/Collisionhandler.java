@@ -83,5 +83,9 @@ public class Collisionhandler {
                r1.y + r1.height >= r2.y;
     }
 
+    public static boolean roomHitBox() {
+    	//TODO add boundary check for roomhitboxes then assign behavior based on which room it is.
+    	return false;
+    }
 
 }

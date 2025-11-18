@@ -21,7 +21,7 @@ public class MyButton extends JButton implements ActionListener{
 	        this.setBounds(x, y, width, height);
 	
 	        this.setVisible(true);
-	      
+	        
 	        
 	        
 	    }
