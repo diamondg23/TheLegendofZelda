@@ -1,9 +1,3 @@
-/config/
-/entity/
-/events/
-/interfaces/
-/panels/
-/editor/
-/tile/
-/main/
 /controllers/
+/panels/
+/entity/

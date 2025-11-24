@@ -7,6 +7,7 @@ import java.util.List;
 
 import entity.Entity;
 import entity.Entity.Direction;
+import entity.Player;
 import interfaces.Moveable;
 import java.awt.Rectangle;
 public class Collisionhandler {
@@ -24,11 +25,11 @@ public class Collisionhandler {
 	}
 	private static boolean checkTileCollision(Moveable m, int amountX, int amountY,int offsetX,int offsetY, TileManager tileM, Direction direction) {
 
-		//OK ITS MOSTLY WORKING EXCEPT THE IF STATEMENTS AT THE BOTTOM ARE NOT TRIGGERING EVEN WHEN THEY INTERCEPT
+		
 		int hitLeft = m.getX() -offsetX;
-	    int hitRight = hitLeft + m.getRectangle().width;
+	    int hitRight = hitLeft + 48;
 	    int hitTop = m.getY() - offsetY;
-	    int hitBottom = hitTop + m.getRectangle().height;
+	    int hitBottom = hitTop + 48;
 
 	    int futureLeft = hitLeft + amountX;
 	    int futureRight = hitRight + amountX;
@@ -57,18 +58,21 @@ public class Collisionhandler {
 	        tile1 = tileM.tiles[topRow][leftCol];
 	        tile2 = tileM.tiles[bottomRow][leftCol];
 	    }
-	    
+	    System.out.println("Top row: " + topRow);
+	    System.out.println("Bottom row: " + bottomRow);
+	    System.out.println("Left Col: " + leftCol);
+	    System.out.println("Right Col: " + rightCol);
 	    // TODO FIX GETTING STUCK ON WALLS BECAUSE IT IS OVERLAPPING INCORRECTLY
 	 if(tile1.hasCollision) {
 		
-		 if(touchesOrIntersects(tile1.collisionHitbox, m.getRectangle())) {
+		 if(touchesOrIntersects(m.getRectangle(), tile1.collisionHitbox)) {
 			 System.out.println("collision registered");
 			 return false;
 		 }
 	 }
 	 if(tile2.hasCollision) {
 		 
-		 if(touchesOrIntersects(tile2.collisionHitbox, m.getRectangle())) {
+		 if(touchesOrIntersects(m.getRectangle(), tile2.collisionHitbox)) {
 			 return false;
 		 }
 	 }
@@ -87,5 +91,7 @@ public class Collisionhandler {
     	//TODO add boundary check for roomhitboxes then assign behavior based on which room it is.
     	return false;
     }
+
+
 
 }

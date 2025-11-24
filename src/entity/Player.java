@@ -44,6 +44,7 @@ public class Player extends Entity implements Moveable{
 				isMoving = true;
 				break;
 			}
+			
 			break;
 			
 		case NORTH:
@@ -71,6 +72,7 @@ public class Player extends Entity implements Moveable{
 				isMoving = true;
 				break;
 		}
+			
 			break;
 		default:
 			System.err.println("ERROR ERROR WRONG DIRECTION GIVEN");

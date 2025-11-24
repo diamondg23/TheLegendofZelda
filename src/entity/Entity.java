@@ -14,6 +14,8 @@ public abstract class Entity {
 		SOUTH(),
 		EAST()
 	}
+	public String name;
+	
 	public Direction directionFacing;
 	public int x;
 	public int y;
@@ -27,10 +29,11 @@ public abstract class Entity {
 	
 	public Map<Animation.AnimationType, Animation> animations = new HashMap<>();
 	
+	
 	public Entity(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
-		directionFacing = Direction.NORTH;
+		directionFacing = Direction.SOUTH;
 		this.width = width;
 		this.height = height;
 		solidArea = new Rectangle(x + 10 ,y + 10,width- width/2,height - height/2);
