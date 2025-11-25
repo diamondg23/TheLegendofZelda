@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	final int originalTileSize = 16; //16x16 tile 
 	final int scale = 3;
 	public final int tileSize = originalTileSize*scale;
-	final int fps = 30;
+	final int fps = 60;
 	public final int maxUIScreenCol = 0;
 	public final int maxUIScreenRow = 200;
 	public final int maxTileScreenCol = 16; //16 tiles horizontally
@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public final int screenWidth = (tileSize * maxTileScreenCol) + maxUIScreenCol; //768 pixels
 	public final int screenHeight = (tileSize * maxTileScreenRow) + maxUIScreenRow; //576 pixels
 	boolean upHeld, downHeld, leftHeld, rightHeld;
+	
 	Thread gameThread;
 	
 	TileManager tileM = new TileManager(this);
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
+	public LinkedList<KeyEvent> keysPressed = new LinkedList<KeyEvent>();
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -131,20 +133,27 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 
 }
 	public void update() {
-		player.isMoving = false;
-		if (upHeld)
-		    eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.NORTH, 5));
+		if(keysPressed.isEmpty())
+			player.isMoving =false;
+		else {
+			
 		
-
-		else if (downHeld)
-		    eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.SOUTH, 5));
-
-		else if (leftHeld)
-		    eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.WEST, 5));
-
-		else if (rightHeld)
-		    eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.EAST, 5));
+		switch(keysPressed.getFirst().getKeyCode()) {
+		case KeyEvent.VK_W:
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.NORTH, 5));
+			break;
+		case KeyEvent.VK_S:
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.SOUTH, 5));
+			break;
+		case KeyEvent.VK_D:
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.EAST, 5));
+			break;
+		case KeyEvent.VK_A:
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.WEST, 5));
+			break;
 		
+		}
+		}
 		while(eventList.size() != 0) {
 			switch(eventList.getFirst().getEvent()) {
 			case BOMBPLACED:
@@ -212,39 +221,25 @@ public void keyTyped(KeyEvent e) {
 }
 @Override
 public void keyPressed(KeyEvent e) {
-	switch(e.getKeyCode()) {
-	case KeyEvent.VK_W:
-		upHeld = true;
-		break;
-	case KeyEvent.VK_A:
-		leftHeld = true;
-		break;
-	case KeyEvent.VK_S:
-		downHeld = true;
-		break;
-	case KeyEvent.VK_D:
-		rightHeld = true;
-		break;
-	
+	int keyCode = e.getKeyCode();
+	for(int i = 0; i < keysPressed.size(); i++) {
+		if(keysPressed.get(i).getKeyCode() == keyCode) {
+			keysPressed.remove(i);
+			
+		}
 	}
-	
+	keysPressed.addFirst(e);
+
 }
 @Override
 public void keyReleased(KeyEvent e) {
-	switch(e.getKeyCode()) {
-	case KeyEvent.VK_W:
-		upHeld = false;
-		break;
-	case KeyEvent.VK_A:
-		leftHeld = false;
-		break;
-	case KeyEvent.VK_S:
-		downHeld = false;
-		break;
-	case KeyEvent.VK_D:
-		rightHeld = false;
-		break;
-	
+	int keyCode = e.getKeyCode();
+	for(int i = 0; i < keysPressed.size(); i++) {
+		if(keysPressed.get(i).getKeyCode() == keyCode) {
+			keysPressed.remove(i);
+			break;
+			
+		}
 	}
 	
 }
