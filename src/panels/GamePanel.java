@@ -41,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public final int screenHeight = (tileSize * maxTileScreenRow) + maxUIScreenRow; //576 pixels
 	boolean upHeld, downHeld, leftHeld, rightHeld;
 	
+	boolean isActive = false;
 	Thread gameThread;
 	
 	TileManager tileM = new TileManager(this);
@@ -103,6 +104,9 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	}
 	@Override
 	public void run() {
+	
+			
+		
 		double drawInterval = 1000000000/fps;
 		double delta = 0;
 		long currentTime;
@@ -116,7 +120,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 			timer +=(currentTime - lastTime);
 			lastTime = currentTime;
 			
-			if(delta >= 1) {
+			if(delta >= 1 && isActive) {
 				update();
 				
 				repaint();
@@ -131,6 +135,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 			}
 		
 	}
+		
 
 }
 	public void update() {

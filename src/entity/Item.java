@@ -6,6 +6,7 @@ public class Item {
 
 	public Sprite sprite;
 	public String name;
+	public boolean isInInventory = false;
 	public enum items {
 		BOOMERANG(),
 		REDCANDLE(),

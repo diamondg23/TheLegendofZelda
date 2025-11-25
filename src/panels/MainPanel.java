@@ -24,10 +24,11 @@ public class MainPanel extends JPanel{
 	}
 	public void showGame() {
 		cardLayout.show(this, "game");
-		gamePanel.requestFocusInWindow();  
+		gamePanel.requestFocusInWindow(); 
+		gamePanel.isActive = true;
 	}
 	public void showInventory() {
-		
+		gamePanel.isActive = false;
 	}
 
 }

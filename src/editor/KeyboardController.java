@@ -40,7 +40,7 @@ public class KeyboardController extends Component implements KeyListener {
 			System.out.println( EditorTileManager.SaveMap(panel.mapTiles));
 		}
 		if(e.getKeyChar() == KeyEvent.VK_2) {
-		
+			
 		}
 	}
 	
