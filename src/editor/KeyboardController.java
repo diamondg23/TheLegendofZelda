@@ -39,6 +39,9 @@ public class KeyboardController extends Component implements KeyListener {
 		if(e.getKeyCode() == KeyEvent.VK_S) {
 			System.out.println( EditorTileManager.SaveMap(panel.mapTiles));
 		}
+		if(e.getKeyChar() == KeyEvent.VK_2) {
+		
+		}
 	}
 	
 
