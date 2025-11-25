@@ -52,6 +52,9 @@ public abstract class Entity {
     public Animation getAnimation() {
     	return animations.get(currentType);
     }
+    public void addAnimation(Animation.AnimationType type , Animation animation) {
+		this.animations.put(type, animation);
+	}
 	public abstract void changeDirection(Direction direction);
 
 }

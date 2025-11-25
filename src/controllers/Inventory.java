@@ -20,4 +20,7 @@ public class Inventory {
 		}
 		return null;
 	}
+	public boolean hasItem(Item item) {
+		return itemList.contains(item);
+	}
 }

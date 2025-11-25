@@ -3,6 +3,7 @@ package entity;
 import java.awt.Rectangle;
 
 import controllers.Collisionhandler;
+import controllers.Inventory;
 import interfaces.Moveable;
 import main.Animation;
 import tile.Sprite;
@@ -15,7 +16,7 @@ public class Player extends Entity implements Moveable{
 	public boolean isAttacking = false;
 	public int weaponWidth = 0;
 	public int weaponHeight = 0;
-	
+	public Inventory inventory;
 	// whenever link attacks depending on the weapon his actual sprite extends out by x pixels in the direction he attacks. This hitbox needs to be treated separately
 	//the sword hitbox should check if it hits enemies and deals damage to enemies
 	//the actual body hitbox, link will take damage
@@ -23,11 +24,11 @@ public class Player extends Entity implements Moveable{
 	
 	public Player(int x, int y, int width, int height) {
 		super(x, y, width, height);
+		inventory = new Inventory();
+		
 		
 	}
-	public void addAnimation(Animation.AnimationType type , Animation animation) {
-		this.animations.put(type, animation);
-	}
+	
 
 	
 

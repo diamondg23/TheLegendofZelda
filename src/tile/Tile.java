@@ -27,8 +27,10 @@ public class Tile {
 		SCREENPANNORTH(),
 		SCREENPANSOUTH(),
 		SCREENPANWEST(),
-		SCREENPANEAST()
-
+		SCREENPANEAST(),
+		OLDMANSWORD(),
+		OLDMANWHITESWORD()
+		
 		
 	};
 	public enum specialBehavior{
@@ -97,6 +99,8 @@ public class Tile {
 		case SCREENPANWEST:
 			this.roomHitbox = new Rectangle(this.x, this.y, 20,48);
 			break;
+		default:
+			this.roomHitbox = new Rectangle(this.x, this.y, 48,48);
 		
 		}
 	}
