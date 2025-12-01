@@ -67,8 +67,8 @@ public class TileManager {
 		for(int i = 0; i < tiledata.length; i++) {
 			for(int j = 0; j < tiledata[i].length; j++) {
 				TileData tileD = tiledata[i][j];
-				int x = j*48;
-				int y = i*48;
+				int x = j*48 + gp.maxUIScreenCol;
+				int y = i*48 +gp.maxUIScreenRow;
 				tiles[i][j] = new Tile(new Sprite(null), tileD.room,tileD.hasCollision, tileD.canExplode, tileD.direction,tileD.flammable,x,y);
 				tiles[i][j].spriteIndex = tileD.spriteIndex;
 			}
