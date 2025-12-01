@@ -9,6 +9,9 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 
 import tile.Tile;
+import tile.TileData;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 public class EditorTileManager {
 	static Scanner scanner = new Scanner(System.in);
 	
@@ -16,8 +19,19 @@ public class EditorTileManager {
 	
 	}
 	public static boolean SaveMap(Tile[][] tileMap) {
+		TileData[][] tileData = new TileData[tileMap.length][tileMap[0].length];
 		if(!checkIfNull(tileMap)) {
 			return false;
+		}
+		else {
+			
+			for(int i = 0; i < tileData.length; i++) {
+				for(int j = 0; j < tileData[i].length; j++) {
+					Tile tile = tileMap[i][j];
+					tileData[i][j] = new TileData(tile.spriteIndex,tile.room.ordinal(),tile.hasCollision,tile.canExplode, tile.direction.ordinal(),tile.isFlammable);
+					
+				}
+			}
 		}
 		JFileChooser chooser = new JFileChooser();
 		chooser.setCurrentDirectory(new File("res/maps"));
@@ -25,50 +39,20 @@ public class EditorTileManager {
 		  int result = chooser.showOpenDialog(null);
 
           if (result == JFileChooser.APPROVE_OPTION) {
-              File newfile = chooser.getSelectedFile();
+              File file = chooser.getSelectedFile();
               try {
-      			
-      			System.out.print(newfile.createNewFile());
-      			FileWriter fileW;
-      			fileW = new FileWriter(newfile.getPath());
-      			BufferedWriter BW = new BufferedWriter(fileW);
-      			String line = "";
-      			for(int i = 0; i < tileMap.length; i++) {
-      				for(int j = 0; j < tileMap[i].length;j++) {
-      					line += tileMap[i][j].spriteIndex;
-      					line += ",";
-      					line += tileMap[i][j].room.ordinal();
-      					line += ",";
-      					if(tileMap[i][j].hasCollision)
-      						line +="1";
-      					else
-      						line += "0";
-      					line += ",";
-      					if(tileMap[i][j].canExplode)
-      						line += "1";
-      					else
-      						line += "0";
-      					line+= ",";
-      					line+= tileMap[i][j].direction.ordinal();
-      					line+= ",";
-      					if(tileMap[i][j].isFlammable == true) {
-      						line += "1";
-      					}
-      					else {
-      						line += "0";
-      					}
-      					line += " ";
-      				}
-      				BW.write(line);
-      				BW.newLine();
-      				line = "";
-      				
-      			}
-      			BW.close();
-      		} catch (IOException e) {
-      			// TODO Auto-generated catch block
-      			e.printStackTrace();
-      		}
+                  Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+                  FileWriter writer = new FileWriter(file);
+                  gson.toJson(tileData, writer);
+                  writer.close();
+
+                  return true;
+
+              } catch (IOException e) {
+                  e.printStackTrace();
+                  return false;
+              }
           }
 		
 		
