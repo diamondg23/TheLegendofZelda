@@ -46,8 +46,8 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	
 	TileManager tileM = new TileManager(this);
 	TileRenderer tileR = new TileRenderer();
-	SpriteSheet openWorldTileSheet;
-	SpriteSheet greenLinkTileSheet;
+	public SpriteSheet openWorldTileSheet;
+	public SpriteSheet greenLinkTileSheet;
 	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();

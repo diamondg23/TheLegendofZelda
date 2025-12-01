@@ -69,6 +69,18 @@ public class Tile {
         this.canExplode = other.canExplode;
         this.hasCollision = other.hasCollision;
     }
+    public Tile(Sprite sprite, int room, boolean hasCollision, boolean canExplode, int direction, boolean isFlammable,int x, int y) {
+    	this.sprite = sprite;
+    	this.room = rooms.values()[room];
+    	this.hasCollision = hasCollision;
+    	this.canExplode = canExplode;
+    	this.direction = directionMove.values()[direction];
+    	this.isFlammable = isFlammable;
+    	this.x = x;
+    	this.y = y;
+    	determineCollisionHitBox();
+    	determineRoomHitBox();
+    }
 	
 	private void determineCollisionHitBox() {
 		// if it has collision it will make the collision box unique for whatever sprite it is 

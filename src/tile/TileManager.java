@@ -1,9 +1,11 @@
 package tile;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
+import com.google.gson.*;
 import panels.GamePanel;
 
 public class TileManager {
@@ -17,10 +19,29 @@ public class TileManager {
 		
 		tiles = new Tile[gp.maxTileScreenRow][gp.maxTileScreenCol];
 		
-		loadMap("/maps/start.txt");
+		loadMap("/maps/starting.json");
 	}
 	public void loadMap(String map) {
 		System.out.println(map);
+		   try {
+			   InputStream is = getClass().getResourceAsStream(map); 
+			   BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		        Gson gson = new Gson();
+		  
+
+		        // Read JSON back into TileSave[][]
+		        TileData[][] loadData = gson.fromJson(br, TileData[][].class);
+		        br.close();
+		        convertToTile(loadData);
+	
+		    
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		       
+		    }
+		   // old code
+		   /*
 		try {
 			InputStream is = getClass().getResourceAsStream(map); 
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -39,6 +60,18 @@ public class TileManager {
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 			
+		}
+		*/
+	}
+	public void convertToTile(TileData[][] tiledata){
+		for(int i = 0; i < tiledata.length; i++) {
+			for(int j = 0; j < tiledata[i].length; j++) {
+				TileData tileD = tiledata[i][j];
+				int x = j*48;
+				int y = i*48;
+				tiles[i][j] = new Tile(new Sprite(null), tileD.room,tileD.hasCollision, tileD.canExplode, tileD.direction,tileD.flammable,x,y);
+				tiles[i][j].spriteIndex = tileD.spriteIndex;
+			}
 		}
 		
 	}
