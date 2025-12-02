@@ -17,6 +17,7 @@ public class Player extends Entity implements Moveable{
 	public int weaponWidth = 0;
 	public int weaponHeight = 0;
 	public Inventory inventory;
+	
 	// whenever link attacks depending on the weapon his actual sprite extends out by x pixels in the direction he attacks. This hitbox needs to be treated separately
 	//the sword hitbox should check if it hits enemies and deals damage to enemies
 	//the actual body hitbox, link will take damage

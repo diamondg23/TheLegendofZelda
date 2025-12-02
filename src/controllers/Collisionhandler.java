@@ -58,15 +58,12 @@ public class Collisionhandler {
 	        tile1 = tileM.tiles[topRow][leftCol];
 	        tile2 = tileM.tiles[bottomRow][leftCol];
 	    }
-	    System.out.println("Top row: " + topRow);
-	    System.out.println("Bottom row: " + bottomRow);
-	    System.out.println("Left Col: " + leftCol);
-	    System.out.println("Right Col: " + rightCol);
+	
 	    // TODO FIX GETTING STUCK ON WALLS BECAUSE IT IS OVERLAPPING INCORRECTLY
 	 if(tile1.hasCollision) {
 		
 		 if(touchesOrIntersects(m.getRectangle(), tile1.collisionHitbox)) {
-			 System.out.println("collision registered");
+			
 			 return false;
 		 }
 	 }

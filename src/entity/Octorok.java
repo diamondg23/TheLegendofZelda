@@ -7,7 +7,8 @@ public class Octorok extends Enemy implements Shoots{
 	// the shootTimer will be a integer going down by 1 per frame until it reaches 0. It will then shoot then reset.
 	int shootTimer;
 	public Octorok(int x, int y, int width, int height) {
-		super(x, y, width, height);
+		
+		super(x, y, width, height,Enemy.states.PASSIVE);
 		// shoots every 500 frames
 		shootTimer = 500;
 	}

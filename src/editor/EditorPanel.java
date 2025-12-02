@@ -6,12 +6,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import entity.Enemy;
 import main.MyButton;
 import tile.Sprite;
 import tile.SpriteSheet;
@@ -39,6 +41,7 @@ public class EditorPanel extends JPanel implements Runnable{
 	public Tile selectedTile;
 	public Sprite[][] sprites = new Sprite[12][2];
 	public Tile[][] mapTiles = new Tile[11][16];
+	public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
 	EditorUI editorUI = new EditorUI();
 	
 	public boolean roomMenuOpen = false;
@@ -191,6 +194,9 @@ public class EditorPanel extends JPanel implements Runnable{
 				System.out.println();
 			}
 		
+		}
+		public void placeEnemy(Enemy enemy) {
+			enemies.add(enemy);
 		}
 		public void toggleRoomMenu() {
 	        if (roomMenuOpen) {

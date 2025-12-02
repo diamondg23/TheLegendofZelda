@@ -1,8 +1,11 @@
 package entity;
 
+import tile.Sprite;
+
 public class Projectile extends Entity {
 
 	int speed;
+	
 	public Projectile(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		speed = 5;

@@ -116,59 +116,7 @@ public class Tile {
 		
 		}
 	}
-	public Tile resolveBehavior(String tileString, int x, int y) {
-		
-		//This takes a string and will have switch statement for each behavior it will have.
-		String[] currTile = tileString.split(",");
-		int spriteIndex = Integer.parseInt(currTile[0]);
-		this.spriteIndex = spriteIndex;
-		int roomNum = Integer.parseInt(currTile[1]);
-		this.room = rooms.values()[roomNum];
-		
-		int hasCollision = Integer.parseInt(currTile[2]);
-		if(hasCollision == 1)
-			this.hasCollision = true;
-		else
-			this.hasCollision = false;
-		int canExplode = Integer.parseInt(currTile[3]);
-		if(canExplode == 1)
-			this.canExplode = true;
-		else
-			this.canExplode = false;
-		int direction = Integer.parseInt(currTile[4]);
-		switch(direction) {
-		case 0:
-			this.direction =directionMove.NODIRECTION;
-			break;
-		case 1:
-			this.direction = directionMove.NORTH;
-			break;
-		case 2:
-			this.direction = directionMove.SOUTH;
-			break;
-		case 3:
-			this.direction = directionMove.EAST;
-			break;
-		case 4:
-			this.direction = directionMove.WEST;
-			break;
-		default:
-			this.direction = directionMove.NODIRECTION;
-		}
-		int flammable = Integer.parseInt(currTile[5]);
-		if(flammable == 0) {
-			this.isFlammable = false;
-		}
-		else {
-			this.isFlammable = true;
-		}
-		this.x = x;
-		this.y = y;
-		determineCollisionHitBox();
-		determineRoomHitBox();
-		return this;
-		
-	}
+	
 
 
 }

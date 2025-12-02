@@ -146,16 +146,16 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		
 		switch(keysPressed.getFirst().getKeyCode()) {
 		case KeyEvent.VK_W:
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.NORTH, 5));
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.NORTH, 3));
 			break;
 		case KeyEvent.VK_S:
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.SOUTH, 5));
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.SOUTH, 3));
 			break;
 		case KeyEvent.VK_D:
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.EAST, 5));
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.EAST, 3));
 			break;
 		case KeyEvent.VK_A:
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.WEST, 5));
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.WEST, 3));
 			break;
 		
 		}
@@ -231,6 +231,7 @@ public void keyTyped(KeyEvent e) {
 }
 @Override
 public void keyPressed(KeyEvent e) {
+	
 	int keyCode = e.getKeyCode();
 	for(int i = 0; i < keysPressed.size(); i++) {
 		if(keysPressed.get(i).getKeyCode() == keyCode) {
