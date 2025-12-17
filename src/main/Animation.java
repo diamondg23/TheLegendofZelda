@@ -31,6 +31,9 @@ public class Animation {
     public Sprite getCurrentFrame() {
         return sprites[frame];
     }
+    public void IncrementFrame() {
+    	this.frame++;
+    }
 
     public void update() {
         counter++;

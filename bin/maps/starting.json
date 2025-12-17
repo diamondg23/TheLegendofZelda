@@ -1,0 +1,1432 @@
+[
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 2,
+      "room": 0,
+      "hasCollision": false,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ],
+  [
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    },
+    {
+      "spriteIndex": 55,
+      "room": 0,
+      "hasCollision": true,
+      "canExplode": false,
+      "direction": 0,
+      "flammable": false
+    }
+  ]
+]
