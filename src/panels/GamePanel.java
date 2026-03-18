@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import entity.Enemy;
-import entity.Entity.Direction;
+import entity.Entity.EntityDirection;
 import entity.Player;
 import events.Event;
 import events.PlayerMovementEvent;
@@ -146,16 +146,16 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		
 		switch(keysPressed.getFirst().getKeyCode()) {
 		case KeyEvent.VK_W:
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.NORTH, 3));
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.NORTH, 3));
 			break;
 		case KeyEvent.VK_S:
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.SOUTH, 3));
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.SOUTH, 3));
 			break;
 		case KeyEvent.VK_D:
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.EAST, 3));
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.EAST, 3));
 			break;
 		case KeyEvent.VK_A:
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, Direction.WEST, 3));
+			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.WEST, 3));
 			break;
 		
 		}

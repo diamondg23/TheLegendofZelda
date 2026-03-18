@@ -1,20 +1,20 @@
 package events;
 
-import entity.Entity.Direction;
+import entity.Entity.EntityDirection;
 import entity.Player;
 import tile.TileManager;
-
+// This will have the event atributes to be able to use in other areas of the code.
 public class PlayerMovementEvent extends Event {
 
-	private Direction directionMoved;
+	private EntityDirection directionMoved;
 	private int moveAmount;
-	public PlayerMovementEvent(events event, Direction directionMoved, int moveAmount) {
+	public PlayerMovementEvent(events event, EntityDirection directionMoved, int moveAmount) {
 		super(event);
 		this.directionMoved = directionMoved;
 		this.moveAmount = moveAmount;
 	}
 
-	public PlayerMovementEvent(int eventID, Direction directionMoved, int moveAmount) {
+	public PlayerMovementEvent(int eventID, EntityDirection directionMoved, int moveAmount) {
 		super(eventID);
 		this.directionMoved = directionMoved;
 		this.moveAmount = moveAmount;
@@ -24,7 +24,7 @@ public class PlayerMovementEvent extends Event {
 	public events getEvent() {
 		return event;
 	}
-	public Direction getDirection() {
+	public EntityDirection getDirection() {
 		return directionMoved;
 	}
 	public int getAmountMoved() {

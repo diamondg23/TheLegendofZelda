@@ -8,11 +8,11 @@ import javax.swing.JButton;
 import editor.EditorPanel;
 import editor.EditorUI;
 import tile.Tile;
-import tile.Tile.rooms;
+import tile.Tile.tileRooms;
 
 public class MyButton extends JButton implements ActionListener{
 	    public boolean isPressed = false;
-	    public rooms room = Tile.rooms.NOROOM;
+	    public tileRooms room = Tile.tileRooms.NOROOM;
 	    public boolean collision = false;
 	    public boolean explosion = false;
 	   	    public MyButton(String text, int x, int y, int width, int height, Runnable action){

@@ -209,9 +209,9 @@ public class EditorPanel extends JPanel implements Runnable{
 
 	        int buttonHeight = tileSize / 2;
 
-	        for (int i = 0; i < Tile.rooms.values().length; i++) {
+	        for (int i = 0; i < Tile.tileRooms.values().length; i++) {
 
-	            Tile.rooms roomType = Tile.rooms.values()[i];
+	            Tile.tileRooms roomType = Tile.tileRooms.values()[i];
 	            String roomName = roomType.toString();
 
 	            int x = editorUI.roomButton.getX();
@@ -234,7 +234,7 @@ public class EditorPanel extends JPanel implements Runnable{
 	    }
 	    private void selectRoom(int index) {
 
-	        Tile.rooms selected = Tile.rooms.values()[index];
+	        Tile.tileRooms selected = Tile.tileRooms.values()[index];
 
 	        editorUI.roomButton.setText(selected.toString());
 

@@ -34,7 +34,7 @@ public class Player extends Entity implements Moveable{
 	
 
 	@Override
-	public void Move(Direction directionMoving, int amount,int offsetX,int offsetY, TileManager tileM) {
+	public void Move(EntityDirection directionMoving, int amount,int offsetX,int offsetY, TileManager tileM) {
 		if(directionMoving != this.directionFacing) {
 			changeDirection(directionMoving);
 		}
@@ -87,7 +87,7 @@ public class Player extends Entity implements Moveable{
 		//will need to check bounds check and also if there is collision
 	}
 	@Override
-	public void changeDirection(Direction direction) {
+	public void changeDirection(EntityDirection direction) {
 		// this will change the direction the player is facing. This should change the sprite of the player as well to the corresponding one of the correct direction.
 		 this.directionFacing = direction;
 		 switch(direction) {

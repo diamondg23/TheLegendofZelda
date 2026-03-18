@@ -16,7 +16,7 @@ public class Enemy extends Entity {
 	}
 
 	@Override
-	public void changeDirection(Direction direction) {
+	public void changeDirection(EntityDirection direction) {
 		// TODO Auto-generated method stub
 
 	}

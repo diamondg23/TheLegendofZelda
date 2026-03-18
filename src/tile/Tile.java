@@ -6,7 +6,7 @@ public class Tile {
 	
 	// DO NOT CHANGE ORDERING OF THE ROOMS BECAUSE IT WILL CHANGE THE RESULTING INT IN THE FILE, IF YOU CHANGE ORDERINGS YOU HAVE TO REMAKE ALL THE FILES
 	//if you want to add more rooms in the future add them at the bottom.
-	public enum rooms{
+	public enum tileRooms{
 		
 		NOROOM(), 
 		OLDMANHEART(),
@@ -37,7 +37,7 @@ public class Tile {
 		NOBEHEAVIOR()
 		
 	}
-	public enum directionMove{
+	public enum tileMoveDirection{
 		NODIRECTION(),
 		NORTH(),
 		SOUTH(),
@@ -45,12 +45,12 @@ public class Tile {
 		WEST()
 	};
 	public specialBehavior behavior;
-	public directionMove direction = directionMove.NODIRECTION;
+	public tileMoveDirection direction = tileMoveDirection.NODIRECTION;
 	public boolean isFlammable = false;
 	int x, y;
 
 	public int spriteIndex = 0;
-	public rooms room;
+	public tileRooms room;
 	public boolean canExplode = false;
 	
 	public Sprite sprite;
@@ -71,10 +71,10 @@ public class Tile {
     }
     public Tile(Sprite sprite, int room, boolean hasCollision, boolean canExplode, int direction, boolean isFlammable,int x, int y) {
     	this.sprite = sprite;
-    	this.room = rooms.values()[room];
+    	this.room = tileRooms.values()[room];
     	this.hasCollision = hasCollision;
     	this.canExplode = canExplode;
-    	this.direction = directionMove.values()[direction];
+    	this.direction = tileMoveDirection.values()[direction];
     	this.isFlammable = isFlammable;
     	this.x = x;
     	this.y = y;

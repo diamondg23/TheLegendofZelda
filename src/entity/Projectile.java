@@ -13,7 +13,7 @@ public class Projectile extends Entity {
 	}
 
 	@Override
-	public void changeDirection(Direction direction) {
+	public void changeDirection(EntityDirection direction) {
 		this.directionFacing = direction;
 		
 	}

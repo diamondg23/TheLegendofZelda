@@ -1,5 +1,6 @@
 package main;
 
+import entity.Entity;
 import tile.Sprite;
 
 public class Animation {
@@ -46,6 +47,12 @@ public class Animation {
     public void reset() {
         frame = 0;
         counter = 0;
+    }
+    public static Animation addAnimation(Entity entity, Sprite[] array ) {
+    	// this function is to abstract away the animation handling so you dont have to see it
+    	entity.addAnimation(null, null);
+    	return null;
+    	
     }
 
 }

@@ -10,9 +10,10 @@ import javax.imageio.ImageIO;
 public class SpriteSheet {
 	Sprite sheet;
 	public LinkedList<Sprite> sprites = new LinkedList<Sprite>();
-	int[][] pixels = new int[16][16];
+	int[][] pixels;
 	public SpriteSheet(Sprite sprite, int spriteWidth, int spriteHeight, int numSprites, int spacingX, int spacingY, int numOfRows) {
 		this.sheet = sprite;
+		pixels = new int[spriteWidth][spriteHeight];
 		populateList( spriteWidth,  spriteHeight,  numSprites,  spacingX,  spacingY,  numOfRows);
 	}
 	public void setSheet(Sprite sheet) {

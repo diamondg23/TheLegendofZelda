@@ -8,7 +8,7 @@ import main.Animation;
 import tile.Sprite;
 
 public abstract class Entity {
-	public static enum Direction{
+	public static enum EntityDirection{
 		NORTH(),
 		WEST(),
 		SOUTH(),
@@ -16,7 +16,7 @@ public abstract class Entity {
 	}
 	public String name;
 	
-	public Direction directionFacing;
+	public EntityDirection directionFacing;
 	public int x;
 	public int y;
 	public boolean isMoving = false;
@@ -33,7 +33,7 @@ public abstract class Entity {
 	public Entity(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
-		directionFacing = Direction.SOUTH;
+		directionFacing = EntityDirection.SOUTH;
 		this.width = width;
 		this.height = height;
 		solidArea = new Rectangle(x + 10 ,y + 10,width- width/2,height - height/2);
@@ -55,6 +55,6 @@ public abstract class Entity {
     public void addAnimation(Animation.AnimationType type , Animation animation) {
 		this.animations.put(type, animation);
 	}
-	public abstract void changeDirection(Direction direction);
+	public abstract void changeDirection(EntityDirection direction);
 
 }

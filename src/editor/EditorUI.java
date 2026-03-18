@@ -11,7 +11,7 @@ public class EditorUI {
 	public MyButton upButton;
 	public MyButton[] buttons = new MyButton[20];
 	public MyButton roomButton;
-	public MyButton[] roomOptions = new MyButton[Tile.rooms.values().length];
+	public MyButton[] roomOptions = new MyButton[Tile.tileRooms.values().length];
 	public MyButton collisionButton;
 	public MyButton explodeButton;
 	public void InitializeElements(EditorPanel Epanel) {

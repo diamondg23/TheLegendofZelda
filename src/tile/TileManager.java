@@ -12,6 +12,7 @@ public class TileManager {
 	GamePanel gp;
 	public int[][] mapTileNum;
 	public Tile[][] tiles;
+	
 	public TileManager(GamePanel gp) {
 		
 		this.gp = gp;
@@ -19,7 +20,7 @@ public class TileManager {
 		
 		tiles = new Tile[gp.maxTileScreenRow][gp.maxTileScreenCol];
 		
-		loadMap("/maps/starting.json");
+		loadMap("/maps/starting_tile.json");
 	}
 	public void loadMap(String map) {
 		System.out.println(map);
@@ -33,6 +34,8 @@ public class TileManager {
 		        TileData[][] loadData = gson.fromJson(br, TileData[][].class);
 		        br.close();
 		        convertToTile(loadData);
+		        
+		        // read the corresponding enemies_json file in order to sync up the enemy and map data
 	
 		    
 
@@ -75,5 +78,6 @@ public class TileManager {
 		}
 		
 	}
+	
 
 }
