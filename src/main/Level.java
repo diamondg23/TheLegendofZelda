@@ -2,6 +2,7 @@ package main;
 
 import entity.Enemy;
 import entity.Item;
+import tile.TileManager;
 
 public class Level {
 	String enemyData;
@@ -14,7 +15,7 @@ public class Level {
 	
 	Enemy[] enemies; // list of alive enemies left in this level. (will get reset after you have visited x amount of rooms
 	Item[] items; // list of items uncollected in this level.
-	
+	      
 	public Level(String enemyData, String itemData, String tileData) {
 		this.enemyData = enemyData;
 		this.itemData = itemData;
@@ -26,7 +27,15 @@ public class Level {
 		this.enemies = enemies;
 		
 	}
-	void loadLevel() {
-		// called when you first move into a level (will spawn in tiles, enemies items etc)
+	void setLevelAdjacency(Level northLevel, Level southLevel, Level eastLevel, Level westLevel) {
+		this.northLevel = northLevel;
+		this.southLevel = southLevel;
+		this.eastLevel = eastLevel;
+		this.westLevel = westLevel;
 	}
+	void loadLevel(TileManager tileManager) {
+		// called when you first move into a level (will spawn in tiles, enemies items etc)
+		tileManager.loadTileMap(tileData);
+	}
+
 }

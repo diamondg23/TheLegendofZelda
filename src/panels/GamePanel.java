@@ -19,6 +19,7 @@ import entity.Player;
 import events.Event;
 import events.PlayerMovementEvent;
 import main.Animation;
+import main.Level;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.TileManager;
@@ -50,9 +51,12 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public SpriteSheet greenLinkTileSheet;
 	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
+	public Level currentLevel;
+	public Level overworldLevelMap[][]; // this will hold the overworld level maps (will have 
+	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
 	public LinkedList<KeyEvent> keysPressed = new LinkedList<KeyEvent>();
-	public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
+
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
 		this.setBackground(Color.black);
@@ -184,9 +188,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		} else {
 		    player.getAnimation().reset();
 		}
-		for(Enemy enemy : enemies) {
-			// check which enemy each enemy is and resolve behavior.
-		}
+		
 		// need a second for loop here to deal with potential projectiles
 		
 	}

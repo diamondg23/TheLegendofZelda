@@ -11,7 +11,7 @@ import panels.GamePanel;
 public class TileManager {
 	GamePanel gp;
 	public int[][] mapTileNum;
-	public Tile[][] tiles;
+	public Tile[][] tiles;          
 	
 	public TileManager(GamePanel gp) {
 		
@@ -20,9 +20,9 @@ public class TileManager {
 		
 		tiles = new Tile[gp.maxTileScreenRow][gp.maxTileScreenCol];
 		
-		loadMap("/maps/testroomcollision.json");
+		loadTileMap("/maps/testroomcollision.json");
 	}
-	public void loadMap(String map) {
+	public void loadTileMap(String map) {
 		
 		if(map.equals(""))
 			return;
@@ -46,28 +46,6 @@ public class TileManager {
 		        e.printStackTrace();
 		       
 		    }
-		   // old code
-		   /*
-		try {
-			InputStream is = getClass().getResourceAsStream(map); 
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			for(int i = 0; i < tiles.length; i ++) {
-				String line = br.readLine();
-				String intTiles[] = line.split(" ");
-				for(int j = 0; j < intTiles.length; j++) {
-					Tile currTile = new Tile(new Sprite(null));
-					int x = j*48 + gp.maxUIScreenCol;
-					int y = i*48 + gp.maxUIScreenRow;
-					tiles[i][j] = currTile.resolveBehavior(intTiles[j], x,y);
-				}
-				
-			}
-			br.close();
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-			
-		}
-		*/
 	}
 	public void convertToTile(TileData[][] tiledata){
 		for(int i = 0; i < tiledata.length; i++) {
