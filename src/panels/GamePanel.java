@@ -91,7 +91,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
         addKeyListener(this);
         for(int i =0; i < tileM.tiles.length; i++) {
 			for(int j = 0; j < tileM.tiles[i].length; j++) {
-				System.out.print(tileM.tiles[i][j].spriteIndex + " ");
+				System.out.print(tileM.tiles[i][j].spriteIndex + "," +  tileM.tiles[i][j].hasRoomCollision + " ");
 			}
 			System.out.println();
 		}
@@ -214,7 +214,12 @@ public void paintComponent(Graphics g) {
 		for(int i = 0; i < tileM.tiles.length; i++){
 			for(int j = 0; j < tileM.tiles[i].length; j++) {
 				if(tileM.tiles[i][j].hasCollision) {
+					g.setColor(Color.red);
 					g.drawRect(tileM.tiles[i][j].collisionHitbox.x, tileM.tiles[i][j].collisionHitbox.y, tileM.tiles[i][j].collisionHitbox.width, tileM.tiles[i][j].collisionHitbox.height);
+				}
+				else if(tileM.tiles[i][j].hasRoomCollision) {
+					g.setColor(Color.green);
+					g.drawRect(tileM.tiles[i][j].roomHitbox.x, tileM.tiles[i][j].roomHitbox.y, tileM.tiles[i][j].roomHitbox.width, tileM.tiles[i][j].roomHitbox.height);
 				}
 			}
 		}

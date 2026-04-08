@@ -28,7 +28,7 @@ public class EditorTileManager {
 			for(int i = 0; i < tileData.length; i++) {
 				for(int j = 0; j < tileData[i].length; j++) {
 					Tile tile = tileMap[i][j];
-					tileData[i][j] = new TileData(tile.spriteIndex,tile.room.ordinal(),tile.hasCollision,tile.canExplode, tile.direction.ordinal(),tile.isFlammable);
+					tileData[i][j] = new TileData(tile.spriteIndex,tile.room.ordinal(),tile.hasCollision,tile.hasRoomCollision, tile.canExplode, tile.direction.ordinal(),tile.isFlammable);
 					
 				}
 			}
@@ -54,15 +54,7 @@ public class EditorTileManager {
                   return false;
               }
           }
-		
-		
-		
-	
 
-	 
-		
-		
-		
 		
 		return true;
 	}

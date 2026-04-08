@@ -55,6 +55,7 @@ public class Tile {
 	
 	public Sprite sprite;
 	public boolean hasCollision = false;
+	public boolean hasRoomCollision = false;
 	public boolean isVisible = true;
 	public boolean isEnabled = true;
 	public Rectangle collisionHitbox;
@@ -68,11 +69,13 @@ public class Tile {
         this.room = other.room;
         this.canExplode = other.canExplode;
         this.hasCollision = other.hasCollision;
+        this.hasRoomCollision = other.hasRoomCollision;
     }
-    public Tile(Sprite sprite, int room, boolean hasCollision, boolean canExplode, int direction, boolean isFlammable,int x, int y) {
+    public Tile(Sprite sprite, int room, boolean hasCollision, boolean hasRoomCollision, boolean canExplode, int direction, boolean isFlammable,int x, int y) {
     	this.sprite = sprite;
     	this.room = tileRooms.values()[room];
     	this.hasCollision = hasCollision;
+    	this.hasRoomCollision = hasRoomCollision;
     	this.canExplode = canExplode;
     	this.direction = tileMoveDirection.values()[direction];
     	this.isFlammable = isFlammable;
@@ -87,13 +90,13 @@ public class Tile {
 		if(hasCollision) {
 			switch(spriteIndex) {
 			case 54:
-				collisionHitbox = new Rectangle(x+5,y,43,25);
+				collisionHitbox = new Rectangle(this.x+5,this.y,43,25);
 				break;
 			case 56:
-				collisionHitbox = new Rectangle(x,y,36,40);
+				collisionHitbox = new Rectangle(this.x,this.y,36,40);
 				break;
 			default:
-				collisionHitbox = new Rectangle(x,y,48,48);
+				collisionHitbox = new Rectangle(this.x,this.y,48,48);
 			}
 		}
 	}

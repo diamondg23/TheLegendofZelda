@@ -20,9 +20,12 @@ public class TileManager {
 		
 		tiles = new Tile[gp.maxTileScreenRow][gp.maxTileScreenCol];
 		
-		loadMap("/maps/starting_tile.json");
+		loadMap("/maps/testroomcollision.json");
 	}
 	public void loadMap(String map) {
+		
+		if(map.equals(""))
+			return;
 		System.out.println(map);
 		   try {
 			   InputStream is = getClass().getResourceAsStream(map); 
@@ -72,7 +75,7 @@ public class TileManager {
 				TileData tileD = tiledata[i][j];
 				int x = j*48 + gp.maxUIScreenCol;
 				int y = i*48 +gp.maxUIScreenRow;
-				tiles[i][j] = new Tile(new Sprite(null), tileD.room,tileD.hasCollision, tileD.canExplode, tileD.direction,tileD.flammable,x,y);
+				tiles[i][j] = new Tile(new Sprite(null), tileD.room,tileD.hasCollision,tileD.hasRoomCollision, tileD.canExplode, tileD.direction,tileD.flammable,x,y);
 				tiles[i][j].spriteIndex = tileD.spriteIndex;
 			}
 		}
