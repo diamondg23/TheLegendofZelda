@@ -7,10 +7,10 @@ public class Level {
 	String enemyData;
 	String itemData;
 	String tileData; // path to jsons that stores these 
-	String northLevel;
-	String southLevel;
-	String eastLevel;
-	String westLevel;
+	Level northLevel;
+	Level southLevel;
+	Level eastLevel;
+	Level westLevel;
 	
 	Enemy[] enemies; // list of alive enemies left in this level. (will get reset after you have visited x amount of rooms
 	Item[] items; // list of items uncollected in this level.
@@ -22,9 +22,8 @@ public class Level {
 	}
 	
 	
-	Enemy[] reloadEnemies() {
-		// called to spawn in enemies after youve visited a certain amount of other rooms
-		return null;
+	void reloadEnemies(Enemy[] enemies) {
+		this.enemies = enemies;
 		
 	}
 	void loadLevel() {
