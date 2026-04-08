@@ -6,7 +6,9 @@ import controllers.Collisionhandler;
 import controllers.Inventory;
 import interfaces.Moveable;
 import main.Animation;
+import panels.GamePanel;
 import tile.Sprite;
+import tile.Tile;
 import tile.TileManager;
 
 public class Player extends Entity implements Moveable{
@@ -34,17 +36,23 @@ public class Player extends Entity implements Moveable{
 	
 
 	@Override
-	public void Move(EntityDirection directionMoving, int amount,int offsetX,int offsetY, TileManager tileM) {
+	public void Move(EntityDirection directionMoving, int amount,int offsetX,int offsetY, TileManager tileM, GamePanel panel) {
 		if(directionMoving != this.directionFacing) {
 			changeDirection(directionMoving);
 		}
+		Tile.tileRooms room;
 		switch(directionMoving) {
+		
 		case EAST:
 			if(Collisionhandler.canMove(this, amount, 0,offsetX,offsetY, tileM, directionMoving)) {
 				this.x += amount;
 				this.getRectangle().x += amount;
 				isMoving = true;
-				break;
+				
+			}
+			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
+			if(room != Tile.tileRooms.NOROOM) {
+				roomBehavior(panel, room);
 			}
 			
 			break;
@@ -54,7 +62,11 @@ public class Player extends Entity implements Moveable{
 				this.y -= amount;
 				this.getRectangle().y -=amount;
 				isMoving = true;
-				break;
+				
+			}
+			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
+			if(room != Tile.tileRooms.NOROOM) {
+				roomBehavior(panel, room);
 			}
 			break;
 
@@ -63,7 +75,11 @@ public class Player extends Entity implements Moveable{
 				this.y += amount;
 				this.getRectangle().y += amount;
 				isMoving = true;
-				break;
+				
+			}
+			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
+			if(room != Tile.tileRooms.NOROOM) {
+				roomBehavior(panel, room);
 			}
 			break;
 
@@ -72,9 +88,12 @@ public class Player extends Entity implements Moveable{
 				this.x -= amount;
 				this.getRectangle().x -= amount;
 				isMoving = true;
-				break;
-		}
 			
+		}
+			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
+			if(room != Tile.tileRooms.NOROOM) {
+				roomBehavior(panel, room);
+			}
 			break;
 		default:
 			System.err.println("ERROR ERROR WRONG DIRECTION GIVEN");
@@ -82,9 +101,68 @@ public class Player extends Entity implements Moveable{
 			break;
 		
 		}
+	
 		//if the button is held down, this function should be called every frame
 		// this should create a event and stack it onto a queue to be processed.
 		//will need to check bounds check and also if there is collision
+	}
+	private void roomBehavior(GamePanel panel, Tile.tileRooms room) {
+		//this will be called when a player triggeres a room hitbox
+		switch(room) {
+		case LEVEL1:
+			break;
+		case LEVEL2:
+			break;
+		case LEVEL3:
+			break;
+		case LEVEL4:
+			break;
+		case LEVEL5:
+			break;
+		case LEVEL6:
+			break;
+		case LEVEL7:
+			break;
+		case LEVEL8:
+			break;
+		case LEVEL9:
+			break;
+		case NOROOM:
+			break;
+		case OLDMANHEART:
+			break;
+		case OLDMANSWORD:
+			break;
+		case OLDMANWHITESWORD:
+			break;
+		case OLDWOMANMAP:
+			break;
+		case OLDWOMANSHOP:
+			break;
+		case SCREENPANEAST:
+			if(panel.currentLevel.eastLevel != null) {
+				panel.currentLevel = panel.currentLevel.eastLevel;
+				panel.currentLevel.loadLevel(panel.tileM);
+			}
+		
+				
+			break;
+		case SCREENPANNORTH:
+			break;
+		case SCREENPANSOUTH:
+			break;
+		case SCREENPANWEST:
+			break;
+		case SECRETPUNISHMENT:
+			break;
+		case SECRETREWARD:
+			break;
+		case SHOP:
+			break;
+		default:
+			break;
+		
+		}
 	}
 	@Override
 	public void changeDirection(EntityDirection direction) {

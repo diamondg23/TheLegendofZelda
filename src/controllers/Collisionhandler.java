@@ -23,12 +23,12 @@ public class Collisionhandler {
        
         return false;
 	}
-	private static boolean checkTileRoomCollision(Moveable m, int amountX, int amountY,int offsetX,int offsetY, TileManager tileM, EntityDirection direction) {
+	public static Tile.tileRooms checkTileRoomCollision(Moveable m, int amountX, int amountY,int offsetX,int offsetY, TileManager tileM, EntityDirection direction) {
 		// amount x would be negative if going left and amount y would be negative going up
 		// amount x is the amount of movement in the x axis 
 		
 		
-		// COLLISION FIXED!!
+	
 		int hitLeft = m.getX() -offsetX;
 	    int hitRight = hitLeft + 48;
 	    int hitTop = m.getY() - offsetY;
@@ -66,112 +66,112 @@ public class Collisionhandler {
 		default:
 			tile1 = tileM.tiles[topRow][rightCol];
 	        tile2 = tileM.tiles[bottomRow][rightCol];
-	        System.err.println("SOMETHING REALLY BAD HAPPENED IN COLLISION CHECKER");
+	        System.err.println("SOMETHING REALLY BAD HAPPENED IN ROOM CHECKER");
 			break;
 	    
 	    	
 	    }
 	    switch(direction) {
 		case EAST:
-			if(tile1.hasCollision) {
+			if(tile1.hasRoomCollision) {
 				
 				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
 				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
 				entity_rectangle.y +=5;
 				entity_rectangle2.y -=5;
 				
-				 if(touchesOrIntersects(entity_rectangle, tile1.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile1.collisionHitbox)) {
+				 if(touchesOrIntersects(entity_rectangle, tile1.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile1.roomHitbox)) {
 					
-					 return false;
+					 return tile1.room;
 				 }
 			 }
-			 if(tile2.hasCollision) {
+			 if(tile2.hasRoomCollision) {
 				 
 				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
 					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
 					entity_rectangle.y +=5;
 					entity_rectangle2.y -=5;
 					
-					 if(touchesOrIntersects(entity_rectangle, tile2.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile2.collisionHitbox)) {
+					 if(touchesOrIntersects(entity_rectangle, tile2.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile2.roomHitbox)) {
 						
-						 return false;
+						 return tile2.room;
 					 }
 			 }
 			break;
 		case NORTH:
-			if(tile1.hasCollision) {
+			if(tile1.hasRoomCollision) {
 				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
 				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
 				entity_rectangle.x +=5;
 				entity_rectangle2.x -=5;
 				
-				 if(touchesOrIntersects(entity_rectangle, tile1.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile1.collisionHitbox)) {
+				 if(touchesOrIntersects(entity_rectangle, tile1.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile1.roomHitbox)) {
 					
-					 return false;
+					 return tile1.room;
 				 }
 			 }
-			 if(tile2.hasCollision) {
+			 if(tile2.hasRoomCollision) {
 				 
 				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
 					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
 					entity_rectangle.x +=5;
 					entity_rectangle2.x -=5;
 					
-					 if(touchesOrIntersects(entity_rectangle, tile2.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile2.collisionHitbox)) {
+					 if(touchesOrIntersects(entity_rectangle, tile2.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile2.roomHitbox)) {
 						
-						 return false;
+						 return tile2.room;
 					 }
 			 }
 			break;
 		case SOUTH:
-			if(tile1.hasCollision) {
+			if(tile1.hasRoomCollision) {
 				
 				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
 				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
 				entity_rectangle.x +=5;
 				entity_rectangle2.x -=5;
 				
-				 if(touchesOrIntersects(entity_rectangle, tile1.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile1.collisionHitbox)) {
+				 if(touchesOrIntersects(entity_rectangle, tile1.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile1.roomHitbox)) {
 					
-					 return false;
+					 return tile1.room;
 				 }
 			 }
-			 if(tile2.hasCollision) {
+			 if(tile2.hasRoomCollision) {
 				 
 				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
 					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
 					entity_rectangle.x +=5;
 					entity_rectangle2.x -=5;
 					
-					 if(touchesOrIntersects(entity_rectangle, tile2.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile2.collisionHitbox)) {
+					 if(touchesOrIntersects(entity_rectangle, tile2.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile2.roomHitbox)) {
 						
-						 return false;
+						 return tile2.room;
 					 }
 			 }
 			break;
 		case WEST:
-			if(tile1.hasCollision) {
+			if(tile1.hasRoomCollision) {
 				
 				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
 				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
 				entity_rectangle.y +=5;
 				entity_rectangle2.y -=5;
 				
-				 if(touchesOrIntersects(entity_rectangle, tile1.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile1.collisionHitbox)) {
+				 if(touchesOrIntersects(entity_rectangle, tile1.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile1.roomHitbox)) {
 					
-					 return false;
+					 return tile1.room;
 				 }
 			 }
-			 if(tile2.hasCollision) {
+			 if(tile2.hasRoomCollision) {
 				 
 				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
 					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
 					entity_rectangle.y +=5;
 					entity_rectangle2.y -=5;
 					
-					 if(touchesOrIntersects(entity_rectangle, tile2.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile2.collisionHitbox)) {
+					 if(touchesOrIntersects(entity_rectangle, tile2.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile2.roomHitbox)) {
 						
-						 return false;
+						 return tile2.room;
 					 }
 			 }
 			break;
@@ -183,7 +183,7 @@ public class Collisionhandler {
 	    
 	 
 	 
-	 return true;
+	 return Tile.tileRooms.NOROOM;
 	}
 	private static boolean checkTileCollision(Moveable m, int amountX, int amountY,int offsetX,int offsetY, TileManager tileM, EntityDirection direction) {
 		// amount x would be negative if going left and amount y would be negative going up

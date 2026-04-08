@@ -45,14 +45,14 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	boolean isActive = false;
 	Thread gameThread;
 	
-	TileManager tileM = new TileManager(this);
+	public TileManager tileM = new TileManager(this);
 	TileRenderer tileR = new TileRenderer();
 	public SpriteSheet openWorldTileSheet;
 	public SpriteSheet greenLinkTileSheet;
 	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
 	public Level currentLevel;
-	public Level overworldLevelMap[][]; // this will hold the overworld level maps (will have 
+	public Level overworldLevelMap[][]; // this will hold the overworld level maps (will have other level maps for each chamber)
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
 	public LinkedList<KeyEvent> keysPressed = new LinkedList<KeyEvent>();
@@ -175,7 +175,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 			case PLAYERMOVEMENT:
 				// safely type cast it to player movement event
 				PlayerMovementEvent currentEvent =(PlayerMovementEvent)eventList.getFirst();
-				currentEvent.resolveEvent(player, tileM, maxUIScreenCol, maxUIScreenRow);
+				currentEvent.resolveEvent(player, tileM, maxUIScreenCol, maxUIScreenRow, this);
 				eventList.remove();
 				break;
 			default:

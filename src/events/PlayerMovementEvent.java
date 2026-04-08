@@ -2,6 +2,7 @@ package events;
 
 import entity.Entity.EntityDirection;
 import entity.Player;
+import panels.GamePanel;
 import tile.TileManager;
 // This will have the event atributes to be able to use in other areas of the code.
 public class PlayerMovementEvent extends Event {
@@ -30,8 +31,8 @@ public class PlayerMovementEvent extends Event {
 	public int getAmountMoved() {
 		return moveAmount;
 	}
-	public void resolveEvent(Player player, TileManager tileM, int offsetX, int offsetY) {
-		player.Move(directionMoved, moveAmount,offsetX,offsetY, tileM);
+	public void resolveEvent(Player player, TileManager tileM, int offsetX, int offsetY , GamePanel panel) {
+		player.Move(directionMoved, moveAmount,offsetX,offsetY, tileM, panel);
 	}
 
 }
