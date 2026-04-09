@@ -42,40 +42,44 @@ public class Level {
 		Level[][] levels = new Level[8][16];
 		Level currLevel = new Level( null, null ,"/maps/Starting_level.json");
 		levels[7][8] = currLevel;
-		currLevel = new Level(null,null, "/maps/Northlevel.json");
+		currLevel = new Level(null,null, "/maps/North_level.json");
 		levels[6][8] = currLevel;
 		levels = assignAdjacencies(levels);
 		return levels;
 	}
 	private static Level[][] assignAdjacencies(Level[][] levels) {
-		for(int i = 0; i < levels.length; i++) {
-			for(int j = 0; j < levels[i].length;i++) {
-				if(levels[i][j] != null) {
-					try {
-						Level north = null;
-						Level south = null;
-						Level east = null;
-						Level west = null;
-						if(levels[i-1][j] != null) {
-							north = levels[i-1][j];
-						}
-						if(levels[i+1][j] != null) {
-							south = levels[i+1][j];
-						}
-						if(levels[i][j-1] != null) {
-							west = levels[i][j-1];
-						}
-						if(levels[i][j +1] != null) {
-							east = levels[i][j +1];
-						}
-						levels[i][j].setLevelAdjacency(north, south, east, west);
-					}catch(Exception e) {
-						// to catch when it goes out of bounds cuz it doesnt actually matter lol just need it to not crash the program
-					}
-				}
-			}
-		}
-		return levels;
+	    for(int i = 0; i < levels.length; i++) {
+	        for(int j = 0; j < levels[i].length; j++) {
+
+	            if(levels[i][j] != null) {
+
+	                Level north = null;
+	                Level south = null;
+	                Level east = null;
+	                Level west = null;
+
+	                if(i > 0 && levels[i-1][j] != null) {
+	                    north = levels[i-1][j];
+	                }
+
+	                if(i < levels.length - 1 && levels[i+1][j] != null) {
+	                    south = levels[i+1][j];
+	                }
+
+	                if(j > 0 && levels[i][j-1] != null) {
+	                    west = levels[i][j-1];
+	                }
+
+	                if(j < levels[i].length - 1 && levels[i][j+1] != null) {
+	                    east = levels[i][j+1];
+	                }
+
+	                levels[i][j].setLevelAdjacency(north, south, east, west);
+	            }
+	        }
+	    }
+
+	    return levels;
 	}
 
 }

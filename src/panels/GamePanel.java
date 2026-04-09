@@ -70,6 +70,9 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		}catch(Exception e) {
 			
 		}
+		overworldLevelMap = Level.generateLevelMap(this);
+		currentLevel = overworldLevelMap[7][8];
+		currentLevel.loadLevel(tileM);
 		Sprite[] northWalking = new Sprite[2];
 		Sprite[] eastWalking = new Sprite[2];
 		Sprite[] southWalking = new Sprite[2];

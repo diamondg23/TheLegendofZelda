@@ -66,6 +66,7 @@ public class Player extends Entity implements Moveable{
 			}
 			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
 			if(room != Tile.tileRooms.NOROOM) {
+				System.out.println("room detected");
 				roomBehavior(panel, room);
 			}
 			break;
@@ -140,29 +141,35 @@ public class Player extends Entity implements Moveable{
 		case OLDWOMANSHOP:
 			break;
 		case SCREENPANEAST:
-			if(panel.currentLevel.eastLevel != null) {
+			if(panel.currentLevel.eastLevel != null && this.directionFacing == EntityDirection.EAST) {
 				panel.currentLevel = panel.currentLevel.eastLevel;
 				panel.currentLevel.loadLevel(panel.tileM);
+				this.ChangePosition(0 + 50, this.y);
 			}
 		
 				
 			break;
 		case SCREENPANNORTH:
-			if(panel.currentLevel.northLevel != null) {
+			
+			if(panel.currentLevel.northLevel != null && this.directionFacing == EntityDirection.NORTH) {
 				panel.currentLevel = panel.currentLevel.northLevel;
 				panel.currentLevel.loadLevel(panel.tileM);
+				this.ChangePosition(this.x, panel.screenHeight - 50);
+				 
 			}
 			break;
 		case SCREENPANSOUTH:
-			if(panel.currentLevel.southLevel != null) {
+			if(panel.currentLevel.southLevel != null && this.directionFacing == EntityDirection.SOUTH) {
 				panel.currentLevel = panel.currentLevel.southLevel;
 				panel.currentLevel.loadLevel(panel.tileM);
+				this.ChangePosition(this.x, panel.maxUIScreenRow + 10);
 			}
 			break;
 		case SCREENPANWEST:
-			if(panel.currentLevel.westLevel != null) {
+			if(panel.currentLevel.westLevel != null && this.directionFacing == EntityDirection.WEST) {
 				panel.currentLevel = panel.currentLevel.westLevel;
 				panel.currentLevel.loadLevel(panel.tileM);
+				this.ChangePosition(panel.screenWidth - 50, this.y);
 			}
 			
 			break;
@@ -173,6 +180,7 @@ public class Player extends Entity implements Moveable{
 		case SHOP:
 			break;
 		default:
+			System.err.println("Something happened in the room checking logic");
 			break;
 		
 		}

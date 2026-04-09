@@ -47,6 +47,12 @@ public abstract class Entity {
 	        anim.reset();
 	    }
 	}
+	public void ChangePosition(int x, int y) {
+		this.x = x;
+		this.y = y;
+		this.solidArea.x = x + 10;
+		this.solidArea.y = y + 10;
+	}
 
 
     public Animation getAnimation() {
