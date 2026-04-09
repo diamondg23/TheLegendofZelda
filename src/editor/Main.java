@@ -25,15 +25,19 @@ public class Main {
 		JMenuBar menuBar = new JMenuBar();
 
 		JMenu fileMenu = new JMenu("File");
+		JMenu viewMenu = new JMenu("View");
 
 		JMenuItem openItem = new JMenuItem("Open Map");
 		JMenuItem saveItem = new JMenuItem("Save Map");
 		JCheckBoxMenuItem showCollision = new JCheckBoxMenuItem("Show Collision");
+		JCheckBoxMenuItem showRoom = new JCheckBoxMenuItem("Show Room");
 
 		fileMenu.add(openItem);
 		fileMenu.add(saveItem);
-		fileMenu.add(showCollision);
+		viewMenu.add(showCollision);
+		viewMenu.add(showRoom);
 		menuBar.add(fileMenu);
+		menuBar.add(viewMenu);
 
 		frame.setJMenuBar(menuBar);
 		frame.add(gamepanel); 
@@ -59,6 +63,10 @@ public class Main {
 		showCollision.addActionListener(e -> {
 		    EditorTileRenderer.drawCollision = showCollision.isSelected();
 		    
+		});
+		showRoom.addActionListener(e ->{
+			   EditorTileRenderer.drawRoom = showRoom.isSelected();
+			
 		});
 		
 		frame.pack();	

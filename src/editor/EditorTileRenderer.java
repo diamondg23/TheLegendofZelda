@@ -8,9 +8,11 @@ import javax.swing.JLabel;
 import main.Animation;
 import tile.Sprite;
 import tile.Tile;
+import tile.Tile.tileRooms;
 
 public class EditorTileRenderer {
 	public static boolean drawCollision = false;
+	public static boolean drawRoom = false;
 	public EditorTileRenderer() {
 		// TODO Auto-generated constructor stub
 	}
@@ -96,6 +98,10 @@ public class EditorTileRenderer {
 	                );
 	                
 	            }
+				if(mapTiles[row][col].room != tileRooms.NOROOM && drawRoom) {
+					g2.setColor(Color.green);
+					g2.drawString(String.valueOf(mapTiles[row][col].room.ordinal()), (col*tileSize + leftBuffer + 20), (row*tileSize + topBuffer + 15));
+				}
 				}
 			}
 		}
