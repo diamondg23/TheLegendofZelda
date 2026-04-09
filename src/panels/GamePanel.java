@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
 	public Level currentLevel;
-	public Level overworldLevelMap[][]; // this will hold the overworld level maps (will have other level maps for each chamber)
+	public Level overworldLevelMap[][] = new Level[8][16]; // this will hold the overworld level maps (will have other level maps for each chamber)
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
 	public LinkedList<KeyEvent> keysPressed = new LinkedList<KeyEvent>();

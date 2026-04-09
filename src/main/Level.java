@@ -2,6 +2,7 @@ package main;
 
 import entity.Enemy;
 import entity.Item;
+import panels.GamePanel;
 import tile.TileManager;
 
 public class Level {
@@ -36,6 +37,45 @@ public class Level {
 	public void loadLevel(TileManager tileManager) {
 		// called when you first move into a level (will spawn in tiles, enemies items etc)
 		tileManager.loadTileMap(tileData);
+	}
+	public static Level[][] generateLevelMap(GamePanel panel){
+		Level[][] levels = new Level[8][16];
+		Level currLevel = new Level( null, null ,"/maps/Starting_level.json");
+		levels[7][8] = currLevel;
+		currLevel = new Level(null,null, "/maps/Northlevel.json");
+		levels[6][8] = currLevel;
+		levels = assignAdjacencies(levels);
+		return levels;
+	}
+	private static Level[][] assignAdjacencies(Level[][] levels) {
+		for(int i = 0; i < levels.length; i++) {
+			for(int j = 0; j < levels[i].length;i++) {
+				if(levels[i][j] != null) {
+					try {
+						Level north = null;
+						Level south = null;
+						Level east = null;
+						Level west = null;
+						if(levels[i-1][j] != null) {
+							north = levels[i-1][j];
+						}
+						if(levels[i+1][j] != null) {
+							south = levels[i+1][j];
+						}
+						if(levels[i][j-1] != null) {
+							west = levels[i][j-1];
+						}
+						if(levels[i][j +1] != null) {
+							east = levels[i][j +1];
+						}
+						levels[i][j].setLevelAdjacency(north, south, east, west);
+					}catch(Exception e) {
+						// to catch when it goes out of bounds cuz it doesnt actually matter lol just need it to not crash the program
+					}
+				}
+			}
+		}
+		return levels;
 	}
 
 }

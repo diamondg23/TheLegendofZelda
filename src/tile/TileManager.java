@@ -20,7 +20,7 @@ public class TileManager {
 		
 		tiles = new Tile[gp.maxTileScreenRow][gp.maxTileScreenCol];
 		
-		loadTileMap("/maps/testroomcollision.json");
+		loadTileMap("/maps/Starting_level.json");
 	}
 	public void loadTileMap(String map) {
 		

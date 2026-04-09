@@ -148,10 +148,23 @@ public class Player extends Entity implements Moveable{
 				
 			break;
 		case SCREENPANNORTH:
+			if(panel.currentLevel.northLevel != null) {
+				panel.currentLevel = panel.currentLevel.northLevel;
+				panel.currentLevel.loadLevel(panel.tileM);
+			}
 			break;
 		case SCREENPANSOUTH:
+			if(panel.currentLevel.southLevel != null) {
+				panel.currentLevel = panel.currentLevel.southLevel;
+				panel.currentLevel.loadLevel(panel.tileM);
+			}
 			break;
 		case SCREENPANWEST:
+			if(panel.currentLevel.westLevel != null) {
+				panel.currentLevel = panel.currentLevel.westLevel;
+				panel.currentLevel.loadLevel(panel.tileM);
+			}
+			
 			break;
 		case SECRETPUNISHMENT:
 			break;
