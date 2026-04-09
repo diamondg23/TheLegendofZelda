@@ -1,7 +1,7 @@
 package main;
 
 import javax.swing.JFrame;
-
+ 
 import editor.EditorPanel;
 import panels.GamePanel;
 import panels.MainPanel;

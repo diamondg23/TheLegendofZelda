@@ -148,7 +148,7 @@ public class Player extends Entity implements Moveable{
 			else {
 				lastx = this.x;
 				lasty = this.y;
-				panel.currentLevel = new Level(null, null, "/maps/OldMan_Level.json");
+				panel.currentLevel = new Level(null, null, "/maps/OldMan_Level.json", Tile.tileRooms.OLDMANSWORD);
 				panel.currentLevel.loadLevel(panel.tileM);
 				this.ChangePosition(panel.screenWidth/2, panel.screenHeight-panel.tileSize*4);
 			}
@@ -173,7 +173,7 @@ public class Player extends Entity implements Moveable{
 			if(panel.currentOverworldLevel.northLevel != null && this.directionFacing == EntityDirection.NORTH) {
 				panel.currentOverworldLevel = panel.currentOverworldLevel.northLevel;
 				panel.currentOverworldLevel.loadLevel(panel.tileM);
-				this.ChangePosition(this.x, panel.screenHeight - 50);
+				this.ChangePosition(this.x, panel.screenHeight - 60);
 				 
 			}
 			break;
