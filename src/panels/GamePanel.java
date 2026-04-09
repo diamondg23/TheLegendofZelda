@@ -51,7 +51,9 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public SpriteSheet greenLinkTileSheet;
 	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
-	public Level currentLevel;
+	public Level currentOverworldLevel; //whatever the current overworld level is (will keep data when you go into dungeons or other rooms to return to)
+	
+	public Level currentLevel = null; // whatever the non overworldlevel is currently (will be null while ur in the overworld)
 	public Level overworldLevelMap[][] = new Level[8][16]; // this will hold the overworld level maps (will have other level maps for each chamber)
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
@@ -71,8 +73,8 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 			
 		}
 		overworldLevelMap = Level.generateLevelMap(this);
-		currentLevel = overworldLevelMap[7][8];
-		currentLevel.loadLevel(tileM);
+		currentOverworldLevel = overworldLevelMap[7][8];
+		currentOverworldLevel.loadLevel(tileM);
 		Sprite[] northWalking = new Sprite[2];
 		Sprite[] eastWalking = new Sprite[2];
 		Sprite[] southWalking = new Sprite[2];

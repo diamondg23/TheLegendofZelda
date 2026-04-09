@@ -6,6 +6,7 @@ import controllers.Collisionhandler;
 import controllers.Inventory;
 import interfaces.Moveable;
 import main.Animation;
+import main.Level;
 import panels.GamePanel;
 import tile.Sprite;
 import tile.Tile;
@@ -19,6 +20,8 @@ public class Player extends Entity implements Moveable{
 	public int weaponWidth = 0;
 	public int weaponHeight = 0;
 	public Inventory inventory;
+	public int lastx;
+	public int lasty;
 	
 	// whenever link attacks depending on the weapon his actual sprite extends out by x pixels in the direction he attacks. This hitbox needs to be treated separately
 	//the sword hitbox should check if it hits enemies and deals damage to enemies
@@ -27,6 +30,8 @@ public class Player extends Entity implements Moveable{
 	
 	public Player(int x, int y, int width, int height) {
 		super(x, y, width, height);
+		lastx = x;
+		lasty = y;
 		inventory = new Inventory();
 		
 		
@@ -46,6 +51,7 @@ public class Player extends Entity implements Moveable{
 		case EAST:
 			if(Collisionhandler.canMove(this, amount, 0,offsetX,offsetY, tileM, directionMoving)) {
 				this.x += amount;
+				
 				this.getRectangle().x += amount;
 				isMoving = true;
 				
@@ -74,6 +80,7 @@ public class Player extends Entity implements Moveable{
 		case SOUTH:
 			if(Collisionhandler.canMove(this, 0, amount,offsetX,offsetY, tileM, directionMoving)) {
 				this.y += amount;
+				
 				this.getRectangle().y += amount;
 				isMoving = true;
 				
@@ -133,6 +140,18 @@ public class Player extends Entity implements Moveable{
 		case OLDMANHEART:
 			break;
 		case OLDMANSWORD:
+			if(panel.currentLevel != null) {
+				panel.currentOverworldLevel.loadLevel(panel.tileM);
+				panel.currentLevel = null;
+				this.ChangePosition(lastx, lasty);
+			}
+			else {
+				lastx = this.x;
+				lasty = this.y;
+				panel.currentLevel = new Level(null, null, "/maps/OldMan_Level.json");
+				panel.currentLevel.loadLevel(panel.tileM);
+				this.ChangePosition(panel.screenWidth/2, panel.screenHeight-panel.tileSize*4);
+			}
 			break;
 		case OLDMANWHITESWORD:
 			break;
@@ -141,35 +160,35 @@ public class Player extends Entity implements Moveable{
 		case OLDWOMANSHOP:
 			break;
 		case SCREENPANEAST:
-			if(panel.currentLevel.eastLevel != null && this.directionFacing == EntityDirection.EAST) {
-				panel.currentLevel = panel.currentLevel.eastLevel;
-				panel.currentLevel.loadLevel(panel.tileM);
-				this.ChangePosition(0 + 50, this.y);
+			if(panel.currentOverworldLevel.eastLevel != null && this.directionFacing == EntityDirection.EAST) {
+				panel.currentOverworldLevel = panel.currentOverworldLevel.eastLevel;
+				panel.currentOverworldLevel.loadLevel(panel.tileM);
+				this.ChangePosition(0 + 10, this.y);
 			}
 		
 				
 			break;
 		case SCREENPANNORTH:
 			
-			if(panel.currentLevel.northLevel != null && this.directionFacing == EntityDirection.NORTH) {
-				panel.currentLevel = panel.currentLevel.northLevel;
-				panel.currentLevel.loadLevel(panel.tileM);
+			if(panel.currentOverworldLevel.northLevel != null && this.directionFacing == EntityDirection.NORTH) {
+				panel.currentOverworldLevel = panel.currentOverworldLevel.northLevel;
+				panel.currentOverworldLevel.loadLevel(panel.tileM);
 				this.ChangePosition(this.x, panel.screenHeight - 50);
 				 
 			}
 			break;
 		case SCREENPANSOUTH:
-			if(panel.currentLevel.southLevel != null && this.directionFacing == EntityDirection.SOUTH) {
-				panel.currentLevel = panel.currentLevel.southLevel;
-				panel.currentLevel.loadLevel(panel.tileM);
+			if(panel.currentOverworldLevel.southLevel != null && this.directionFacing == EntityDirection.SOUTH) {
+				panel.currentOverworldLevel = panel.currentOverworldLevel.southLevel;
+				panel.currentOverworldLevel.loadLevel(panel.tileM);
 				this.ChangePosition(this.x, panel.maxUIScreenRow + 10);
 			}
 			break;
 		case SCREENPANWEST:
-			if(panel.currentLevel.westLevel != null && this.directionFacing == EntityDirection.WEST) {
-				panel.currentLevel = panel.currentLevel.westLevel;
-				panel.currentLevel.loadLevel(panel.tileM);
-				this.ChangePosition(panel.screenWidth - 50, this.y);
+			if(panel.currentOverworldLevel.westLevel != null && this.directionFacing == EntityDirection.WEST) {
+				panel.currentOverworldLevel = panel.currentOverworldLevel.westLevel;
+				panel.currentOverworldLevel.loadLevel(panel.tileM);
+				this.ChangePosition(panel.screenWidth - 60, this.y);
 			}
 			
 			break;
