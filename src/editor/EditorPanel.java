@@ -186,6 +186,7 @@ public class EditorPanel extends JPanel implements Runnable{
 			currentTile.x = col * 48;
 			currentTile.y = row * 48;
 			currentTile.determineCollisionHitBox();
+			currentTile.determineRoomHitBox();
 			currentTile.spriteIndex = selectedTile.spriteIndex;
 			if(row < mapTiles.length && col <mapTiles[row].length) {
 				mapTiles[row][col] = currentTile;

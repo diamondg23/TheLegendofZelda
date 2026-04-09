@@ -103,7 +103,7 @@ public class Tile {
 			}
 		}
 	}
-	private void determineRoomHitBox() {
+	public void determineRoomHitBox() {
 		switch(this.room) {
 		case SCREENPANEAST:
 			this.roomHitbox = new Rectangle(this.x+20, this.y, 48,48);
