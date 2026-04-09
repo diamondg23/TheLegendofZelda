@@ -47,7 +47,8 @@ public class Tile {
 	public specialBehavior behavior;
 	public tileMoveDirection direction = tileMoveDirection.NODIRECTION;
 	public boolean isFlammable = false;
-	int x, y;
+	public int x;
+	public int y;
 
 	public int spriteIndex = 0;
 	public tileRooms room;
@@ -70,6 +71,8 @@ public class Tile {
         this.canExplode = other.canExplode;
         this.hasCollision = other.hasCollision;
         this.hasRoomCollision = other.hasRoomCollision;
+        determineCollisionHitBox();
+    	determineRoomHitBox();
     }
     public Tile(Sprite sprite, int room, boolean hasCollision, boolean hasRoomCollision, boolean canExplode, int direction, boolean isFlammable,int x, int y) {
     	this.sprite = sprite;
@@ -85,7 +88,7 @@ public class Tile {
     	determineRoomHitBox();
     }
 	
-	private void determineCollisionHitBox() {
+	public void determineCollisionHitBox() {
 		// if it has collision it will make the collision box unique for whatever sprite it is 
 		if(hasCollision) {
 			switch(spriteIndex) {

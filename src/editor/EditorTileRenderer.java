@@ -1,5 +1,6 @@
 package editor;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import javax.swing.JLabel;
@@ -9,7 +10,7 @@ import tile.Sprite;
 import tile.Tile;
 
 public class EditorTileRenderer {
-
+	public static boolean drawCollision = false;
 	public EditorTileRenderer() {
 		// TODO Auto-generated constructor stub
 	}
@@ -71,8 +72,31 @@ public class EditorTileRenderer {
 	public static void RenderCurrentMap(Graphics2D g2,Tile[][] mapTiles, int tileSize,int leftBuffer, int topBuffer) {
 		for(int row = 0; row < mapTiles.length; row++) {
 			for(int col =0; col < mapTiles[row].length;col++) {
-				if(mapTiles[row][col] != null)
+				if(mapTiles[row][col] != null) {
+					
+				
 					g2.drawImage(mapTiles[row][col].sprite.image, col*tileSize + leftBuffer, row*tileSize + topBuffer,tileSize,tileSize, null,null);
+				if(mapTiles[row][col].hasCollision && drawCollision) {
+	                g2.setColor(Color.red);
+	                g2.drawRect(
+	                    mapTiles[row][col].collisionHitbox.x + leftBuffer,
+	                    mapTiles[row][col].collisionHitbox.y + topBuffer,
+	                    mapTiles[row][col].collisionHitbox.width,
+	                    mapTiles[row][col].collisionHitbox.height
+	                );
+	                
+	            }
+				if(mapTiles[row][col].hasRoomCollision && drawCollision) {
+	                g2.setColor(Color.green);
+	                g2.drawRect(
+	                    mapTiles[row][col].roomHitbox.x + leftBuffer,
+	                    mapTiles[row][col].roomHitbox.y + topBuffer,
+	                    mapTiles[row][col].roomHitbox.width,
+	                    mapTiles[row][col].roomHitbox.height
+	                );
+	                
+	            }
+				}
 			}
 		}
 	}

@@ -2,6 +2,7 @@ package editor;
 
 import java.io.File;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -27,10 +28,11 @@ public class Main {
 
 		JMenuItem openItem = new JMenuItem("Open Map");
 		JMenuItem saveItem = new JMenuItem("Save Map");
+		JCheckBoxMenuItem showCollision = new JCheckBoxMenuItem("Show Collision");
 
 		fileMenu.add(openItem);
 		fileMenu.add(saveItem);
-
+		fileMenu.add(showCollision);
 		menuBar.add(fileMenu);
 
 		frame.setJMenuBar(menuBar);
@@ -54,7 +56,10 @@ public class Main {
 		saveItem.addActionListener(e -> {
 			System.out.println( EditorTileManager.SaveMap(gamepanel.mapTiles));
 		});
-		
+		showCollision.addActionListener(e -> {
+		    EditorTileRenderer.drawCollision = showCollision.isSelected();
+		    
+		});
 		
 		frame.pack();	
 		
