@@ -42,6 +42,9 @@ public class KeyboardController extends Component implements KeyListener {
 		if(e.getKeyChar() == KeyEvent.VK_2) {
 			
 		}
+		if(e.getKeyChar() == KeyEvent.VK_ESCAPE) {
+			panel.currTile = null;
+		}
 	}
 	
 
