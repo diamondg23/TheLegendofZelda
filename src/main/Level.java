@@ -46,6 +46,8 @@ public class Level {
 		levels[6][8] = currLevel;
 		currLevel = new Level(null,null, "/maps/East_level.json");
 		levels[7][9] = currLevel;
+		currLevel = new Level(null,null, "/maps/Startinglevel2.json");
+		levels[7][7] = currLevel;
 		levels = assignAdjacencies(levels);
 		return levels;
 	}
