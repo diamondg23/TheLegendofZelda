@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import controllers.AudioPlayer;
 import entity.Enemy;
 import entity.Entity.EntityDirection;
 import entity.Player;
@@ -106,6 +107,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 			}
 			System.out.println();
 		}
+     
 		
 	}
 	public void startGameThread() {

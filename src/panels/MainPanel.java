@@ -4,6 +4,9 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+import controllers.AudioPlayer;
+import main.Main;
+
 @SuppressWarnings("serial")
 public class MainPanel extends JPanel{
 
@@ -26,6 +29,8 @@ public class MainPanel extends JPanel{
 		cardLayout.show(this, "game");
 		gamePanel.requestFocusInWindow(); 
 		gamePanel.isActive = true;
+		
+	       Main.music.playOverWorldLoop("/music/overworldmusic.wav");
 	}
 	public void showInventory() {
 		gamePanel.isActive = false;
