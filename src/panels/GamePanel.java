@@ -20,7 +20,7 @@ import entity.Player;
 import events.Event;
 import events.PlayerMovementEvent;
 import main.Animation;
-import main.Level;
+import rooms.Level;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.TileManager;
