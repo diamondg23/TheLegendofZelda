@@ -12,7 +12,7 @@ public class Enemy extends Entity {
 	
 	public Enemy(int x, int y, int width, int height, states state) {
 		super(x, y, width, height);
-		
+		this.state = state;
 	}
 
 	@Override

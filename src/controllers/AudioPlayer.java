@@ -6,7 +6,7 @@ public class AudioPlayer {
 
     private Clip clip;
 
-    public void playOverWorldLoop(String filePath) {
+    public void playMusicLoop(String filePath) { // to change what song you are playing just pass a diff file path
         try {
         	AudioInputStream audioStream = AudioSystem.getAudioInputStream(
         		    getClass().getResource(filePath)

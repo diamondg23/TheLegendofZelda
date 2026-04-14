@@ -30,7 +30,7 @@ public class MainPanel extends JPanel{
 		gamePanel.requestFocusInWindow(); 
 		gamePanel.isActive = true;
 		
-	       Main.music.playOverWorldLoop("/music/overworldmusic.wav");
+	       Main.music.playMusicLoop("/music/overworldmusic.wav");
 	}
 	public void showInventory() {
 		gamePanel.isActive = false;
