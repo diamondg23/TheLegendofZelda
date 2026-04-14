@@ -21,6 +21,7 @@ import events.Event;
 import events.PlayerMovementEvent;
 import main.Animation;
 import rooms.Level;
+import rooms.OverWorldLevel;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.TileManager;
@@ -53,10 +54,10 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public SpriteSheet greenLinkSwordSheet;
 	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
-	public Level currentOverworldLevel; //whatever the current overworld level is (will keep data when you go into dungeons or other rooms to return to)
+	public OverWorldLevel currentOverworldLevel; //whatever the current overworld level is (will keep data when you go into dungeons or other rooms to return to)
 	
 	public Level currentLevel = null; // whatever the non overworldlevel is currently (will be null while ur in the overworld)
-	public Level overworldLevelMap[][] = new Level[8][16]; // this will hold the overworld level maps (will have other level maps for each chamber)
+	public OverWorldLevel overworldLevelMap[][] = new OverWorldLevel[8][16]; // this will hold the overworld level maps (will have other level maps for each chamber)
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
 	public LinkedList<KeyEvent> keysPressed = new LinkedList<KeyEvent>();
@@ -75,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		}catch(Exception e) {
 			
 		}
-		overworldLevelMap = Level.generateOverworldLevelMap(this);
+		overworldLevelMap = OverWorldLevel.generateOverworldLevelMap(this);
 		currentOverworldLevel = overworldLevelMap[7][8];
 		currentOverworldLevel.loadLevel(tileM);
 		Sprite[] northWalking = new Sprite[2];
