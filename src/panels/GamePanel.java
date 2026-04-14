@@ -153,22 +153,34 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 
 }
 	public void update() {
-		if(keysPressed.isEmpty())
-			player.isMoving =false;
+		player.isMoving =false;
+		player.getAnimation().isRunning = false;
+		if(keysPressed.isEmpty()) {
+			
+
+		}
 		else {
 			
 		
 		switch(keysPressed.getFirst().getKeyCode()) {
 		case KeyEvent.VK_W:
+			player.isMoving =true;
+			player.getAnimation().isRunning = true;
 			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.NORTH, 3));
 			break;
 		case KeyEvent.VK_S:
+			player.isMoving =true;
+			player.getAnimation().isRunning = true;
 			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.SOUTH, 3));
 			break;
 		case KeyEvent.VK_D:
+			player.isMoving =true;
+			player.getAnimation().isRunning = true;
 			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.EAST, 3));
 			break;
 		case KeyEvent.VK_A:
+			player.isMoving =true;
+			player.getAnimation().isRunning = true;
 			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.WEST, 3));
 			break;
 		
@@ -186,6 +198,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 				// safely type cast it to player movement event
 				PlayerMovementEvent currentEvent =(PlayerMovementEvent)eventList.getFirst();
 				currentEvent.resolveEvent(player, tileM, maxUIScreenCol, maxUIScreenRow, this);
+				
 				eventList.remove();
 				break;
 			default:
@@ -193,11 +206,11 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 			
 			}
 		}
-		if (player.isMoving) {
-		    player.getAnimation().update();
-		} else {
-		    player.getAnimation().reset();
-		}
+		
+		 player.getAnimation().update();
+		 
+		 //player.getAnimation().reset();
+		
 		
 		// need a second for loop here to deal with potential projectiles
 		

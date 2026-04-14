@@ -61,6 +61,7 @@ public abstract class Entity {
     public void addAnimation(Animation.AnimationType type , Animation animation) {
 		this.animations.put(type, animation);
 	}
+   
 	public abstract void changeDirection(EntityDirection direction);
 
 }

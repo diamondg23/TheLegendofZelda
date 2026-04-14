@@ -24,7 +24,7 @@ public class Animation {
 	int frame = 0;
 	int frameDelay = 10;
 	int counter = 0;
-	boolean isRunning = false;
+	public boolean isRunning = false;
 	public Animation(Sprite[] sprites) {
 		this.sprites = sprites;
 	}
@@ -38,7 +38,7 @@ public class Animation {
 
     public void update() {
         counter++;
-        if (counter >= frameDelay) {
+        if (counter >= frameDelay && isRunning) {
             counter = 0;
             frame = (frame + 1) % sprites.length;
         }
