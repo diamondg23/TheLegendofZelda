@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	TileRenderer tileR = new TileRenderer();
 	public SpriteSheet openWorldTileSheet;
 	public SpriteSheet greenLinkTileSheet;
+	public SpriteSheet greenLinkSwordSheet;
 	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
 	
 	public Level currentOverworldLevel; //whatever the current overworld level is (will keep data when you go into dungeons or other rooms to return to)
@@ -69,6 +70,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		try {
 			openWorldTileSheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResourceAsStream("/spritesheet/overworldtiles.png"))), 16, 16, 128, 1,1, 8);
 			greenLinkTileSheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResource("/spritesheet/legendofzelda_link_sheet_green.png"))),16,16,12,14,14,3);
+			greenLinkSwordSheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResourceAsStream("/spritesheet/link_green_sword_sheet.png"))), 16, 16, 128, 1,1, 8);
 		}catch(Exception e) {
 			
 		}

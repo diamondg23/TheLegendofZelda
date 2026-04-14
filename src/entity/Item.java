@@ -8,24 +8,31 @@ public class Item {
 	public String name;
 	public boolean isInInventory = false;
 	public enum items {
+		GREENSWORD(),
+		WHITESWORD(),
 		BOOMERANG(),
 		REDCANDLE(),
 		BOMB()
 		
 	}
-	public items currentItem;
+	public items thisItem;
 	public Item(Sprite sprite, String name) {
 	this.sprite = sprite;
 	this.name = name;
 	switch(name) {
+		case "Green Sword":
+			thisItem = items.GREENSWORD;
+			break;
+		case "White Sword":
+			thisItem = items.WHITESWORD;
 		case "Boomerang":
-			currentItem = items.BOOMERANG;
+			thisItem = items.BOOMERANG;
 			break;
 		case "Bomb":
-			currentItem = items.BOMB;
+			thisItem = items.BOMB;
 			break;
 		case "Red Candle":
-			currentItem = items.REDCANDLE;
+			thisItem = items.REDCANDLE;
 			break;
 		default:
 			System.err.println("UNKNOWN ITEM INPUTTED ERROR OCCURED");

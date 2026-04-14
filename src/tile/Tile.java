@@ -92,35 +92,35 @@ public class Tile {
 		// if it has collision it will make the collision box unique for whatever sprite it is 
 		if(hasCollision) {
 			switch(spriteIndex) {
-			case 54:
-				collisionHitbox = new Rectangle(this.x+5,this.y,43,25);
-				break;
-			case 56:
-				collisionHitbox = new Rectangle(this.x,this.y,36,40);
-				break;
-			default:
-				collisionHitbox = new Rectangle(this.x,this.y,48,48);
+				case 54:
+					collisionHitbox = new Rectangle(this.x+5,this.y,43,25);
+					break;
+				case 56:
+					collisionHitbox = new Rectangle(this.x,this.y,36,40);
+					break;
+				default:
+					collisionHitbox = new Rectangle(this.x,this.y,48,48);
+				}
 			}
-		}
 	}
 	public void determineRoomHitBox() {
 		switch(this.room) {
-		case SCREENPANEAST:
-			this.roomHitbox = new Rectangle(this.x+20, this.y, 48,48);
-			break;
-		case SCREENPANNORTH:
-			this.roomHitbox = new Rectangle(this.x, this.y, 48,20);
-			break;
-		case SCREENPANSOUTH:
-			this.roomHitbox = new Rectangle(this.x, this.y+20, 48,48);
-			break;
-		case SCREENPANWEST:
-			this.roomHitbox = new Rectangle(this.x, this.y, 20,48);
-			break;
-		default:
-			this.roomHitbox = new Rectangle(this.x, this.y, 48,48);
-		
-		}
+			case SCREENPANEAST:
+				this.roomHitbox = new Rectangle(this.x+20, this.y, 48,48);
+				break;
+			case SCREENPANNORTH:
+				this.roomHitbox = new Rectangle(this.x, this.y, 48,20);
+				break;
+			case SCREENPANSOUTH:
+				this.roomHitbox = new Rectangle(this.x, this.y+20, 48,48);
+				break;
+			case SCREENPANWEST:
+				this.roomHitbox = new Rectangle(this.x, this.y, 20,48);
+				break;
+			default:
+				this.roomHitbox = new Rectangle(this.x, this.y, 48,48);
+			
+			}
 	}
 	
 

@@ -14,7 +14,7 @@ public class Inventory {
 	}
 	public Item getItem(Item.items item) {
 		for(Item currItem : itemList) {
-			if(currItem.currentItem.equals(item)) {
+			if(currItem.thisItem.equals(item)) {
 				return currItem;
 			}
 		}
