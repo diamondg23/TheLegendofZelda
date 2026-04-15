@@ -6,27 +6,32 @@ import tile.Tile.tileRooms;
 // this class will handle any level that is in the overworld
 // this may have unique behavior not associated with other level types
 public class OverWorldLevel extends Level{
-
+	public static OverWorldLevel map[][] = new OverWorldLevel[8][16]; // will be the overworldlevel 2d array
 	public OverWorldLevel northLevel;
 	public OverWorldLevel southLevel;
 	public OverWorldLevel eastLevel;
 	public OverWorldLevel westLevel;
+	
 	public OverWorldLevel(String enemyData, String itemData, String tileData, tileRooms roomType) {
 		super(enemyData, itemData, tileData, roomType);
+
 		// TODO Auto-generated constructor stub
 	}
+	public OverWorldLevel[][] returnMap() {
+		return map;
+	}
 	public static OverWorldLevel[][] generateOverworldLevelMap(GamePanel panel){
-		 OverWorldLevel[][] levels = new  OverWorldLevel[8][16];
+		
 		 OverWorldLevel currLevel = new  OverWorldLevel( null, null ,"/maps/Starting_level.json", Tile.tileRooms.NOROOM);
-		levels[7][8] = currLevel;
+		map[7][8] = currLevel;
 		currLevel = new  OverWorldLevel(null,null, "/maps/North_level.json", Tile.tileRooms.NOROOM);
-		levels[6][8] = currLevel;
+		map[6][8] = currLevel;
 		currLevel = new  OverWorldLevel(null,null, "/maps/East_level.json", Tile.tileRooms.NOROOM);
-		levels[7][9] = currLevel;
+		map[7][9] = currLevel;
 		currLevel = new  OverWorldLevel(null,null, "/maps/Startinglevel2.json", Tile.tileRooms.NOROOM);
-		levels[7][7] = currLevel;
-		levels = assignAdjacencies(levels);
-		return levels;
+		map[7][7] = currLevel;
+		map = assignAdjacencies(map);
+		return map;
 	}
 	private static OverWorldLevel[][] assignAdjacencies(OverWorldLevel[][] levels) {
 	    for(int i = 0; i < levels.length; i++) {

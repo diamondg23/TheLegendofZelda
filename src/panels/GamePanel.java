@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public OverWorldLevel currentOverworldLevel; //whatever the current overworld level is (will keep data when you go into dungeons or other rooms to return to)
 	
 	public Level currentLevel = null; // whatever the non overworldlevel is currently (will be null while ur in the overworld)
-	public OverWorldLevel overworldLevelMap[][] = new OverWorldLevel[8][16]; // this will hold the overworld level maps (will have other level maps for each chamber)
+
 	
 	public LinkedList<Event> eventList = new LinkedList<Event>();
 	public LinkedList<KeyEvent> keysPressed = new LinkedList<KeyEvent>();
@@ -76,8 +76,8 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		}catch(Exception e) {
 			
 		}
-		overworldLevelMap = OverWorldLevel.generateOverworldLevelMap(this);
-		currentOverworldLevel = overworldLevelMap[7][8];
+		OverWorldLevel.map = OverWorldLevel.generateOverworldLevelMap(this);
+		currentOverworldLevel = OverWorldLevel.map[7][8];
 		currentOverworldLevel.loadLevel(tileM);
 		Sprite[] northWalking = new Sprite[2];
 		Sprite[] eastWalking = new Sprite[2];
