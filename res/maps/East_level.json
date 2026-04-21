@@ -511,9 +511,9 @@
       "flammable": false
     },
     {
-      "spriteIndex": 2,
+      "spriteIndex": 1,
       "room": 0,
-      "hasCollision": false,
+      "hasCollision": true,
       "hasRoomCollision": false,
       "canExplode": false,
       "direction": 0,

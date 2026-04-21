@@ -1,7 +1,6 @@
 list of things to do
 
-* add enemies to the editor to be able to place down onto the map and save it as a separate file but will be linked to the tile file as well
-*create a "master level" file that will link to other jsons
+* add enemies to the editor to be able to place down onto the map and save it as a separate file but will be linked to 3" file that will link to other jsons
 * change tilemanager into a more generalized file manager
 * potentially change how adding animations work
 * potentially change how sprite sheets are read in and stored as data
