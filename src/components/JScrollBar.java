@@ -137,20 +137,12 @@ public class JScrollBar extends JComponent{
 	        ArrayList<Renderable> row = list.get(rowIndex);
 
 	        int y = topOffset + i * rowHeight;
-
-	       
 	        for (int col = 0; col < cols && col < row.size(); col++) {
 
 	            Renderable item = row.get(col);
 
 	            int x = col * colWidth;
-
-	            // rendering only a string for now
-	            g2.drawString(
-	                item == null ? "" : item.toString(),
-	                x + 5,
-	                y + (rowHeight / 2)
-	            );
+	            item.render(g2, x, y, rowIndex, colWidth);
 	        }
 
 	    
