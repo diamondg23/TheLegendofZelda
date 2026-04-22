@@ -13,8 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import components.MyButton;
 import entity.Enemy;
-import main.MyButton;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.Tile;

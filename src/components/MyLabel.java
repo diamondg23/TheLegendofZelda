@@ -1,4 +1,4 @@
-package main;
+package components;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

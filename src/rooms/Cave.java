@@ -1,17 +1,19 @@
 package rooms;
 
+import rooms.LevelData.LevelType;
+import tile.Tile;
 import tile.Tile.tileRooms;
 // This class will handle the one off rooms that are scattered around the overworld
 // technically not part of the overworld so it will have some unique behaviors associated with it.
-public class Cave extends Level {
-	String text; // if this doesnt have text itll just be ""
-	boolean isShop;
-	OverWorldLevel returnLevel; // will be used to get back to the overworld
-	
-	
-	public Cave(String enemyData, String itemData, String tileData, tileRooms roomType, String text) {
-		super(enemyData, itemData, tileData, roomType);
-		this.text = text;
-	}
 
+
+public class Cave extends Level {
+
+    public String text;
+    public boolean isShop;
+
+    public Cave(LevelType type) {
+        super(LevelType.CAVE);
+        
+    }
 }

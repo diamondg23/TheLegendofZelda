@@ -82,7 +82,7 @@ public class JScrollBar extends JComponent{
 	}
 	// this will scroll the bar up by one row, for example the current top row will become the second top row after.
 	
-	public boolean scrollUp() {
+	public boolean scrollUp() { 	
 	    if (firstVisibleRow <= 0) {
 	        return false; 
 	    }

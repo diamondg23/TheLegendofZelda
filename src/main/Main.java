@@ -2,6 +2,7 @@ package main;
 
 import javax.swing.JFrame;
 
+import components.MyFrame;
 import controllers.AudioPlayer;
 import editor.EditorPanel;
 import panels.GamePanel;

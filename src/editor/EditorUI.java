@@ -1,7 +1,7 @@
 package editor;
 
-import main.MyButton;
-import main.MyLabel;
+import components.MyButton;
+import components.MyLabel;
 import tile.Tile;
 
 
