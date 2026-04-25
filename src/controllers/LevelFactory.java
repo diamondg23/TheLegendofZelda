@@ -32,7 +32,7 @@ public class LevelFactory {
                 level = new Level(data.type);
         }
 
-        // inject systems
+        
         level.tileManager = new TileManager(gp);
         level.enemyManager = new EnemyManager();
         level.itemManager = new ItemManager();

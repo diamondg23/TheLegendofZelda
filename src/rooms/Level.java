@@ -13,11 +13,6 @@ import tile.Tile;
 import tile.TileManager;
 
 // base class level, will have things that all levels have
-
-
-
-
-
 public class Level {
 
     public static int numofLevels;
