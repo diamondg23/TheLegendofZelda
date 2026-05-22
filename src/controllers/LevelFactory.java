@@ -24,9 +24,6 @@ public class LevelFactory {
                 level = new Cave(data.type);
                 break;
 
-            case DUNGEON:
-                level = new DungeonLevel(data.type);
-                break;
 
             default:
                 level = new Level(data.type);

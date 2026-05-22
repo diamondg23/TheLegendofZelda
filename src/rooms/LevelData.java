@@ -8,10 +8,18 @@ public class LevelData {
 	public String enemyData; // file path to the enemy json
 	public String itemData; // file path to the item json
 	public enum LevelType{
-		SHOP(),
 		OVERWORLD(),
 		CAVE(),
-		DUNGEON()
+		SHOP(),
+		LEVEL1(),
+		LEVEL2(),
+		LEVEL3(),
+		LEVEL4(),
+		LEVEL5(),
+		LEVEL6(),
+		LEVEL7(),
+		LEVEL8(),
+		LEVEL9(),
 	}
 	public LevelType type;
 	public int ID;

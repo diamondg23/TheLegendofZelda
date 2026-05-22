@@ -6,7 +6,10 @@ public class Item {
 
 	public Sprite sprite;
 	public String name;
-	public boolean isInInventory = false;
+	public int x;
+	public int y;
+	public int width;
+	public int height;
 	public enum items {
 		GREENSWORD(),
 		WHITESWORD(),

@@ -15,11 +15,13 @@ import javax.swing.JPanel;
 
 import components.MyButton;
 import entity.Enemy;
+import entity.Item;
 import main.Animation;
 import main.Animation.AnimationType;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.Tile;
+import rooms.LevelData;
 
 public class EditorPanel extends JPanel implements Runnable{
 	enum currentScrollBar{
@@ -50,10 +52,15 @@ public class EditorPanel extends JPanel implements Runnable{
 	public Sprite[][] EnemySprites = new Sprite[12][2];
 	public Tile[][] mapTiles = new Tile[11][16];
 	public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
+	public LinkedList<Item> items = new LinkedList<Item>();
 	EditorUI editorUI = new EditorUI();
 	public currentScrollBar scrollBar;
 
 	public boolean roomMenuOpen = false;
+	
+	public int roomXPosition = 0;
+	public int roomYPosition = 0;
+	LevelData.LevelType currentLevelType = LevelData.LevelType.OVERWORLD;
 	
 	public EditorPanel() {
 		scrollBar = currentScrollBar.Tiles;
@@ -376,6 +383,49 @@ public class EditorPanel extends JPanel implements Runnable{
 				editorUI.explodeButton.explosion = false;
 			}
 		}
+		public void levelSelected(String name) {
+			switch(name) {
+			case "OverWorld":
+				currentLevelType = LevelData.LevelType.OVERWORLD;
+				break;
+			case "Cave":
+				currentLevelType = LevelData.LevelType.CAVE;
+				break;
+			case "Shop":
+				currentLevelType = LevelData.LevelType.SHOP;
+				break;
+			case "Level1":
+				currentLevelType = LevelData.LevelType.LEVEL1;
+				break;
+			case "Level2":
+				currentLevelType = LevelData.LevelType.LEVEL2;
+				break;
+			case "Level3":
+				currentLevelType = LevelData.LevelType.LEVEL3;
+				break;
+			case "Level4":
+				currentLevelType = LevelData.LevelType.LEVEL4;
+				break;
+			case "Level5":
+				currentLevelType = LevelData.LevelType.LEVEL5;
+				break;
+			case "Level6":
+				currentLevelType = LevelData.LevelType.LEVEL6;
+				break;
+			case "Level7":
+				currentLevelType = LevelData.LevelType.LEVEL7;
+				break;
+			case "Level8":
+				currentLevelType = LevelData.LevelType.LEVEL8;
+				break;
+			case "Level9":
+				currentLevelType = LevelData.LevelType.LEVEL9;
+				break;
+				
+			}
+			System.out.println(currentLevelType.name());
+		}
+		
 	}
 
 
