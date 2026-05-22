@@ -9,19 +9,20 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import components.MyFrame;
+import controllers.AudioPlayer;
 import panels.GamePanel;
 import tile.Sprite;
 import tile.Tile;
 import tile.TileData;
 
 public class Main {
-	
+	public static AudioPlayer music = new AudioPlayer();
 	public static void main(String[] args) {
 		
 		EditorPanel gamepanel = new EditorPanel();
 		MyFrame frame = new MyFrame();
 		
-
+		music.playMusicLoop("/music/overworldmusic.wav");
 		JMenuBar menuBar = new JMenuBar();
 
 		JMenu fileMenu = new JMenu("File");

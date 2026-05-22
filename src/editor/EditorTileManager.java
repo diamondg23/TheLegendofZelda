@@ -55,7 +55,7 @@ public class EditorTileManager {
 			}
 		}
 		JFileChooser chooser = new JFileChooser();
-		chooser.setCurrentDirectory(new File("res/maps"));
+		chooser.setCurrentDirectory(new File("res"));
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		  int result = chooser.showOpenDialog(null);
 

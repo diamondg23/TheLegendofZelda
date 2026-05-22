@@ -40,7 +40,8 @@ public class KeyboardController extends Component implements KeyListener {
 			panel.scrollTilesUp();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_S) {
-			System.out.println( EditorTileManager.SaveMap(panel.mapTiles));
+			LevelWriter.save(panel);
+			System.out.println("saved");
 		}
 		if(e.getKeyChar() == KeyEvent.VK_2) {
 			

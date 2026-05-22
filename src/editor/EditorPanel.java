@@ -52,7 +52,7 @@ public class EditorPanel extends JPanel implements Runnable{
 	public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
 	EditorUI editorUI = new EditorUI();
 	public currentScrollBar scrollBar;
-	
+
 	public boolean roomMenuOpen = false;
 	
 	public EditorPanel() {
