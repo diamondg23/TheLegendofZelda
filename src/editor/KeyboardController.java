@@ -10,6 +10,8 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.KeyStroke;
 
+import editor.EditorPanel.currentScrollBar;
+
 public class KeyboardController extends Component implements KeyListener {
 	EditorPanel panel;
 	public KeyboardController(EditorPanel panel) {
@@ -28,13 +30,14 @@ public class KeyboardController extends Component implements KeyListener {
 		
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			panel.selectedTile = null;
+			panel.selectedEnemy = null;
 			System.out.println("Escape pressed");
 		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-			panel.scrollDown();
+			panel.scrollTilesDown();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
-			panel.scrollUp();
+			panel.scrollTilesUp();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_S) {
 			System.out.println( EditorTileManager.SaveMap(panel.mapTiles));
@@ -44,6 +47,20 @@ public class KeyboardController extends Component implements KeyListener {
 		}
 		if(e.getKeyChar() == KeyEvent.VK_ESCAPE) {
 			panel.currTile = null;
+		}
+		if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+		
+			if(panel.scrollBar == currentScrollBar.Enemies)
+			{
+				panel.scrollBar = currentScrollBar.Tiles;
+				EditorRenderer.scrollBar = currentScrollBar.Tiles;
+				System.out.println("Tiles showing");
+			}
+			else {
+				panel.scrollBar = currentScrollBar.Enemies;
+				EditorRenderer.scrollBar = currentScrollBar.Enemies;
+				System.out.println("Enemies showing");
+			}
 		}
 	}
 	

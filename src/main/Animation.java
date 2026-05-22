@@ -16,7 +16,8 @@ public class Animation {
         ATTACK_NORTH,
         ATTACK_SOUTH,
         ATTACK_EAST,
-        ATTACK_WEST
+        ATTACK_WEST,
+        PREVIEW
 	}
 
 	Sprite[] sprites;

@@ -15,11 +15,17 @@ import javax.swing.JPanel;
 
 import components.MyButton;
 import entity.Enemy;
+import main.Animation;
+import main.Animation.AnimationType;
 import tile.Sprite;
 import tile.SpriteSheet;
 import tile.Tile;
 
 public class EditorPanel extends JPanel implements Runnable{
+	enum currentScrollBar{
+		Tiles(),
+		Enemies()
+	}
 	Thread gameThread;
 	public int fps = 30;
 	final int originalTileSize = 16; //16x16 tile 
@@ -31,22 +37,26 @@ public class EditorPanel extends JPanel implements Runnable{
 	public final int screenWidth = tileSize * maxScreenCol; //768 pixels
 	public final int screenHeight = tileSize * maxScreenRow + (tileSize * 2); //576 pixels
 	
-	public SpriteSheet sheet;
+	public SpriteSheet TileSheet;
+	public SpriteSheet EnemySheet;
 	MouseController mouseController = new MouseController(this);
 	KeyboardController keyboardController = new KeyboardController(this);
 	Sprite currTile = null;
 	int leftBuffer;
 	public int upBuffer;
-	
+	public Enemy selectedEnemy;
 	public Tile selectedTile;
-	public Sprite[][] sprites = new Sprite[12][2];
+	public Sprite[][] TileSprites = new Sprite[12][2];
+	public Sprite[][] EnemySprites = new Sprite[12][2];
 	public Tile[][] mapTiles = new Tile[11][16];
 	public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
 	EditorUI editorUI = new EditorUI();
+	public currentScrollBar scrollBar;
 	
 	public boolean roomMenuOpen = false;
 	
 	public EditorPanel() {
+		scrollBar = currentScrollBar.Tiles;
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
@@ -58,7 +68,12 @@ public class EditorPanel extends JPanel implements Runnable{
 		this.setFocusable(true);
 		this.requestFocus();
 		try {
-			sheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResourceAsStream("/spritesheet/overworldtiles.png"))), 16, 16, 128, 1,1, 8);
+			TileSheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResourceAsStream("/spritesheet/overworldtiles.png"))), 16, 16, 128, 1,1, 8);
+		}catch(Exception e) {
+			
+		}
+		try {
+			EnemySheet = new SpriteSheet(new Sprite(ImageIO.read(getClass().getResourceAsStream("/spritesheet/previewEnemySpriteSheet.png"))), 16, 16, 27, 0,0, 1);
 		}catch(Exception e) {
 			
 		}
@@ -68,9 +83,18 @@ public class EditorPanel extends JPanel implements Runnable{
 		leftBuffer = editorUI.upButton.getWidth();
 		upBuffer = editorUI.upButton.getHeight();
 		
-		for(int i = 0; i < sprites.length; i++) {
-			for(int j = 0; j < sprites[i].length; j++) {
-				sprites[i][j] = sheet.sprites.get(i*2+j);
+		for(int i = 0; i < TileSprites.length; i++) {
+			for(int j = 0; j < TileSprites[i].length; j++) {
+				TileSprites[i][j] = TileSheet.sprites.get(i*2+j);
+			}
+			
+		}
+		for(int i = 0; i < EnemySprites.length; i++) {
+			for(int j = 0; j < EnemySprites[i].length; j++) {
+				if(i*2+j > EnemySheet.sprites.size()) {
+					break;
+				}
+				EnemySprites[i][j] = EnemySheet.sprites.get(i*2+j);
 			}
 			
 		}
@@ -134,44 +158,97 @@ public class EditorPanel extends JPanel implements Runnable{
 			
 			super.paintComponent(g);
 			
-			EditorTileRenderer.RenderTileMenu(this.sprites, (Graphics2D)g, upBuffer, tileSize);
-			
-			EditorTileRenderer.RenderCurrentMap((Graphics2D)g, mapTiles, tileSize, leftBuffer, upBuffer);
+			EditorRenderer.RenderTileMenu(this.TileSprites, (Graphics2D)g, upBuffer, tileSize);
+			EditorRenderer.RenderEnemyMenu(this.EnemySprites, (Graphics2D)g, upBuffer, tileSize);
+			EditorRenderer.RenderCurrentMap((Graphics2D)g, mapTiles, tileSize, leftBuffer, upBuffer);
+			EditorRenderer.RenderCurrentEnemies((Graphics2D)g, enemies, tileSize, leftBuffer, upBuffer);
 			if(selectedTile != null)
-				EditorTileRenderer.RenderCurrentTile((Graphics2D)g, selectedTile, mouseController.x, mouseController.y, tileSize);
-	
+				EditorRenderer.RenderCurrentTile((Graphics2D)g, selectedTile, mouseController.x, mouseController.y, tileSize);
+			if(selectedEnemy != null)
+				EditorRenderer.RenderCurrentEnemy((Graphics2D)g, selectedEnemy, mouseController.x, mouseController.y, tileSize);
+			
 		}
 		
-		public void scrollDown() {
-			int lastSpriteIndex = sheet.sprites.indexOf(sprites[sprites.length-1][1]);
-			if(lastSpriteIndex+2 > sheet.sprites.size()) {
+		public void scrollEnemiesDown() {
+			int howManyMore = 0;
+			int lastSpriteIndex = EnemySheet.sprites.indexOf(EnemySprites[EnemySprites.length-1][1]);
+			if(lastSpriteIndex+1 >= EnemySheet.sprites.size()) {
 				return;
 			}
-			for(int i = 0; i < sprites.length-1; i++) {
-				for(int j = 0; j < sprites[i].length;j++) {
-					sprites[i][j] = sprites[i+1][j];
+		
+			
+			for(int i = 0; i < EnemySprites.length-1; i++) {
+				for(int j = howManyMore; j < TileSprites[i].length;j++) {
+					EnemySprites[i][j] = EnemySprites[i+1][j];
 				}
 				
 			}
-			
-			sprites[sprites.length-1][0] =  sheet.sprites.get(lastSpriteIndex + 1);
-			sprites[sprites.length-1][1] =  sheet.sprites.get(lastSpriteIndex + 2);
+		
+			EnemySprites[EnemySprites.length-1][0] =  EnemySheet.sprites.get(lastSpriteIndex + 1);
+			try {
+				EnemySprites[EnemySprites.length-1][1] =  EnemySheet.sprites.get(lastSpriteIndex + 2);
+			}catch(Exception E) {
+				
+			}
+		
 		}
-		public void scrollUp() {
-			int lastSpriteIndex = sheet.sprites.indexOf(sprites[0][0]);
+		public void scrollEnemiesUp() {
+			int lastSpriteIndex = EnemySheet.sprites.indexOf(EnemySprites[0][0]);
 			if(lastSpriteIndex - 2 <0) {
 				return;
 			}
-			for(int i = sprites.length-1; i >0; i--) {
-				for(int j = 0; j < sprites[i].length;j++) {
-					sprites[i][j] = sprites[i-1][j];
+			if(lastSpriteIndex - 1 <0) {
+				return;
+			}
+			for(int i = TileSprites.length-1; i >0; i--) {
+				for(int j = 0; j < EnemySprites[i].length;j++) {
+					EnemySprites[i][j] = EnemySprites[i-1][j];
 				}
 				
 			}
 			
 			
-			sprites[0][0] = sheet.sprites.get(lastSpriteIndex - 2);
-			sprites[0][1] = sheet.sprites.get(lastSpriteIndex - 1);
+			EnemySprites[0][0] = EnemySheet.sprites.get(lastSpriteIndex - 2);
+			EnemySprites[0][1] = EnemySheet.sprites.get(lastSpriteIndex - 1);
+		}
+		public void scrollTilesDown() {
+			if(scrollBar == currentScrollBar.Enemies) {
+				scrollEnemiesDown();
+				return;
+			}
+			int lastSpriteIndex = TileSheet.sprites.indexOf(TileSprites[TileSprites.length-1][1]);
+			if(lastSpriteIndex+2 > TileSheet.sprites.size()) {
+				return;
+			}
+			for(int i = 0; i < TileSprites.length-1; i++) {
+				for(int j = 0; j < TileSprites[i].length;j++) {
+					TileSprites[i][j] = TileSprites[i+1][j];
+				}
+				
+			}
+			
+			TileSprites[TileSprites.length-1][0] =  TileSheet.sprites.get(lastSpriteIndex + 1);
+			TileSprites[TileSprites.length-1][1] =  TileSheet.sprites.get(lastSpriteIndex + 2);
+		}
+		public void scrollTilesUp() {
+			if(scrollBar == currentScrollBar.Enemies) {
+				scrollEnemiesUp();
+				return;
+			}
+			int lastSpriteIndex = TileSheet.sprites.indexOf(TileSprites[0][0]);
+			if(lastSpriteIndex - 2 <0) {
+				return;
+			}
+			for(int i = TileSprites.length-1; i >0; i--) {
+				for(int j = 0; j < TileSprites[i].length;j++) {
+					TileSprites[i][j] = TileSprites[i-1][j];
+				}
+				
+			}
+			
+			
+			TileSprites[0][0] = TileSheet.sprites.get(lastSpriteIndex - 2);
+			TileSprites[0][1] = TileSheet.sprites.get(lastSpriteIndex - 1);
 		}
 		public void placeTile(int col, int row) {
 			selectedTile.room = editorUI.roomButton.room;
@@ -203,8 +280,23 @@ public class EditorPanel extends JPanel implements Runnable{
 			}
 		
 		}
-		public void placeEnemy(Enemy enemy) {
+		public void placeEnemy(int col, int row) {
+			int x = col*tileSize;
+			int y = row*tileSize;
+			int width = tileSize;
+			int height = tileSize;
+			for(int i = 0; i < enemies.size(); i ++) {
+				if(enemies.get(i).x == x && enemies.get(i).y == y) {
+					return;
+				}
+			}
+			
+			Enemy enemy = new Enemy(x,y,width,height,null, selectedEnemy.ID);
+			
+			enemy.addAnimation(Animation.AnimationType.PREVIEW, selectedEnemy.getAnimation());
+			enemy.setAnimation(AnimationType.PREVIEW);
 			enemies.add(enemy);
+			System.out.println("ID OF NEW ENEMY IS: " + enemy.ID);
 		}
 		public void toggleRoomMenu() {
 	        if (roomMenuOpen) {

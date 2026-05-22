@@ -26,16 +26,18 @@ public abstract class Entity {
 	public int imageScale = 3;
 	public Rectangle solidArea;
 	public Animation.AnimationType currentType;
-	
+	// this ID will be tied to what specific enemy it is in order to know how to implement behavior when you read from the file.
+	public int ID;
 	public Map<Animation.AnimationType, Animation> animations = new HashMap<>();
 	
 	
-	public Entity(int x, int y, int width, int height) {
+	public Entity(int x, int y, int width, int height, int ID) {
 		this.x = x;
 		this.y = y;
 		directionFacing = EntityDirection.SOUTH;
 		this.width = width;
 		this.height = height;
+		this.ID = ID;
 		solidArea = new Rectangle(x + 10 ,y + 10,width- width/2,height - height/2);
 	}
 

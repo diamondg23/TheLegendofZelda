@@ -87,7 +87,7 @@ public class EditorTileManager {
 				int y = i*48;
 				tiles[i][j] = new Tile(new Sprite(null), tileD.room,tileD.hasCollision,tileD.hasRoomCollision, tileD.canExplode, tileD.direction,tileD.flammable,x,y);
 				tiles[i][j].spriteIndex = tileD.spriteIndex;
-				tiles[i][j].sprite = gp.sheet.sprites.get(tileD.spriteIndex);
+				tiles[i][j].sprite = gp.TileSheet.sprites.get(tileD.spriteIndex);
 			}
 		}
 		

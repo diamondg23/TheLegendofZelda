@@ -31,11 +31,15 @@ public class Main {
 		JMenuItem saveItem = new JMenuItem("Save Map");
 		JCheckBoxMenuItem showCollision = new JCheckBoxMenuItem("Show Collision");
 		JCheckBoxMenuItem showRoom = new JCheckBoxMenuItem("Show Room");
+		JCheckBoxMenuItem showEnemies = new JCheckBoxMenuItem("Show Enemies");
+		JCheckBoxMenuItem showTiles = new JCheckBoxMenuItem("Show Tiles");
 
 		fileMenu.add(openItem);
 		fileMenu.add(saveItem);
 		viewMenu.add(showCollision);
 		viewMenu.add(showRoom);
+		viewMenu.add(showEnemies);
+		viewMenu.add(showTiles);
 		menuBar.add(fileMenu);
 		menuBar.add(viewMenu);
 
@@ -61,14 +65,21 @@ public class Main {
 			System.out.println( EditorTileManager.SaveMap(gamepanel.mapTiles));
 		});
 		showCollision.addActionListener(e -> {
-		    EditorTileRenderer.drawCollision = showCollision.isSelected();
+		    EditorRenderer.drawCollision = showCollision.isSelected();
 		    
 		});
 		showRoom.addActionListener(e ->{
-			   EditorTileRenderer.drawRoom = showRoom.isSelected();
+			   EditorRenderer.drawRoom = showRoom.isSelected();
 			
 		});
-		
+		showEnemies.addActionListener(e ->{
+			   EditorRenderer.drawEnemies = showEnemies.isSelected();
+			
+		});
+		showTiles.addActionListener(e ->{
+			   EditorRenderer.drawTiles = showTiles.isSelected();
+			
+		});
 		frame.pack();	
 		
 		

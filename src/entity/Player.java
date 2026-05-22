@@ -28,8 +28,8 @@ public class Player extends Entity implements Moveable{
 	//the actual body hitbox, link will take damage
 	
 	
-	public Player(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	public Player(int x, int y, int width, int height, int ID) {
+		super(x, y, width, height, ID);
 		lastx = x;
 		lasty = y;
 		inventory = new Inventory();

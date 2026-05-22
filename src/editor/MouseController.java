@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import panels.GamePanel;
 import tile.Sprite;
 import tile.Tile;
-
+import entity.Enemy;
+import main.Animation;
+import main.Animation.AnimationType;
 public class MouseController implements MouseListener, MouseMotionListener{
 	public int x;
 	public int y;
@@ -48,12 +50,28 @@ public class MouseController implements MouseListener, MouseMotionListener{
 				panel.placeTile(col,row);
 				return;
 			}
+			if(panel.selectedEnemy != null) {
+				panel.placeEnemy(col,row);
+			}
 			return;
 		}
 		if(col <= 1 && row <= 11) {
-		    Tile selectedTile = new Tile(panel.sprites[row][col]);
-			selectedTile.spriteIndex = panel.sheet.sprites.indexOf(selectedTile.sprite);
+			if(panel.scrollBar == EditorPanel.currentScrollBar.Tiles) {
+				
+			panel.selectedEnemy = null;
+		    Tile selectedTile = new Tile(panel.TileSprites[row][col]);
+			selectedTile.spriteIndex = panel.TileSheet.sprites.indexOf(selectedTile.sprite);
 			panel.selectedTile = selectedTile;
+			}
+			else {
+				Enemy selectedEnemy = new Enemy(0,0,0,0,null, panel.EnemySheet.sprites.indexOf(panel.EnemySprites[row][col]));
+				Sprite[] sprite = new Sprite[1];
+				sprite[0] = new Sprite(panel.EnemySprites[row][col].image);
+				panel.selectedTile = null;
+				selectedEnemy.addAnimation(Animation.AnimationType.PREVIEW, new Animation(sprite));
+				selectedEnemy.setAnimation(AnimationType.PREVIEW);
+				panel.selectedEnemy = selectedEnemy;
+			}
 		}
 		}
 		else if (MouseEvent.BUTTON2 == e.getButton()) {

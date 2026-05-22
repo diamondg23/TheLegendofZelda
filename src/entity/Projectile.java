@@ -6,8 +6,8 @@ public class Projectile extends Entity {
 
 	int speed;
 	
-	public Projectile(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	public Projectile(int x, int y, int width, int height, int ID) {
+		super(x, y, width, height, ID);
 		speed = 5;
 		//moves 5 pixels a frame
 	}

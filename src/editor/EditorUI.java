@@ -23,7 +23,7 @@ public class EditorUI {
 			    panel.screenHeight - (panel.screenHeight / 30),
 			    panel.tileSize * 2,
 			    panel.screenHeight / 30,
-			    () -> Epanel.scrollDown()
+			    () -> Epanel.scrollTilesDown()
 			);
 		upButton = new MyButton(
 			    "",
@@ -31,7 +31,7 @@ public class EditorUI {
 			    0,
 			    panel.tileSize * 2,
 			    panel.screenHeight / 30,
-			    () -> Epanel.scrollUp()
+			    () -> Epanel.scrollTilesUp()
 			);
 		downButton.setFocusable(false);
 		upButton.setFocusable(false);

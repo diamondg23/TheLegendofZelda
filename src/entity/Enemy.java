@@ -10,8 +10,8 @@ public class Enemy extends Entity {
 	}
 	public states state;
 	
-	public Enemy(int x, int y, int width, int height, states state) {
-		super(x, y, width, height);
+	public Enemy(int x, int y, int width, int height, states state, int iD) {
+		super(x, y, width, height, iD);
 		this.state = state;
 	}
 
