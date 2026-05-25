@@ -51,15 +51,20 @@ public class KeyboardController extends Component implements KeyListener {
 		}
 		if(e.getKeyChar() == KeyEvent.VK_ENTER) {
 		
-			if(panel.scrollBar == currentScrollBar.Enemies)
+			if(panel.scrollBar == currentScrollBar.ENEMIES)
 			{
-				panel.scrollBar = currentScrollBar.Tiles;
-				EditorRenderer.scrollBar = currentScrollBar.Tiles;
+				panel.scrollBar = currentScrollBar.ITEMS;
+				EditorRenderer.scrollBar = currentScrollBar.ITEMS;
+				System.out.println("Items showing");
+			}
+			else if(panel.scrollBar == currentScrollBar.ITEMS){
+				panel.scrollBar = currentScrollBar.TILES;
+				EditorRenderer.scrollBar = currentScrollBar.TILES;
 				System.out.println("Tiles showing");
 			}
 			else {
-				panel.scrollBar = currentScrollBar.Enemies;
-				EditorRenderer.scrollBar = currentScrollBar.Enemies;
+				panel.scrollBar = currentScrollBar.ENEMIES;
+				EditorRenderer.scrollBar = currentScrollBar.ENEMIES;
 				System.out.println("Enemies showing");
 			}
 		}

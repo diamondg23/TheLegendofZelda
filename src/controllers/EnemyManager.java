@@ -2,7 +2,9 @@ package controllers;
 
 import java.awt.Graphics2D;
 
-public class EnemyManager {
+import interfaces.Manager;
+
+public class EnemyManager implements Manager{
 
 	public EnemyManager() {
 		

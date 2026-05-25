@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
@@ -25,8 +27,9 @@ import rooms.LevelData;
 
 public class EditorPanel extends JPanel implements Runnable{
 	enum currentScrollBar{
-		Tiles(),
-		Enemies()
+		TILES(),
+		ENEMIES(),
+		ITEMS()
 	}
 	Thread gameThread;
 	public int fps = 30;
@@ -41,6 +44,7 @@ public class EditorPanel extends JPanel implements Runnable{
 	
 	public SpriteSheet TileSheet;
 	public SpriteSheet EnemySheet;
+	public LinkedList<Sprite> itemSheetSprites = new LinkedList<Sprite>();
 	MouseController mouseController = new MouseController(this);
 	KeyboardController keyboardController = new KeyboardController(this);
 	Sprite currTile = null;
@@ -48,8 +52,10 @@ public class EditorPanel extends JPanel implements Runnable{
 	public int upBuffer;
 	public Enemy selectedEnemy;
 	public Tile selectedTile;
+	public Item selectedItem;
 	public Sprite[][] TileSprites = new Sprite[12][2];
 	public Sprite[][] EnemySprites = new Sprite[12][2];
+	public Sprite[][] ItemSprites = new Sprite[12][2];
 	public Tile[][] mapTiles = new Tile[11][16];
 	public LinkedList<Enemy> enemies = new LinkedList<Enemy>();
 	public LinkedList<Item> items = new LinkedList<Item>();
@@ -63,7 +69,7 @@ public class EditorPanel extends JPanel implements Runnable{
 	LevelData.LevelType currentLevelType = LevelData.LevelType.OVERWORLD;
 	
 	public EditorPanel() {
-		scrollBar = currentScrollBar.Tiles;
+		scrollBar = currentScrollBar.TILES;
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
@@ -110,6 +116,39 @@ public class EditorPanel extends JPanel implements Runnable{
 			if(editorUI.buttons[i] != null)
 				this.add(editorUI.buttons[i]);
 		}
+		File folder = new File("res/itemsprites/");
+		File[] files = folder.listFiles();
+		
+		
+		if(files !=null) {
+		    for (File file : files) {
+		    	   if (file.isFile() && file.getName().toLowerCase().endsWith(".png")) {
+	                    try {
+	                        BufferedImage img = ImageIO.read(file);
+	                        if (img != null) {
+	                            itemSheetSprites.add(new Sprite(img));
+	                            System.out.println("Loaded: " + file.getName());
+	                        }
+	                    }
+	                    catch(Exception e) {
+	                    	
+	                    }
+		    }
+		    }
+		}
+		for(int i = 0; i < ItemSprites.length; i++) {
+			for(int j = 0; j < ItemSprites[i].length; j++) {
+				if(i*2+j >= itemSheetSprites.size()) {
+					break;
+				}
+				ItemSprites[i][j] = itemSheetSprites.get(i*2+j);
+			}
+			
+		}
+	
+		
+		
+		
 	}
 	public void startGameThread() {
 		gameThread = new Thread(this);
@@ -152,6 +191,12 @@ public class EditorPanel extends JPanel implements Runnable{
 		
 	}
 		public void update(){
+			if(scrollBar.name().equals("TILES")) {
+				editorUI.enableTileButtons();
+			}
+			else if(scrollBar.name().equals("ENEMIES")) {
+				editorUI.disableTileButtons();
+			}
 		}
 		public void updateMouse(int x, int y) {
 			if(currTile == null) {
@@ -167,12 +212,17 @@ public class EditorPanel extends JPanel implements Runnable{
 			
 			EditorRenderer.RenderTileMenu(this.TileSprites, (Graphics2D)g, upBuffer, tileSize);
 			EditorRenderer.RenderEnemyMenu(this.EnemySprites, (Graphics2D)g, upBuffer, tileSize);
+			EditorRenderer.RenderItemMenu(this.ItemSprites, (Graphics2D)g, upBuffer, scale, tileSize);
 			EditorRenderer.RenderCurrentMap((Graphics2D)g, mapTiles, tileSize, leftBuffer, upBuffer);
 			EditorRenderer.RenderCurrentEnemies((Graphics2D)g, enemies, tileSize, leftBuffer, upBuffer);
+			EditorRenderer.RenderCurrentItems((Graphics2D)g, items, scale, leftBuffer, upBuffer);
 			if(selectedTile != null)
 				EditorRenderer.RenderCurrentTile((Graphics2D)g, selectedTile, mouseController.x, mouseController.y, tileSize);
 			if(selectedEnemy != null)
 				EditorRenderer.RenderCurrentEnemy((Graphics2D)g, selectedEnemy, mouseController.x, mouseController.y, tileSize);
+			if(selectedItem != null)
+				EditorRenderer.RenderCurrentItem((Graphics2D)g, selectedItem, mouseController.x, mouseController.y, scale);
+			
 			
 		}
 		
@@ -219,7 +269,7 @@ public class EditorPanel extends JPanel implements Runnable{
 			EnemySprites[0][1] = EnemySheet.sprites.get(lastSpriteIndex - 1);
 		}
 		public void scrollTilesDown() {
-			if(scrollBar == currentScrollBar.Enemies) {
+			if(scrollBar == currentScrollBar.ENEMIES) {
 				scrollEnemiesDown();
 				return;
 			}
@@ -238,7 +288,7 @@ public class EditorPanel extends JPanel implements Runnable{
 			TileSprites[TileSprites.length-1][1] =  TileSheet.sprites.get(lastSpriteIndex + 2);
 		}
 		public void scrollTilesUp() {
-			if(scrollBar == currentScrollBar.Enemies) {
+			if(scrollBar == currentScrollBar.ENEMIES) {
 				scrollEnemiesUp();
 				return;
 			}
@@ -304,6 +354,21 @@ public class EditorPanel extends JPanel implements Runnable{
 			enemy.setAnimation(AnimationType.PREVIEW);
 			enemies.add(enemy);
 			System.out.println("ID OF NEW ENEMY IS: " + enemy.ID);
+		}
+		public void placeItem(int col, int row) {
+			int x = col*tileSize;
+			int y = row*tileSize;
+			int width = selectedItem.sprite.image.getWidth()*scale;
+			int height = selectedItem.sprite.image.getHeight()*scale;
+			Sprite sprite = selectedItem.sprite;
+			for(int i = 0; i < items.size(); i ++) {
+				if(items.get(i).hitbox.x == x && items.get(i).hitbox.y == y) {
+					return;
+				}
+			}
+			Item item = new Item(x,y,width,height,selectedItem.ID, sprite);
+			items.add(item);
+			System.out.println("ID OF NEW ITEM IS: " + item.ID);
 		}
 		public void toggleRoomMenu() {
 	        if (roomMenuOpen) {
@@ -425,6 +490,7 @@ public class EditorPanel extends JPanel implements Runnable{
 			}
 			System.out.println(currentLevelType.name());
 		}
+
 		
 	}
 

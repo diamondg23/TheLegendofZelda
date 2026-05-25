@@ -2,7 +2,9 @@ package controllers;
 
 import java.awt.Graphics2D;
 
-public class ItemManager {
+import interfaces.Manager;
+
+public class ItemManager implements Manager{
 
 	public void update() {
 		// TODO Auto-generated method stub

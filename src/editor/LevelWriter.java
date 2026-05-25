@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder;
 
 import entity.Enemy;
 import entity.EnemyData;
+import entity.Item;
 import entity.ItemData;
 import rooms.LevelData;
 import rooms.LevelData.LevelType;
@@ -55,10 +56,14 @@ public class LevelWriter {
 	    	   enemyData.add(data);
 	       }
 	      String enemyPath = saveEnemies(enemyData, baseName);
-	
-	     //   saveItems(state.items, baseName);
-	
-	    //    saveSpecial(state, baseName);
+	      LinkedList<ItemData> itemData = new LinkedList<ItemData>();
+	      for(int i = 0; i < gp.items.size(); i++) {
+	    	   Item currItem = gp.items.get(i);
+	    	   String name = getItemName(gp.items.get(i).ID);
+	    	   ItemData data = new ItemData(name, currItem.hitbox.x, currItem.hitbox.y, currItem.hitbox.width, currItem.hitbox.height, currItem.ID);
+	    	   itemData.add(data);
+	       }
+	        saveItems(itemData, baseName);
 	
 	      //  saveLevelData(state, baseName);
 		}
@@ -127,6 +132,58 @@ public class LevelWriter {
     			
     	}
     }
+    private static String getItemName(int id) {
+    	switch(id) {
+		case 0:
+			return "Blue Candle";
+			
+		case 1:
+			return "Blue Potion";
+		case 2:
+			return "Blue Ring";
+		case 3:
+			return "Bomb";
+		case 4:
+			return "Bow";
+		case 5:
+			return "Stop Watch";
+		case 6:
+			return "Force Ring";
+		case 7:
+			return "Compass";
+		case 8:
+			return "Heart Container";
+		case 9:
+			return "Ladder";
+		case 10:
+			return "Arrow";
+		case 11:
+			return "Green Sword";
+		case 12:
+			return "Red Sword";
+		case 13:
+			return "White Sword";
+		case 14:
+			return "Meat";
+		case 15:
+			return "Blue Coin";
+		case 16:
+			return "Red Coin";
+		case 17:
+			return "Raft";
+		case 18:
+			return "Red Candle";
+		case 19:
+			return "Red Potion";
+		case 20:
+			return "Red Ring";
+		case 21:
+			return "Big Shield";
+		default:
+			return "ERROR ID NOT FOUND";
+					
+    	}
+    }
     private static String saveTiles(TileData[][] tiles, String base) {
     	  Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -161,7 +218,8 @@ public class LevelWriter {
         return null;
     }
     
-    
+    // not used for now
+    /*
     private static String saveSpecial(LevelEditorState state, String base) {
 
         if (state.type != LevelType.CAVE && state.type != LevelType.SHOP) {
@@ -181,6 +239,7 @@ public class LevelWriter {
             e.printStackTrace();
         }
     }
+    */
     private static String saveLevelData(LevelData state, String base) {
 
         LevelData data = new LevelData();

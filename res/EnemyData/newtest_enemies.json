@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Red Archer",
+    "x": 768,
+    "y": 384,
+    "width": 48,
+    "height": 48,
+    "id": 3
+  },
+  {
+    "name": "Red Archer",
+    "x": 768,
+    "y": 192,
+    "width": 48,
+    "height": 48,
+    "id": 3
+  },
+  {
+    "name": "Red Archer",
+    "x": 768,
+    "y": 96,
+    "width": 48,
+    "height": 48,
+    "id": 3
+  },
+  {
+    "name": "Red Octorok",
+    "x": 672,
+    "y": 288,
+    "width": 48,
+    "height": 48,
+    "id": 4
+  },
+  {
+    "name": "Red Octorok",
+    "x": 576,
+    "y": 288,
+    "width": 48,
+    "height": 48,
+    "id": 4
+  },
+  {
+    "name": "Blue Archer",
+    "x": 336,
+    "y": 384,
+    "width": 48,
+    "height": 48,
+    "id": 23
+  },
+  {
+    "name": "Blue Archer",
+    "x": 336,
+    "y": 96,
+    "width": 48,
+    "height": 48,
+    "id": 23
+  }
+]

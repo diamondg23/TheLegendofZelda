@@ -39,7 +39,7 @@ public class LevelData {
             String tileData,
             String enemyData,
             String itemData,
-            String specialData,
+      
             int returnX,
             int returnY
     ) {

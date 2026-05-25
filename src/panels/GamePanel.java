@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	public SpriteSheet openWorldTileSheet;
 	public SpriteSheet greenLinkTileSheet;
 	public SpriteSheet greenLinkSwordSheet;
-	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48);
+	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48, 1000);
 	
 	public OverWorldLevel currentOverworldLevel; //whatever the current overworld level is (will keep data when you go into dungeons or other rooms to return to)
 	

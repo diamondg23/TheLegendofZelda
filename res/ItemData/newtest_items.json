@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Stop Watch",
+    "x": 336,
+    "y": 144,
+    "width": 48,
+    "height": 33,
+    "id": 5
+  },
+  {
+    "name": "Stop Watch",
+    "x": 576,
+    "y": 144,
+    "width": 48,
+    "height": 33,
+    "id": 5
+  },
+  {
+    "name": "Bomb",
+    "x": 240,
+    "y": 96,
+    "width": 42,
+    "height": 24,
+    "id": 3
+  },
+  {
+    "name": "Heart Container",
+    "x": 240,
+    "y": 240,
+    "width": 39,
+    "height": 39,
+    "id": 8
+  },
+  {
+    "name": "Meat",
+    "x": 336,
+    "y": 288,
+    "width": 48,
+    "height": 24,
+    "id": 14
+  },
+  {
+    "name": "Meat",
+    "x": 336,
+    "y": 240,
+    "width": 48,
+    "height": 24,
+    "id": 14
+  }
+]

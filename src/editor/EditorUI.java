@@ -72,4 +72,20 @@ public class EditorUI {
 		buttons[3] = collisionButton;
 		buttons[4] = explodeButton;
 	}
+	public void disableTileButtons() {
+		buttons[2].setEnabled(false);
+		buttons[3].setEnabled(false);
+		buttons[4].setEnabled(false);
+		buttons[2].setVisible(false);
+		buttons[3].setVisible(false);
+		buttons[4].setVisible(false);
+	}
+	public void enableTileButtons() {
+		buttons[2].setEnabled(true);
+		buttons[3].setEnabled(true);
+		buttons[4].setEnabled(true);
+		buttons[2].setVisible(true);
+		buttons[3].setVisible(true);
+		buttons[4].setVisible(true);
+	}
 }

@@ -95,8 +95,9 @@ public class Main {
 		JMenuItem saveItem = new JMenuItem("Save Map");
 		JCheckBoxMenuItem showCollision = new JCheckBoxMenuItem("Show Collision");
 		JCheckBoxMenuItem showRoom = new JCheckBoxMenuItem("Show Room");
-		JCheckBoxMenuItem showEnemies = new JCheckBoxMenuItem("Show Enemies");
-		JCheckBoxMenuItem showTiles = new JCheckBoxMenuItem("Show Tiles");
+		JCheckBoxMenuItem showEnemies = new JCheckBoxMenuItem("Show Enemies", true);
+		JCheckBoxMenuItem showTiles = new JCheckBoxMenuItem("Show Tiles", true);
+		JCheckBoxMenuItem showItems = new JCheckBoxMenuItem("Show Items", true);
 
 		SpinnerNumberModel XPos = new SpinnerNumberModel(
 			    0,  
@@ -141,6 +142,7 @@ public class Main {
 		viewMenu.add(showRoom);
 		viewMenu.add(showEnemies);
 		viewMenu.add(showTiles);
+		viewMenu.add(showItems);
 		
 		positionMenu.add(Xpanel);
 		positionMenu.add(Ypanel);
@@ -187,7 +189,9 @@ public class Main {
 			   EditorRenderer.drawTiles = showTiles.isSelected();
 			
 		});
-		
+		showItems.addActionListener(e -> {
+			EditorRenderer.drawItems = showItems.isSelected();
+		});
 		
 		ActionListener LevelSelected = e -> {
 		    JRadioButtonMenuItem selected =

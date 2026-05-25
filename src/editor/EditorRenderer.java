@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import javax.swing.JLabel;
 
 import entity.Enemy;
+import entity.Item;
 import main.Animation;
 import tile.Sprite;
 import tile.Tile;
@@ -17,7 +18,8 @@ public class EditorRenderer {
 	public static boolean drawRoom = false;
 	public static boolean drawEnemies = true;
 	public static boolean drawTiles = true;
-	public static EditorPanel.currentScrollBar scrollBar = EditorPanel.currentScrollBar.Tiles;
+	public static boolean drawItems = true;
+	public static EditorPanel.currentScrollBar scrollBar = EditorPanel.currentScrollBar.TILES;
 	public EditorRenderer() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,14 +27,14 @@ public class EditorRenderer {
 		if(sprites == null) {
 			return;
 		}
-		if(scrollBar == EditorPanel.currentScrollBar.Enemies) {
+		if(scrollBar == EditorPanel.currentScrollBar.ENEMIES || scrollBar == EditorPanel.currentScrollBar.ITEMS) {
 			return;
 		}
 		int x = 0;
 		int y = upBuffer;
 		for(int i = 0; i < sprites.length; i++) {
 			for(int j = 0; j < sprites[i].length; j++) {
-				if(sprites[i] == null) {
+				if(sprites[i][j] == null) {
 					break;
 				}
 				g2.drawImage(sprites[i][j].image, x, y, tileSize, tileSize, null, null);
@@ -50,7 +52,7 @@ public class EditorRenderer {
 		
 	}
 	public static void RenderEnemyMenu(Sprite[][] enemies, Graphics2D g2, int upBuffer, int tileSize) {
-		if(scrollBar == EditorPanel.currentScrollBar.Tiles) {
+		if(scrollBar == EditorPanel.currentScrollBar.TILES || scrollBar == EditorPanel.currentScrollBar.ITEMS) {
 			return;
 		}
 		if(enemies == null)
@@ -60,7 +62,7 @@ public class EditorRenderer {
 		int y = upBuffer;
 		for(int i = 0; i < enemies.length; i++) {
 			for(int j = 0; j < enemies[i].length; j++) {
-				if(enemies[i] == null) {
+				if(enemies[i][j] == null) {
 					break;
 				}
 				g2.drawImage(enemies[i][j].image, x, y, tileSize, tileSize, null, null);
@@ -75,6 +77,38 @@ public class EditorRenderer {
 			
 			
 		}
+	}
+
+	public static void RenderItemMenu(Sprite[][] items, Graphics2D g2, int upBuffer, int upscale , int tileSize) {
+		if(scrollBar == EditorPanel.currentScrollBar.TILES || scrollBar == EditorPanel.currentScrollBar.ENEMIES) {
+			return;
+		}
+		if(items == null)
+			return;
+		
+		int x = 0;
+		int y = upBuffer;
+		for(int i = 0; i < items.length; i++) {
+			for(int j = 0; j < items[i].length; j++) {
+				if(items[i][j] == null) {
+					break;
+				}
+				g2.drawImage(items[i][j].image, x, y, items[i][j].image.getWidth()*upscale, items[i][j].image.getHeight()*upscale, null, null);
+				if(x >= tileSize) {
+					x = 0;
+					y += tileSize;
+				}
+				else {
+					x += tileSize;
+				}
+			}
+			
+			
+		}
+	}
+	
+	public static void RenderCurrentItem(Graphics2D g2, Item item, int x, int y, int scale) {
+		g2.drawImage(item.sprite.image, x, y, item.sprite.image.getWidth()*scale, item.sprite.image.getHeight()*scale, null,null);
 	}
 	public static void RenderCurrentEnemy(Graphics2D g2, Enemy enemy, int x, int y, int tileSize) {
 		if(enemy.getAnimation() == null)
@@ -127,6 +161,13 @@ public class EditorRenderer {
 			return;
 		for(int i = 0; i < enemies.size(); i++) {
 			g2.drawImage(enemies.get(i).getAnimation().getCurrentFrame().image, enemies.get(i).x , enemies.get(i).y + topBuffer,tileSize,tileSize, null,null);
+		}
+	}
+	public static void RenderCurrentItems(Graphics2D g2,LinkedList<Item> items, int scale,int leftBuffer, int topBuffer) {
+		if(drawItems == false)
+			return;
+		for(int i = 0; i < items.size(); i++) {
+			g2.drawImage(items.get(i).sprite.image, items.get(i).hitbox.x , items.get(i).hitbox.y + topBuffer,items.get(i).sprite.image.getWidth()*scale,items.get(i).sprite.image.getHeight()*scale, null,null);
 		}
 	}
 
