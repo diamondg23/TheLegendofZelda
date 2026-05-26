@@ -9,27 +9,12 @@ public class Tile {
 	public enum tileRooms{
 		
 		NOROOM(), 
-		OLDMANHEART(),
-		OLDWOMANMAP(),
-		SECRETREWARD(),
-		SECRETPUNISHMENT(),
-		OLDWOMANSHOP(),
-		SHOP(),
-		LEVEL1(),
-		LEVEL2(),
-		LEVEL3(),
-		LEVEL4(),
-		LEVEL5(),
-		LEVEL6(),
-		LEVEL7(),
-		LEVEL8(),
-		LEVEL9(),
+		ROOMID(),
 		SCREENPANNORTH(),
 		SCREENPANSOUTH(),
 		SCREENPANWEST(),
 		SCREENPANEAST(),
-		OLDMANSWORD(),
-		OLDMANWHITESWORD()
+	
 		
 		
 	};
@@ -52,6 +37,7 @@ public class Tile {
 
 	public int spriteIndex = 0;
 	public tileRooms room;
+	public int roomID; // this is used to travel to a level that isnt a adjacent one via stairs or caves etc
 	public boolean canExplode = false;
 	
 	public Sprite sprite;
@@ -71,10 +57,11 @@ public class Tile {
         this.canExplode = other.canExplode;
         this.hasCollision = other.hasCollision;
         this.hasRoomCollision = other.hasRoomCollision;
+        this.roomID = other.roomID;
         determineCollisionHitBox();
     	determineRoomHitBox();
     }
-    public Tile(Sprite sprite, int room, boolean hasCollision, boolean hasRoomCollision, boolean canExplode, int direction, boolean isFlammable,int x, int y) {
+    public Tile(Sprite sprite, int room, int roomid, boolean hasCollision, boolean hasRoomCollision, boolean canExplode, int direction, boolean isFlammable,int x, int y) {
     	this.sprite = sprite;
     	this.room = tileRooms.values()[room];
     	this.hasCollision = hasCollision;
@@ -84,6 +71,7 @@ public class Tile {
     	this.isFlammable = isFlammable;
     	this.x = x;
     	this.y = y;
+    	this.roomID = roomid;
     	determineCollisionHitBox();
     	determineRoomHitBox();
     }
@@ -117,6 +105,7 @@ public class Tile {
 			case SCREENPANWEST:
 				this.roomHitbox = new Rectangle(this.x, this.y, 20,48);
 				break;
+		
 			default:
 				this.roomHitbox = new Rectangle(this.x, this.y, 48,48);
 			

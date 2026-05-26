@@ -10,7 +10,7 @@ import tile.Tile.tileRooms;
 public class Cave extends Level {
 
     public String text;
-    public boolean isShop;
+   
 
     public Cave(LevelType type) {
         super(LevelType.CAVE);

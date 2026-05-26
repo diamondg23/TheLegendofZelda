@@ -17,26 +17,24 @@ public class Level {
 
     public static int numofLevels;
     public int ID;
+    public String name;
 
     public LevelType levelType;
 
     public LinkedList<Level> roomsConnected = new LinkedList<>();
-    public Level returnLevel;
+  
 
     public TileManager tileManager;
     public EnemyManager enemyManager;
     public ItemManager itemManager;
 
-    public Level(LevelType levelType) {
+    public Level(LevelType levelType, int ID, String name) {
         this.levelType = levelType;
-        this.ID = numofLevels++;
+        this.ID = ID;
+        this.name = name;
     }
 
-    public void setReturnLevel(Level returnLevel) {
-        this.returnLevel = returnLevel;
-        returnLevel.roomsConnected.add(this);
-    }
-
+ 
     public void update() {
         if (enemyManager != null) enemyManager.update();
         if (itemManager != null) itemManager.update();

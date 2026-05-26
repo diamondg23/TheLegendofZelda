@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import components.MyButton;
+import components.MyFrame;
 import entity.Enemy;
 import entity.Item;
 import main.Animation;
@@ -31,6 +32,9 @@ public class EditorPanel extends JPanel implements Runnable{
 		ENEMIES(),
 		ITEMS()
 	}
+	
+	public String name = "Default";
+	
 	Thread gameThread;
 	public int fps = 30;
 	final int originalTileSize = 16; //16x16 tile 
@@ -68,7 +72,12 @@ public class EditorPanel extends JPanel implements Runnable{
 	public int roomYPosition = 0;
 	LevelData.LevelType currentLevelType = LevelData.LevelType.OVERWORLD;
 	
+	
+	public int roomTileID;
+	public int levelID;
 	public EditorPanel() {
+		
+		
 		scrollBar = currentScrollBar.TILES;
 		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
 		this.setBackground(Color.black);
@@ -311,7 +320,7 @@ public class EditorPanel extends JPanel implements Runnable{
 			selectedTile.room = editorUI.roomButton.room;
 			selectedTile.canExplode = editorUI.explodeButton.explosion;
 			selectedTile.hasCollision = editorUI.collisionButton.collision;
-			
+			selectedTile.roomID = this.roomTileID;
 			if(selectedTile.room != Tile.tileRooms.NOROOM)
 				selectedTile.hasRoomCollision = true;
 			else

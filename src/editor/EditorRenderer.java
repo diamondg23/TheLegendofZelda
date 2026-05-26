@@ -150,7 +150,13 @@ public class EditorRenderer {
 	            }
 				if(mapTiles[row][col].room != tileRooms.NOROOM && drawRoom) {
 					g2.setColor(Color.green);
-					g2.drawString(String.valueOf(mapTiles[row][col].room.ordinal()), (col*tileSize + leftBuffer + 20), (row*tileSize + topBuffer + 15));
+					if(mapTiles[row][col].room == tileRooms.ROOMID) {
+						g2.drawString(String.valueOf(mapTiles[row][col].roomID), (col*tileSize + leftBuffer + 20), (row*tileSize + topBuffer + 15));
+					}
+					else {
+						g2.drawString(String.valueOf(mapTiles[row][col].room.ordinal()), (col*tileSize + leftBuffer + 20), (row*tileSize + topBuffer + 15));
+					}
+				
 				}
 				}
 			}

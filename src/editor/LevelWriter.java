@@ -33,7 +33,7 @@ public class LevelWriter {
 			   File selectedFile = chooser.getSelectedFile();
 			   String baseName = selectedFile.getName();
 			   System.out.println(baseName);
-		
+			   gp.name = selectedFile.getName();
 			if(!checkIfNull(gp.mapTiles)) {
 				return;
 			}
@@ -42,7 +42,7 @@ public class LevelWriter {
 				for(int i = 0; i < tileData.length; i++) {
 					for(int j = 0; j < tileData[i].length; j++) {
 						Tile tile = gp.mapTiles[i][j];
-						tileData[i][j] = new TileData(tile.spriteIndex,tile.room.ordinal(),tile.hasCollision,tile.hasRoomCollision, tile.canExplode, tile.direction.ordinal(),tile.isFlammable);
+						tileData[i][j] = new TileData(tile.spriteIndex,tile.room.ordinal(), tile.roomID,tile.hasCollision,tile.hasRoomCollision, tile.canExplode, tile.direction.ordinal(),tile.isFlammable);
 						
 					}
 				}
@@ -63,9 +63,9 @@ public class LevelWriter {
 	    	   ItemData data = new ItemData(name, currItem.hitbox.x, currItem.hitbox.y, currItem.hitbox.width, currItem.hitbox.height, currItem.ID);
 	    	   itemData.add(data);
 	       }
-	        saveItems(itemData, baseName);
-	
-	      //  saveLevelData(state, baseName);
+	      String itemPath = saveItems(itemData, baseName);
+	        LevelData levelData = new LevelData(gp.name, gp.levelID, gp.currentLevelType,	tilePath, enemyPath, itemPath, null, gp.roomXPosition, gp.roomYPosition);
+	        saveLevelData(levelData, baseName);
 		}
     }
     private static String getEnemyName(int ID) {
@@ -240,24 +240,11 @@ public class LevelWriter {
         }
     }
     */
-    private static String saveLevelData(LevelData state, String base) {
+    private static String saveLevelData(LevelData data, String base) {
 
-        LevelData data = new LevelData();
+       
 
-        data.name = base;
-        data.type = state.type;
-
-        data.tileData = "/maps/" + base + "_tiles.json";
-        data.enemyData = "/maps/" + base + "_enemies.json";
-        data.itemData = "/maps/" + base + "_items.json";
-
-        if (state.type == LevelType.CAVE || state.type == LevelType.SHOP) {
-            data.specialData = "/maps/" + base + "_special.json";
-        }
-
-        data.returnX = state.returnX;
-        data.returnY = state.returnY;
-
+        
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         try (FileWriter writer = new FileWriter("res/levelData/" + base + "_level.json")) {

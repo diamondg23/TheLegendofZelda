@@ -7,6 +7,7 @@ public class LevelData {
 	public String tileData; // file path to the tile json
 	public String enemyData; // file path to the enemy json
 	public String itemData; // file path to the item json
+	public String specialData; // file path to the special behavior json (not implemented yet)
 	public enum LevelType{
 		OVERWORLD(),
 		CAVE(),
@@ -22,10 +23,11 @@ public class LevelData {
 		LEVEL9(),
 	}
 	public LevelType type;
-	public int ID;
-    public int returnX;
-    public int returnY;
-	public String specialData;
+	public int ID; // ID (assigned in the editor manually for now)
+	public int x; // position in the 2d array
+	public int y; // position in the 2d array
+    
+	
 	public String name;
 
     public LevelData() {
@@ -39,9 +41,9 @@ public class LevelData {
             String tileData,
             String enemyData,
             String itemData,
-      
-            int returnX,
-            int returnY
+            String specialData,
+            int x,
+            int y
     ) {
         this.name = name;
         this.ID = ID;
@@ -52,8 +54,9 @@ public class LevelData {
         this.itemData = itemData;
         this.specialData = specialData;
 
-        this.returnX = returnX;
-        this.returnY = returnY;
+       
+        this.x = x;
+        this.y = y;
     }
 }
 

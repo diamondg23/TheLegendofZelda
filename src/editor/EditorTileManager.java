@@ -49,7 +49,7 @@ public class EditorTileManager {
 			for(int i = 0; i < tileData.length; i++) {
 				for(int j = 0; j < tileData[i].length; j++) {
 					Tile tile = tileMap[i][j];
-					tileData[i][j] = new TileData(tile.spriteIndex,tile.room.ordinal(),tile.hasCollision,tile.hasRoomCollision, tile.canExplode, tile.direction.ordinal(),tile.isFlammable);
+					tileData[i][j] = new TileData(tile.spriteIndex,tile.room.ordinal(),tile.roomID, tile.hasCollision,tile.hasRoomCollision, tile.canExplode, tile.direction.ordinal(),tile.isFlammable);
 					
 				}
 			}
@@ -85,7 +85,7 @@ public class EditorTileManager {
 				TileData tileD = tiledata[i][j];
 				int x = j*48;
 				int y = i*48;
-				tiles[i][j] = new Tile(new Sprite(null), tileD.room,tileD.hasCollision,tileD.hasRoomCollision, tileD.canExplode, tileD.direction,tileD.flammable,x,y);
+				tiles[i][j] = new Tile(new Sprite(null), tileD.room, tileD.roomid,tileD.hasCollision,tileD.hasRoomCollision, tileD.canExplode, tileD.direction,tileD.flammable,x,y);
 				tiles[i][j].spriteIndex = tileD.spriteIndex;
 				tiles[i][j].sprite = gp.TileSheet.sprites.get(tileD.spriteIndex);
 			}

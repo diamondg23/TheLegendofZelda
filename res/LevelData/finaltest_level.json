@@ -1,0 +1,10 @@
+{
+  "tileData": "res/TileData/finaltest_tiles.json",
+  "enemyData": "res/EnemyData/finaltest_enemies.json",
+  "itemData": "res/ItemData/finaltest_items.json",
+  "type": "OVERWORLD",
+  "ID": 0,
+  "x": 0,
+  "y": 0,
+  "name": "finaltest"
+}

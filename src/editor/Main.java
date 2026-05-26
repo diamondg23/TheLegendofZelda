@@ -14,7 +14,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import components.MyFrame;
 import controllers.AudioPlayer;
@@ -27,9 +30,9 @@ public class Main {
 	public static AudioPlayer music = new AudioPlayer();
 	public static void main(String[] args) {
 		
-		EditorPanel gamepanel = new EditorPanel();
-		MyFrame frame = new MyFrame();
 		
+		MyFrame frame = new MyFrame();
+		EditorPanel gamepanel = new EditorPanel();
 		music.playMusicLoop("/music/overworldmusic.wav");
 		JMenuBar menuBar = new JMenuBar();
 
@@ -90,6 +93,8 @@ public class Main {
 			LevelTypeMenu.add(Level7);
 			LevelTypeMenu.add(Level8);
 			LevelTypeMenu.add(Level9);
+		
+			
 			
 		JMenuItem openItem = new JMenuItem("Open Map");
 		JMenuItem saveItem = new JMenuItem("Save Map");
@@ -129,11 +134,47 @@ public class Main {
 			gamepanel.roomYPosition = y;
 			System.out.println("Y position is now: " + y);
 		});
+		SpinnerNumberModel roomID = new SpinnerNumberModel(
+			    0,  
+			    0,  
+			    10000, 
+			    1    
+			);
+		JSpinner roomIDSpinner = new JSpinner(roomID);
+		JPanel roompanel = new JPanel();
+		JLabel roomLabel = new JLabel("Room Tile ID");
+		
+		roomID.addChangeListener(e ->{
+			int x = (Integer)roomID.getValue();
+			gamepanel.roomTileID = x;
+			System.out.println("Tile Room id is now: " + x);
+		});
+		SpinnerNumberModel levelID = new SpinnerNumberModel(
+			    0,  
+			    0,  
+			    10000, 
+			    1    
+			);
+		JSpinner levelIDSpinner = new JSpinner(levelID);
+		JPanel levelPanel = new JPanel();
+		JLabel levelLabel = new JLabel("Level ID");
+		
+		levelID.addChangeListener(e ->{
+			int x = (Integer)levelID.getValue();
+			gamepanel.levelID = x;
+			System.out.println("Level id is now: " + x);
+		});
+		levelPanel.add(levelLabel);
+		levelPanel.add(levelIDSpinner);
+		
 		
 		Xpanel.add(XLabel);
 		Xpanel.add(XMapPosition);
 		Ypanel.add(YLabel);
 		Ypanel.add(YMapPosition);
+		
+		roompanel.add(roomLabel);
+		roompanel.add(roomIDSpinner);
 		
 		fileMenu.add(openItem);
 		fileMenu.add(saveItem);
@@ -146,6 +187,8 @@ public class Main {
 		
 		positionMenu.add(Xpanel);
 		positionMenu.add(Ypanel);
+		positionMenu.add(roompanel);
+		positionMenu.add(levelPanel);
 		
 		menuBar.add(fileMenu);
 		menuBar.add(viewMenu);
