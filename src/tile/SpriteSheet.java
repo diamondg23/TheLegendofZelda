@@ -42,7 +42,7 @@ public class SpriteSheet {
 			currentX = 0;
 				
 		}
-		System.out.println(sprites.size());
+		
 		
 
 	}

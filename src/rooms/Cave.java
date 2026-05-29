@@ -9,11 +9,11 @@ import tile.Tile.tileRooms;
 
 public class Cave extends Level {
 
-    public String text;
+    public String text; // used to display text to the screen (if it exists)
    
 
-    public Cave(LevelType type) {
-        super(LevelType.CAVE);
+    public Cave(int id, String name , String tilePath, String enemyPath, String itemPath, String specialPath) {
+        super(LevelType.CAVE, id, name , tilePath,enemyPath,itemPath,specialPath);
         
     }
 }

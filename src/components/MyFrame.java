@@ -19,7 +19,7 @@ public class MyFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setTitle("2D Game");
-        this.setResizable(false);
+        this.setResizable(true);
 		
         this.setVisible(true);
         this.setLocationRelativeTo(null);

@@ -4,13 +4,14 @@ import java.awt.Rectangle;
 
 import controllers.Collisionhandler;
 import controllers.Inventory;
+import controllers.TileManager;
 import interfaces.Moveable;
 import main.Animation;
 import panels.GamePanel;
 import rooms.Level;
+import rooms.LevelData.LevelType;
 import tile.Sprite;
 import tile.Tile;
-import tile.TileManager;
 
 public class Player extends Entity implements Moveable{
 	
@@ -42,21 +43,27 @@ public class Player extends Entity implements Moveable{
 
 	@Override
 	public void Move(EntityDirection directionMoving, int amount,int offsetX,int offsetY, TileManager tileM, GamePanel panel) {
+		
 		if(directionMoving != this.directionFacing) {
 			changeDirection(directionMoving);
 		}
 		Tile.tileRooms room;
+		
+		if(panel.currentLevel.levelType == LevelType.OVERWORLD) {
+			
+		}
 		switch(directionMoving) {
 		
 		case EAST:
-			if(Collisionhandler.canMove(this, amount, 0,offsetX,offsetY, tileM, directionMoving)) {
+			if(Collisionhandler.canMove(this, amount, offsetX,offsetY , 0, tileM, directionMoving)) {
+				
 				this.x += amount;
 				
 				this.getRectangle().x += amount;
 				isMoving = true;
 				
 			}
-			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
+			room = Collisionhandler.checkTileRoomCollision(this, amount, 0, tileM, directionMoving);
 			if(room != Tile.tileRooms.NOROOM) {
 				roomBehavior(panel, room);
 			}
@@ -70,9 +77,9 @@ public class Player extends Entity implements Moveable{
 				isMoving = true;
 				
 			}
-			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
+			room = Collisionhandler.checkTileRoomCollision(this, amount, 0, tileM, directionMoving);
 			if(room != Tile.tileRooms.NOROOM) {
-				System.out.println("room detected");
+			
 				roomBehavior(panel, room);
 			}
 			break;
@@ -85,7 +92,7 @@ public class Player extends Entity implements Moveable{
 				isMoving = true;
 				
 			}
-			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
+			room = Collisionhandler.checkTileRoomCollision(this, amount, 0, tileM, directionMoving);
 			if(room != Tile.tileRooms.NOROOM) {
 				roomBehavior(panel, room);
 			}
@@ -98,7 +105,7 @@ public class Player extends Entity implements Moveable{
 				isMoving = true;
 			
 		}
-			room = Collisionhandler.checkTileRoomCollision(this, amount, 0,offsetX,offsetY, tileM, directionMoving);
+			room = Collisionhandler.checkTileRoomCollision(this, amount, 0, tileM, directionMoving);
 			if(room != Tile.tileRooms.NOROOM) {
 				roomBehavior(panel, room);
 			}
@@ -115,54 +122,16 @@ public class Player extends Entity implements Moveable{
 		//will need to check bounds check and also if there is collision
 	}
 	private void roomBehavior(GamePanel panel, Tile.tileRooms room) {
-		//this will be called when a player triggeres a room hitbox
+	
+		
 		switch(room) {
-		case LEVEL1:
-			break;
-		case LEVEL2:
-			break;
-		case LEVEL3:
-			break;
-		case LEVEL4:
-			break;
-		case LEVEL5:
-			break;
-		case LEVEL6:
-			break;
-		case LEVEL7:
-			break;
-		case LEVEL8:
-			break;
-		case LEVEL9:
-			break;
-		case NOROOM:
-			break;
-		case OLDMANHEART:
-			break;
-		case OLDMANSWORD:
-			if(panel.currentLevel != null) {
-				panel.currentOverworldLevel.loadLevel(panel.tileM);
-				panel.currentLevel = null;
-				this.ChangePosition(lastx, lasty);
-			}
-			else {
-				lastx = this.x;
-				lasty = this.y;
-				panel.currentLevel = new Level(null, null, "/maps/OldMan_Level.json", Tile.tileRooms.OLDMANSWORD);
-				panel.currentLevel.loadLevel(panel.tileM);
-				this.ChangePosition(panel.screenWidth/2, panel.screenHeight-panel.tileSize*4);
-			}
-			break;
-		case OLDMANWHITESWORD:
-			break;
-		case OLDWOMANMAP:
-			break;
-		case OLDWOMANSHOP:
-			break;
+			
+	
 		case SCREENPANEAST:
-			if(panel.currentOverworldLevel.eastLevel != null && this.directionFacing == EntityDirection.EAST) {
-				panel.currentOverworldLevel = panel.currentOverworldLevel.eastLevel;
-				panel.currentOverworldLevel.loadLevel(panel.tileM);
+			
+			if(panel.currentLevel.east != null && this.directionFacing == EntityDirection.EAST) {
+				panel.currentLevel = panel.currentLevel.east;
+				panel.currentLevel.load();
 				this.ChangePosition(0 + 10, this.y);
 			}
 		
@@ -170,33 +139,28 @@ public class Player extends Entity implements Moveable{
 			break;
 		case SCREENPANNORTH:
 			
-			if(panel.currentOverworldLevel.northLevel != null && this.directionFacing == EntityDirection.NORTH) {
-				panel.currentOverworldLevel = panel.currentOverworldLevel.northLevel;
-				panel.currentOverworldLevel.loadLevel(panel.tileM);
-				this.ChangePosition(this.x, panel.screenHeight - 60);
+			if(panel.currentLevel.north != null && this.directionFacing == EntityDirection.NORTH) {
+				
+				panel.currentLevel = panel.currentLevel.north;
+				panel.currentLevel.load();
+				this.ChangePosition( this.x, panel.baseScreenHeight - GamePanel.TILE_SIZE  - 10);
 				 
 			}
 			break;
 		case SCREENPANSOUTH:
-			if(panel.currentOverworldLevel.southLevel != null && this.directionFacing == EntityDirection.SOUTH) {
-				panel.currentOverworldLevel = panel.currentOverworldLevel.southLevel;
-				panel.currentOverworldLevel.loadLevel(panel.tileM);
-				this.ChangePosition(this.x, panel.maxUIScreenRow + 10);
+			if(panel.currentLevel.south != null && this.directionFacing == EntityDirection.SOUTH) {
+				panel.currentLevel = panel.currentLevel.south;
+				panel.currentLevel.load();
+				this.ChangePosition(this.x, 10 + GamePanel.UI_HEIGHT/3);
 			}
 			break;
 		case SCREENPANWEST:
-			if(panel.currentOverworldLevel.westLevel != null && this.directionFacing == EntityDirection.WEST) {
-				panel.currentOverworldLevel = panel.currentOverworldLevel.westLevel;
-				panel.currentOverworldLevel.loadLevel(panel.tileM);
-				this.ChangePosition(panel.screenWidth - 60, this.y);
+			if(panel.currentLevel.west != null && this.directionFacing == EntityDirection.WEST) {
+				panel.currentLevel = panel.currentLevel.west;
+				panel.currentLevel.load();
+				this.ChangePosition( panel.baseScreenWidth  - GamePanel.TILE_SIZE - 10, this.y);
 			}
 			
-			break;
-		case SECRETPUNISHMENT:
-			break;
-		case SECRETREWARD:
-			break;
-		case SHOP:
 			break;
 		default:
 			System.err.println("Something happened in the room checking logic");

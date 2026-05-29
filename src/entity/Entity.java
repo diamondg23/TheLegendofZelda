@@ -38,7 +38,7 @@ public abstract class Entity {
 		this.width = width;
 		this.height = height;
 		this.ID = ID;
-		solidArea = new Rectangle(x + 10 ,y + 10,width- width/2,height - height/2);
+		solidArea = new Rectangle(x + 3 ,y + 3,width- width/2,height - height/2);
 	}
 
 	public void setAnimation(Animation.AnimationType name) {
@@ -52,8 +52,8 @@ public abstract class Entity {
 	public void ChangePosition(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.solidArea.x = x + 10;
-		this.solidArea.y = y + 10;
+		this.solidArea.x = x + 3;
+		this.solidArea.y = y + 3;
 	}
 
 

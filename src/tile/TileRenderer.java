@@ -2,6 +2,7 @@ package tile;
 
 import java.awt.Graphics2D;
 
+import controllers.TileManager;
 import panels.GamePanel;
 
 public class TileRenderer {

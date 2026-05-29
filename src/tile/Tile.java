@@ -2,6 +2,8 @@ package tile;
 
 import java.awt.Rectangle;
 
+import panels.GamePanel;
+
 public class Tile {
 	
 	// DO NOT CHANGE ORDERING OF THE ROOMS BECAUSE IT WILL CHANGE THE RESULTING INT IN THE FILE, IF YOU CHANGE ORDERINGS YOU HAVE TO REMAKE ALL THE FILES
@@ -81,33 +83,38 @@ public class Tile {
 		if(hasCollision) {
 			switch(spriteIndex) {
 				case 54:
-					collisionHitbox = new Rectangle(this.x+5,this.y,43,25);
+					collisionHitbox = new Rectangle(this.x+5,this.y,14,8);
 					break;
 				case 56:
-					collisionHitbox = new Rectangle(this.x,this.y,36,40);
+					collisionHitbox = new Rectangle(this.x,this.y,12,13);
 					break;
 				default:
-					collisionHitbox = new Rectangle(this.x,this.y,48,48);
+					collisionHitbox = new Rectangle(
+						    this.x,
+						    this.y,
+						    GamePanel.TILE_SIZE,
+						    GamePanel.TILE_SIZE
+						);
 				}
 			}
 	}
 	public void determineRoomHitBox() {
 		switch(this.room) {
 			case SCREENPANEAST:
-				this.roomHitbox = new Rectangle(this.x+20, this.y, 48,48);
+				this.roomHitbox = new Rectangle(this.x+7, this.y, GamePanel.TILE_SIZE,GamePanel.TILE_SIZE);
 				break;
 			case SCREENPANNORTH:
-				this.roomHitbox = new Rectangle(this.x, this.y, 48,20);
+				this.roomHitbox = new Rectangle(this.x, this.y, GamePanel.TILE_SIZE,9);
 				break;
 			case SCREENPANSOUTH:
-				this.roomHitbox = new Rectangle(this.x, this.y+20, 48,48);
+				this.roomHitbox = new Rectangle(this.x, this.y+7, GamePanel.TILE_SIZE,GamePanel.TILE_SIZE);
 				break;
 			case SCREENPANWEST:
-				this.roomHitbox = new Rectangle(this.x, this.y, 20,48);
+				this.roomHitbox = new Rectangle(this.x, this.y, 8,GamePanel.TILE_SIZE);
 				break;
 		
 			default:
-				this.roomHitbox = new Rectangle(this.x, this.y, 48,48);
+				this.roomHitbox = new Rectangle(this.x, this.y, GamePanel.TILE_SIZE,GamePanel.TILE_SIZE);
 			
 			}
 	}

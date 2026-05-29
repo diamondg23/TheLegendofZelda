@@ -2,13 +2,13 @@ package entity;
 
 public class EnemyData {
 	// used to load and save from/to jsons
-	String name;
-	int x;
-	int y;
-	int width;
-	int height;
-	Enemy.states state;
-	int id;
+	public String name;
+	public int x;
+	public int y;
+	public int width;
+	public int height;
+	public Enemy.states state;
+	public int id;
 	
 	
 	public EnemyData() {

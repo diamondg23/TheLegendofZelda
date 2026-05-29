@@ -54,7 +54,15 @@ public class Item {
 		this.ID = id;
 		this.sprite = sprite;
 	}
-	
+	public Item(String name, int x, int y, int height, int width, int id, Sprite sprite) {
+		this.hitbox.x = x;
+		this.hitbox.y = y;
+		this.hitbox.height = height;
+		this.hitbox.width = width;
+		this.ID = id;
+		this.sprite = sprite;
+		this.name = name;
+	}
 
 	public static void resolveItemBehavior(items item) {
 		

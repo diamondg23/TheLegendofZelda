@@ -8,23 +8,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import controllers.AudioPlayer;
+import controllers.Camera;
+import controllers.LevelFactory;
+import controllers.TileManager;
 import entity.Enemy;
 import entity.Entity.EntityDirection;
 import entity.Player;
 import events.Event;
 import events.PlayerMovementEvent;
 import main.Animation;
+import rooms.Cave;
+import rooms.DungeonLevel;
 import rooms.Level;
 import rooms.OverWorldLevel;
+import rooms.Shop;
 import tile.Sprite;
 import tile.SpriteSheet;
-import tile.TileManager;
 import tile.TileRenderer;
 
 @SuppressWarnings("serial")
@@ -32,38 +38,84 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 	
 	
 	
-	final int originalTileSize = 16; //16x16 tile 
-	final int scale = 3;
-	public final int tileSize = originalTileSize*scale;
+	public static final int TILE_SIZE = 16;
+
 	final int fps = 60;
+	public Camera camera = new Camera();
 	public final int maxUIScreenCol = 0;
-	public final int maxUIScreenRow = 200;
+	public static final int UI_HEIGHT = 200;
 	public final int maxTileScreenCol = 16; //16 tiles horizontally
 	public final int maxTileScreenRow = 11;
-	public final int screenWidth = (tileSize * maxTileScreenCol) + maxUIScreenCol; //768 pixels
-	public final int screenHeight = (tileSize * maxTileScreenRow) + maxUIScreenRow; //576 pixels
+	public final int baseScreenWidth =
+		    (TILE_SIZE * maxTileScreenCol)
+		    + maxUIScreenCol;
+
+		public final int baseScreenHeight =
+		    (TILE_SIZE * maxTileScreenRow)
+		    + UI_HEIGHT/3;
+		
+	
+		
 	boolean upHeld, downHeld, leftHeld, rightHeld;
 	
 	boolean isActive = false;
 	Thread gameThread;
-	
-	public TileManager tileM = new TileManager(this);
+
 	TileRenderer tileR = new TileRenderer();
 	public SpriteSheet openWorldTileSheet;
 	public SpriteSheet greenLinkTileSheet;
 	public SpriteSheet greenLinkSwordSheet;
-	public Player player = new Player(screenWidth/2,screenHeight-tileSize*4,48,48, 1000);
+	public Player player =
+		    new Player(
+		        baseScreenWidth / 2,
+		        baseScreenHeight - (TILE_SIZE * 4),
+		        TILE_SIZE,
+		        TILE_SIZE,
+		        1000
+		    );
 	
-	public OverWorldLevel currentOverworldLevel; //whatever the current overworld level is (will keep data when you go into dungeons or other rooms to return to)
+	public OverWorldLevel[][] overworldMap;
+	public DungeonLevel[][] Dungeon1Map;
+	public DungeonLevel[][] Dungeon2Map;
+	public DungeonLevel[][] Dungeon3Map;
+	public DungeonLevel[][] Dungeon4Map;
+	public DungeonLevel[][] Dungeon5Map;
+	public DungeonLevel[][] Dungeon6Map;
+	public DungeonLevel[][] Dungeon7Map;
+	public DungeonLevel[][] Dungeon8Map;
+	public DungeonLevel[][] Dungeon9Map;
+	public HashMap<Integer, Cave> caveLevels;
+	public HashMap<Integer, Shop> shopLevels;
 	
-	public Level currentLevel = null; // whatever the non overworldlevel is currently (will be null while ur in the overworld)
+	public Level currentLevel = null; 	
 
 	
-	public LinkedList<Event> eventList = new LinkedList<Event>();
+	public static LinkedList<Event> eventList = new LinkedList<Event>();
 	public LinkedList<KeyEvent> keysPressed = new LinkedList<KeyEvent>();
 
 	public GamePanel() {
-		this.setPreferredSize(new Dimension(screenWidth,screenHeight));
+
+		overworldMap = new OverWorldLevel[8][16];
+		Dungeon1Map = new DungeonLevel[8][8];
+		Dungeon2Map = new DungeonLevel[8][8];
+		Dungeon3Map = new DungeonLevel[8][8];
+		Dungeon4Map = new DungeonLevel[8][8];
+		Dungeon5Map = new DungeonLevel[8][8];
+		Dungeon6Map = new DungeonLevel[8][8];
+		Dungeon7Map = new DungeonLevel[8][8];
+		Dungeon8Map = new DungeonLevel[8][8];
+		Dungeon9Map = new DungeonLevel[8][8];
+		LevelFactory.levelInitizer(this);
+		currentLevel = overworldMap[7][7];
+		
+		
+		
+		this.setPreferredSize(
+			    new Dimension(
+			        (int)(baseScreenWidth * camera.zoom),
+			        (int)(baseScreenHeight * camera.zoom)
+			    )
+			);
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		
@@ -76,9 +128,7 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		}catch(Exception e) {
 			
 		}
-		//OverWorldLevel.map = OverWorldLevel.generateOverworldLevelMap(this);
-		//currentOverworldLevel = OverWorldLevel.map[7][8];
-		//currentOverworldLevel.loadLevel(tileM);
+	
 		Sprite[] northWalking = new Sprite[2];
 		Sprite[] eastWalking = new Sprite[2];
 		Sprite[] southWalking = new Sprite[2];
@@ -102,13 +152,42 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		setFocusable(true);  
        
         addKeyListener(this);
-        for(int i =0; i < tileM.tiles.length; i++) {
-			for(int j = 0; j < tileM.tiles[i].length; j++) {
-				System.out.print(tileM.tiles[i][j].spriteIndex + "," +  tileM.tiles[i][j].hasRoomCollision + " ");
-			}
-			System.out.println();
-		}
+
+        currentLevel.load();
      
+        
+        for(int i = 0; i < overworldMap.length; i++) {
+
+            for(int j = 0; j < overworldMap[i].length; j++) {
+
+                if(overworldMap[i][j] != null) {
+
+                    OverWorldLevel north = null;
+                    OverWorldLevel south = null;
+                    OverWorldLevel east = null;
+                    OverWorldLevel west = null;
+
+                    if(i > 0) {
+                        north = overworldMap[i - 1][j];
+                    }
+
+                    if(i < overworldMap.length - 1) {
+                        south = overworldMap[i + 1][j];
+                    }
+
+                    if(j < overworldMap[i].length - 1) {
+                        east = overworldMap[i][j + 1];
+                    }
+
+                    if(j > 0) {
+                        west = overworldMap[i][j - 1];
+                    }
+
+                    overworldMap[i][j]
+                        .setAdjacency(north, south, east, west);
+                }
+            }
+        }
 		
 	}
 	public void startGameThread() {
@@ -166,22 +245,22 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		case KeyEvent.VK_W:
 			player.isMoving =true;
 			player.getAnimation().isRunning = true;
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.NORTH, 3));
+			GamePanel.eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.NORTH, 1));
 			break;
 		case KeyEvent.VK_S:
 			player.isMoving =true;
 			player.getAnimation().isRunning = true;
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.SOUTH, 3));
+			GamePanel.eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.SOUTH, 1));
 			break;
 		case KeyEvent.VK_D:
 			player.isMoving =true;
 			player.getAnimation().isRunning = true;
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.EAST, 3));
+			GamePanel.eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.EAST, 1));
 			break;
 		case KeyEvent.VK_A:
 			player.isMoving =true;
 			player.getAnimation().isRunning = true;
-			eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.WEST, 3));
+			GamePanel.eventList.add(new PlayerMovementEvent(Event.events.PLAYERMOVEMENT, EntityDirection.WEST, 1));
 			break;
 		
 		}
@@ -196,8 +275,8 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 				break;
 			case PLAYERMOVEMENT:
 				// safely type cast it to player movement event
-				PlayerMovementEvent currentEvent =(PlayerMovementEvent)eventList.getFirst();
-				currentEvent.resolveEvent(player, tileM, maxUIScreenCol, maxUIScreenRow, this);
+				PlayerMovementEvent currentEvent =(PlayerMovementEvent)GamePanel.eventList.getFirst();
+				currentEvent.resolveEvent(player, currentLevel.tileManager, maxUIScreenCol, UI_HEIGHT, this);
 				
 				eventList.remove();
 				break;
@@ -215,40 +294,40 @@ public class GamePanel extends JPanel implements Runnable,ActionListener, KeyLis
 		// need a second for loop here to deal with potential projectiles
 		
 	}
-public void paintComponent(Graphics g) {
-		
-		super.paintComponent(g);
-		
-		Graphics2D g2 = (Graphics2D)g;
-		tileR.draw(g2, openWorldTileSheet,tileM, tileSize,maxTileScreenCol,maxTileScreenRow,maxUIScreenCol,maxUIScreenRow);
-		g2.drawImage(
-                player.getAnimation().getCurrentFrame().image,
-                player.x,
-                player.y,
-                player.width,
-                player.height,
-                null
-            );
-		g.setColor(Color.RED);
-		g.drawRect(
-		    player.getRectangle().x ,
-		    player.getRectangle().y ,
-		    player.getRectangle().width,
-		    player.getRectangle().height
-		);
-		for(int i = 0; i < tileM.tiles.length; i++){
-			for(int j = 0; j < tileM.tiles[i].length; j++) {
-				if(tileM.tiles[i][j].hasCollision) {
-					g.setColor(Color.red);
-					g.drawRect(tileM.tiles[i][j].collisionHitbox.x, tileM.tiles[i][j].collisionHitbox.y, tileM.tiles[i][j].collisionHitbox.width, tileM.tiles[i][j].collisionHitbox.height);
-				}
-				else if(tileM.tiles[i][j].hasRoomCollision) {
-					g.setColor(Color.green);
-					g.drawRect(tileM.tiles[i][j].roomHitbox.x, tileM.tiles[i][j].roomHitbox.y, tileM.tiles[i][j].roomHitbox.width, tileM.tiles[i][j].roomHitbox.height);
-				}
-			}
-		}
-		g2.dispose();
+	@Override
+	public void paintComponent(Graphics g) {
+
+	    super.paintComponent(g);
+
+	    Graphics2D g2 = (Graphics2D) g.create();
+
+	    g2.scale(camera.zoom, camera.zoom);
+	    
+
+	    currentLevel.draw(g2);
+	    
+	    g2.setColor(Color.BLUE);
+
+	
+	    g2.drawImage(
+	        player.getAnimation().getCurrentFrame().image,
+	        player.x,
+	        player.y ,
+	        player.width,
+	        player.height,
+	        null
+	    );
+	    
+	    g2.setColor(Color.RED);
+
+	    g2.drawRect(
+	        player.getRectangle().x,
+	        player.getRectangle().y ,
+	        player.getRectangle().width,
+	        player.getRectangle().height
+	    );
+
+	    g2.dispose();
 	}
 @Override
 public void actionPerformed(ActionEvent e) {

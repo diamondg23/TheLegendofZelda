@@ -1,0 +1,10 @@
+{
+  "tileData": "res/TileData/northLevel_tiles.json",
+  "enemyData": "res/EnemyData/northLevel_enemies.json",
+  "itemData": "res/ItemData/northLevel_items.json",
+  "type": "OVERWORLD",
+  "ID": 2,
+  "x": 7,
+  "y": 6,
+  "name": "northLevel"
+}

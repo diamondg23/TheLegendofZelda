@@ -3,7 +3,7 @@ package rooms;
 import java.awt.Point;
 
 public class LevelData {
-	public String levelData; // filepath to the top level json
+	 // filepath to the top level json
 	public String tileData; // file path to the tile json
 	public String enemyData; // file path to the enemy json
 	public String itemData; // file path to the item json

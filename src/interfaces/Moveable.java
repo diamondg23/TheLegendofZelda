@@ -2,9 +2,9 @@ package interfaces;
 
 import java.awt.Rectangle;
 
+import controllers.TileManager;
 import entity.Entity.EntityDirection;
 import panels.GamePanel;
-import tile.TileManager;
 
 public interface Moveable {
     int getX();

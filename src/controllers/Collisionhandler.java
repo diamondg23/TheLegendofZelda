@@ -1,7 +1,6 @@
 package controllers;
 
 import tile.Tile;
-import tile.TileManager;
 
 import java.util.List;
 
@@ -9,349 +8,166 @@ import entity.Entity;
 import entity.Entity.EntityDirection;
 import entity.Player;
 import interfaces.Moveable;
+import panels.GamePanel;
+
 import java.awt.Rectangle;
 public class Collisionhandler {
 	// would need to change this if the tile size changes
-	final static int tileSize = 48;
+	final static int tileSize = 16;
 	public Collisionhandler() {
 		// TODO Auto-generated constructor stub
 	}
 	public static boolean canMove(Moveable m, int futureX, int futureY,int offsetX, int offsetY, TileManager tileM, EntityDirection direction) {
 		 // 1. Check tile collision
-        if (checkTileCollision(m,futureX,futureY,offsetX,offsetY,tileM, direction))
+        if (checkTileCollision(m,futureX,futureY,tileM, direction))
             return true;
        
         return false;
 	}
-	public static Tile.tileRooms checkTileRoomCollision(Moveable m, int amountX, int amountY,int offsetX,int offsetY, TileManager tileM, EntityDirection direction) {
-		// amount x would be negative if going left and amount y would be negative going up
-		// amount x is the amount of movement in the x axis 
-		
-		
-	
-		int hitLeft = m.getX() -offsetX;
-	    int hitRight = hitLeft + 48;
-	    int hitTop = m.getY() - offsetY;
-	    int hitBottom = hitTop + 48;
-	    
-	    
-	    int futureLeft = hitLeft + amountX;
-	    int futureRight = hitRight + amountX;
-	    int futureTop = hitTop + amountY;
-	    int futureBottom = hitBottom + amountY;
+	public static Tile.tileRooms checkTileRoomCollision(
+	        Moveable m,
+	        int amountX,
+	        int amountY,
+	        TileManager tileM,
+	        EntityDirection direction
+	) {
 
-	    int leftCol = futureLeft / tileSize;
-	    int rightCol = futureRight / tileSize;
-	    int topRow = futureTop / tileSize;
-	    int bottomRow = futureBottom / tileSize ;
-	    
-	    Tile tile1, tile2;
-	    switch(direction) {
-		case EAST:
-			tile1 = tileM.tiles[topRow][rightCol];
-	        tile2 = tileM.tiles[bottomRow][rightCol];
-			break;
-		case NORTH:
-			tile1 = tileM.tiles[topRow][leftCol]; 
-	        tile2 = tileM.tiles[topRow][rightCol];
-			break;
-		case SOUTH:
-			  tile1 = tileM.tiles[bottomRow][leftCol];
-		        tile2 = tileM.tiles[bottomRow][rightCol];
-			break;
-		case WEST:
-			tile1 = tileM.tiles[topRow][leftCol];
-	        tile2 = tileM.tiles[bottomRow][leftCol];
-			break;
-		default:
-			tile1 = tileM.tiles[topRow][rightCol];
-	        tile2 = tileM.tiles[bottomRow][rightCol];
-	        System.err.println("SOMETHING REALLY BAD HAPPENED IN ROOM CHECKER");
-			break;
-	    
-	    	
-	    }
-	    switch(direction) {
-		case EAST:
-			if(tile1.hasRoomCollision) {
-				
-				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-				entity_rectangle.y +=5;
-				entity_rectangle2.y -=5;
-				
-				 if(touchesOrIntersects(entity_rectangle, tile1.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile1.roomHitbox)) {
-					
-					 return tile1.room;
-				 }
-			 }
-			 if(tile2.hasRoomCollision) {
-				 
-				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-					entity_rectangle.y +=5;
-					entity_rectangle2.y -=5;
-					
-					 if(touchesOrIntersects(entity_rectangle, tile2.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile2.roomHitbox)) {
-						
-						 return tile2.room;
-					 }
-			 }
-			break;
-		case NORTH:
-			if(tile1.hasRoomCollision) {
-				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-				entity_rectangle.x +=5;
-				entity_rectangle2.x -=5;
-				
-				 if(touchesOrIntersects(entity_rectangle, tile1.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile1.roomHitbox)) {
-					
-					 return tile1.room;
-				 }
-			 }
-			 if(tile2.hasRoomCollision) {
-				 
-				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-					entity_rectangle.x +=5;
-					entity_rectangle2.x -=5;
-					
-					 if(touchesOrIntersects(entity_rectangle, tile2.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile2.roomHitbox)) {
-						
-						 return tile2.room;
-					 }
-			 }
-			break;
-		case SOUTH:
-			if(tile1.hasRoomCollision) {
-				
-				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-				entity_rectangle.x +=5;
-				entity_rectangle2.x -=5;
-				
-				 if(touchesOrIntersects(entity_rectangle, tile1.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile1.roomHitbox)) {
-					
-					 return tile1.room;
-				 }
-			 }
-			 if(tile2.hasRoomCollision) {
-				 
-				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-					entity_rectangle.x +=5;
-					entity_rectangle2.x -=5;
-					
-					 if(touchesOrIntersects(entity_rectangle, tile2.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile2.roomHitbox)) {
-						
-						 return tile2.room;
-					 }
-			 }
-			break;
-		case WEST:
-			if(tile1.hasRoomCollision) {
-				
-				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-				entity_rectangle.y +=5;
-				entity_rectangle2.y -=5;
-				
-				 if(touchesOrIntersects(entity_rectangle, tile1.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile1.roomHitbox)) {
-					
-					 return tile1.room;
-				 }
-			 }
-			 if(tile2.hasRoomCollision) {
-				 
-				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-					entity_rectangle.y +=5;
-					entity_rectangle2.y -=5;
-					
-					 if(touchesOrIntersects(entity_rectangle, tile2.roomHitbox) && touchesOrIntersects(entity_rectangle2, tile2.roomHitbox)) {
-						
-						 return tile2.room;
-					 }
-			 }
-			break;
-		default:
-			break;
-	    
-	    }
-	
-	    
-	 
-	 
-	 return Tile.tileRooms.NOROOM;
-	}
-	private static boolean checkTileCollision(Moveable m, int amountX, int amountY,int offsetX,int offsetY, TileManager tileM, EntityDirection direction) {
-		// amount x would be negative if going left and amount y would be negative going up
-		// amount x is the amount of movement in the x axis 
-		
-		
-		// COLLISION FIXED!!
-		int hitLeft = m.getX() -offsetX;
-	    int hitRight = hitLeft + 48;
-	    int hitTop = m.getY() - offsetY;
-	    int hitBottom = hitTop + 48;
-	    
-	    
-	    int futureLeft = hitLeft + amountX;
-	    int futureRight = hitRight + amountX;
-	    int futureTop = hitTop + amountY;
-	    int futureBottom = hitBottom + amountY;
+	    Rectangle futureHitbox = new Rectangle(m.getRectangle());
 
-	    int leftCol = futureLeft / tileSize;
-	    int rightCol = futureRight / tileSize;
-	    int topRow = futureTop / tileSize;
-	    int bottomRow = futureBottom / tileSize ;
-	    
-	    Tile tile1, tile2;
-	    switch(direction) {
-		case EAST:
-			tile1 = tileM.tiles[topRow][rightCol];
-	        tile2 = tileM.tiles[bottomRow][rightCol];
-			break;
-		case NORTH:
-			tile1 = tileM.tiles[topRow][leftCol]; 
-	        tile2 = tileM.tiles[topRow][rightCol];
-			break;
-		case SOUTH:
-			  tile1 = tileM.tiles[bottomRow][leftCol];
-		        tile2 = tileM.tiles[bottomRow][rightCol];
-			break;
-		case WEST:
-			tile1 = tileM.tiles[topRow][leftCol];
-	        tile2 = tileM.tiles[bottomRow][leftCol];
-			break;
-		default:
-			tile1 = tileM.tiles[topRow][rightCol];
-	        tile2 = tileM.tiles[bottomRow][rightCol];
-	        System.err.println("SOMETHING REALLY BAD HAPPENED IN COLLISION CHECKER");
-			break;
-	    
-	    	
+	    // convert screen-space -> world-space
+	    futureHitbox.y -= GamePanel.UI_HEIGHT / 3;
+
+	    // simulate future movement
+	    futureHitbox.x += amountX;
+	    futureHitbox.y += amountY;
+
+	    int leftCol =
+	            futureHitbox.x / tileSize;
+
+	    int rightCol =
+	            (futureHitbox.x + futureHitbox.width - 1) / tileSize;
+
+	    int topRow =
+	            futureHitbox.y / tileSize;
+
+	    int bottomRow =
+	            (futureHitbox.y + futureHitbox.height - 1) / tileSize;
+
+	    // bounds protection
+	    if (leftCol < 0 ||
+	        rightCol >= tileM.tiles[0].length ||
+	        topRow < 0 ||
+	        bottomRow >= tileM.tiles.length) {
+
+	        return Tile.tileRooms.NOROOM;
 	    }
-	    switch(direction) {
-		case EAST:
-			if(tile1.hasCollision) {
-				
-				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-				entity_rectangle.y +=5;
-				entity_rectangle2.y -=5;
-				
-				 if(touchesOrIntersects(entity_rectangle, tile1.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile1.collisionHitbox)) {
-					
-					 return false;
-				 }
-			 }
-			 if(tile2.hasCollision) {
-				 
-				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-					entity_rectangle.y +=5;
-					entity_rectangle2.y -=5;
-					
-					 if(touchesOrIntersects(entity_rectangle, tile2.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile2.collisionHitbox)) {
-						
-						 return false;
-					 }
-			 }
-			break;
-		case NORTH:
-			if(tile1.hasCollision) {
-				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-				entity_rectangle.x +=5;
-				entity_rectangle2.x -=5;
-				
-				 if(touchesOrIntersects(entity_rectangle, tile1.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile1.collisionHitbox)) {
-					
-					 return false;
-				 }
-			 }
-			 if(tile2.hasCollision) {
-				 
-				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-					entity_rectangle.x +=5;
-					entity_rectangle2.x -=5;
-					
-					 if(touchesOrIntersects(entity_rectangle, tile2.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile2.collisionHitbox)) {
-						
-						 return false;
-					 }
-			 }
-			break;
-		case SOUTH:
-			if(tile1.hasCollision) {
-				
-				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-				entity_rectangle.x +=5;
-				entity_rectangle2.x -=5;
-				
-				 if(touchesOrIntersects(entity_rectangle, tile1.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile1.collisionHitbox)) {
-					
-					 return false;
-				 }
-			 }
-			 if(tile2.hasCollision) {
-				 
-				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-					entity_rectangle.x +=5;
-					entity_rectangle2.x -=5;
-					
-					 if(touchesOrIntersects(entity_rectangle, tile2.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile2.collisionHitbox)) {
-						
-						 return false;
-					 }
-			 }
-			break;
-		case WEST:
-			if(tile1.hasCollision) {
-				
-				Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-				Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-				entity_rectangle.y +=5;
-				entity_rectangle2.y -=5;
-				
-				 if(touchesOrIntersects(entity_rectangle, tile1.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile1.collisionHitbox)) {
-					
-					 return false;
-				 }
-			 }
-			 if(tile2.hasCollision) {
-				 
-				 Rectangle entity_rectangle = new Rectangle(m.getRectangle());
-					Rectangle entity_rectangle2 = new Rectangle(m.getRectangle());
-					entity_rectangle.y +=5;
-					entity_rectangle2.y -=5;
-					
-					 if(touchesOrIntersects(entity_rectangle, tile2.collisionHitbox) && touchesOrIntersects(entity_rectangle2, tile2.collisionHitbox)) {
-						
-						 return false;
-					 }
-			 }
-			break;
-		default:
-			break;
-	    
+
+	    // check ALL touched tiles
+	    for (int row = topRow; row <= bottomRow; row++) {
+
+	        for (int col = leftCol; col <= rightCol; col++) {
+
+	            Tile tile = tileM.tiles[row][col];
+
+	            if (tile == null) {
+	                continue;
+	            }
+
+	            if (!tile.hasRoomCollision) {
+	                continue;
+	            }
+
+	            if (tile.roomHitbox == null) {
+	                continue;
+	            }
+
+	            if (futureHitbox.intersects(tile.roomHitbox)) {
+	                return tile.room;
+	            }
+	        }
 	    }
-	
-	    
-	 
-	 
-	 return true;
+
+	    return Tile.tileRooms.NOROOM;
 	}
+
+
+	
+	
+	
+	private static boolean checkTileCollision(
+	        Moveable m,
+	        int amountX,
+	        int amountY,
+	        TileManager tileM,
+	        EntityDirection direction) {
+
+	    Rectangle futureHitbox = new Rectangle(m.getRectangle());
+
+	    // convert from screen-space to world-space
+	    futureHitbox.y -= GamePanel.UI_HEIGHT / 3;
+
+	    // simulate future movement
+	    futureHitbox.x += amountX;
+	    futureHitbox.y += amountY;
+
+	    int leftCol =
+	            futureHitbox.x / tileSize;
+
+	    int rightCol =
+	            (futureHitbox.x + futureHitbox.width - 1) / tileSize;
+
+	    int topRow =
+	            futureHitbox.y / tileSize;
+
+	    int bottomRow =
+	            (futureHitbox.y + futureHitbox.height - 1) / tileSize;
+
+	    // bounds protection
+	    if (leftCol < 0 ||
+	        rightCol >= tileM.tiles[0].length ||
+	        topRow < 0 ||
+	        bottomRow >= tileM.tiles.length) {
+
+	        return false;
+	    }
+
+	    // check ALL tiles touching the future hitbox
+	    for (int row = topRow; row <= bottomRow; row++) {
+
+	        for (int col = leftCol; col <= rightCol; col++) {
+
+	            Tile tile = tileM.tiles[row][col];
+
+	            if (tile == null) {
+	                continue;
+	            }
+
+	            if (!tile.hasCollision) {
+	                continue;
+	            }
+
+	            if (tile.collisionHitbox == null) {
+	                continue;
+	            }
+
+	            if (futureHitbox.intersects(tile.collisionHitbox)) {
+	                return false;
+	            }
+	        }
+	    }
+
+	    return true;
+	}
+
+	
+	
+	
 	// Returns true if rectangles touch or overlap
     public static boolean touchesOrIntersects(Rectangle r1, Rectangle r2) {
+   
         return r1.x <= r2.x + r2.width &&
                r1.x + r1.width >= r2.x &&
-               r1.y <= r2.y + r2.height &&
+           r1.y <= r2.y + r2.height &&
                r1.y + r1.height >= r2.y;
     }
 

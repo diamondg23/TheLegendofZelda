@@ -12,28 +12,17 @@ import tile.Tile;
 
 public class OverWorldLevel extends Level {
 
-    public OverWorldLevel north;
-    public OverWorldLevel south;
-    public OverWorldLevel east;
-    public OverWorldLevel west;
+
 
     public int worldX;
     public int worldY;
 
-    public OverWorldLevel() {
-        super(LevelType.OVERWORLD);
+    public OverWorldLevel(int id, String name , String tilePath, String enemyPath, String itemPath, String specialPath , int x, int y) {
+        super(LevelType.OVERWORLD, id, name , tilePath,enemyPath,itemPath,specialPath);
+        this.worldX = x;
+        this.worldY = y;
     }
 
-    public void setAdjacency(
-            OverWorldLevel north,
-            OverWorldLevel south,
-            OverWorldLevel east,
-            OverWorldLevel west
-    ) {
-        this.north = north;
-        this.south = south;
-        this.east = east;
-        this.west = west;
-    }
+ 
 }
 

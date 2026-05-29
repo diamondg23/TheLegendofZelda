@@ -1,9 +1,9 @@
 package events;
 
 import entity.Entity.EntityDirection;
+import controllers.TileManager;
 import entity.Player;
 import panels.GamePanel;
-import tile.TileManager;
 // This will have the event atributes to be able to use in other areas of the code.
 public class PlayerMovementEvent extends Event {
 

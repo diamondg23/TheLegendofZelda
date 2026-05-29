@@ -1,6 +1,8 @@
 package editor;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.File;
 
 import javax.swing.ButtonGroup;
@@ -199,7 +201,7 @@ public class Main {
 		frame.add(gamepanel); 
 		openItem.addActionListener(e -> {
 		    JFileChooser chooser = new JFileChooser();
-		    chooser.setCurrentDirectory(new File("res/maps"));
+		    chooser.setCurrentDirectory(new File("res/LevelData"));
 		    
 		    int result = chooser.showOpenDialog(frame);
 
@@ -207,14 +209,57 @@ public class Main {
 		        File file = chooser.getSelectedFile();
 
 		        // load your map here
-		        TileData[][] tiles  = EditorTileManager.loadMap(file);
-		        EditorTileManager.convertToTile(tiles, gamepanel.mapTiles, gamepanel);
+		        EditorManager.loadLevel(file, gamepanel);
+		        levelID.setValue(gamepanel.levelID);
+		        XPos.setValue(gamepanel.roomXPosition);
+		        YPos.setValue(gamepanel.roomYPosition);
+		        switch(gamepanel.currentLevelType) {
+				case CAVE:
+					LevelGroupButtons.setSelected(Cave.getModel(), true);
+					break;
+				case LEVEL1:
+					LevelGroupButtons.setSelected(Level1.getModel(), true);
+					break;
+				case LEVEL2:
+					LevelGroupButtons.setSelected(Level2.getModel(), true);
+					break;
+				case LEVEL3:
+					LevelGroupButtons.setSelected(Level3.getModel(), true);
+					break;
+				case LEVEL4:
+					LevelGroupButtons.setSelected(Level4.getModel(), true);
+					break;
+				case LEVEL5:
+					LevelGroupButtons.setSelected(Level5.getModel(), true);
+					break;
+				case LEVEL6:
+					LevelGroupButtons.setSelected(Level6.getModel(), true);
+					break;
+				case LEVEL7:
+					LevelGroupButtons.setSelected(Level7.getModel(), true);
+					break;
+				case LEVEL8:
+					LevelGroupButtons.setSelected(Level8.getModel(), true);
+					break;
+				case LEVEL9:
+					LevelGroupButtons.setSelected(Level9.getModel(), true);
+					break;
+				case OVERWORLD:
+					LevelGroupButtons.setSelected(OverWorld.getModel(), true);
+					break;
+				case SHOP:
+					LevelGroupButtons.setSelected(Shop.getModel(), true);
+					break;
+				default:
+					break;
+		        
+		        }
 		        
 		        System.out.println(file.getAbsolutePath());
 		    }
 		});
 		saveItem.addActionListener(e -> {
-			System.out.println( EditorTileManager.SaveMap(gamepanel.mapTiles));
+			System.out.println(LevelWriter.save(gamepanel));
 		});
 		showCollision.addActionListener(e -> {
 		    EditorRenderer.drawCollision = showCollision.isSelected();
@@ -260,7 +305,12 @@ public class Main {
 		
 		frame.pack();	
 		
-		
+		frame.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentResized(ComponentEvent e) {
+		       // resizeEverything();
+		    }
+		});
 		gamepanel.startGameThread();
 	}
 

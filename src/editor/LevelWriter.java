@@ -22,7 +22,7 @@ import tile.TileData;
 
 public class LevelWriter {
 
-    public static void save(EditorPanel gp) {
+    public static boolean save(EditorPanel gp) {
     	JFileChooser chooser = new JFileChooser();
 		chooser.setCurrentDirectory(new File("res"));
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -35,7 +35,7 @@ public class LevelWriter {
 			   System.out.println(baseName);
 			   gp.name = selectedFile.getName();
 			if(!checkIfNull(gp.mapTiles)) {
-				return;
+				return false;
 			}
 			else {
 				
@@ -67,12 +67,12 @@ public class LevelWriter {
 	        LevelData levelData = new LevelData(gp.name, gp.levelID, gp.currentLevelType,	tilePath, enemyPath, itemPath, null, gp.roomXPosition, gp.roomYPosition);
 	        saveLevelData(levelData, baseName);
 		}
+		return true;
     }
     private static String getEnemyName(int ID) {
     	switch(ID) {
     		case 0:
     			return "snake";
-    			
     		case 1:
     			return "Red Minotar";
     		case 2:

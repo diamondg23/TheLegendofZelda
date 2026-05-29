@@ -1,0 +1,10 @@
+{
+  "tileData": "res/TileData/startingLevel_tiles.json",
+  "enemyData": "res/EnemyData/startingLevel_enemies.json",
+  "itemData": "res/ItemData/startingLevel_items.json",
+  "type": "OVERWORLD",
+  "ID": 1,
+  "x": 7,
+  "y": 7,
+  "name": "startingLevel"
+}

@@ -133,8 +133,8 @@ public class EditorRenderer {
 	                g2.drawRect(
 	                    mapTiles[row][col].collisionHitbox.x + leftBuffer,
 	                    mapTiles[row][col].collisionHitbox.y + topBuffer,
-	                    mapTiles[row][col].collisionHitbox.width - 1,
-	                    mapTiles[row][col].collisionHitbox.height - 1
+	                    mapTiles[row][col].collisionHitbox.width * 3 - 1,
+	                    mapTiles[row][col].collisionHitbox.height * 3 - 1
 	                );
 	                
 	            }
@@ -143,8 +143,8 @@ public class EditorRenderer {
 	                g2.drawRect(
 	                    mapTiles[row][col].roomHitbox.x + leftBuffer,
 	                    mapTiles[row][col].roomHitbox.y + topBuffer,
-	                    mapTiles[row][col].roomHitbox.width - 1,
-	                    mapTiles[row][col].roomHitbox.height - 1
+	                    mapTiles[row][col].roomHitbox.width*3 - 1 ,
+	                    mapTiles[row][col].roomHitbox.height*3 - 1 
 	                );
 	                
 	            }

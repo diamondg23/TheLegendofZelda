@@ -45,6 +45,8 @@ public class EditorPanel extends JPanel implements Runnable{
 	public final int maxScreenRow = 11;
 	public final int screenWidth = tileSize * maxScreenCol; //768 pixels
 	public final int screenHeight = tileSize * maxScreenRow + (tileSize * 2); //576 pixels
+	final double BASE_WIDTH = screenWidth;
+	final double BASE_HEIGHT = screenHeight;
 	
 	public SpriteSheet TileSheet;
 	public SpriteSheet EnemySheet;
@@ -75,6 +77,7 @@ public class EditorPanel extends JPanel implements Runnable{
 	
 	public int roomTileID;
 	public int levelID;
+	
 	public EditorPanel() {
 		
 		
@@ -218,19 +221,23 @@ public class EditorPanel extends JPanel implements Runnable{
 			
 			
 			super.paintComponent(g);
+
+		    Graphics2D g2 = (Graphics2D) g.create();
+
+		  
 			
-			EditorRenderer.RenderTileMenu(this.TileSprites, (Graphics2D)g, upBuffer, tileSize);
-			EditorRenderer.RenderEnemyMenu(this.EnemySprites, (Graphics2D)g, upBuffer, tileSize);
-			EditorRenderer.RenderItemMenu(this.ItemSprites, (Graphics2D)g, upBuffer, scale, tileSize);
-			EditorRenderer.RenderCurrentMap((Graphics2D)g, mapTiles, tileSize, leftBuffer, upBuffer);
-			EditorRenderer.RenderCurrentEnemies((Graphics2D)g, enemies, tileSize, leftBuffer, upBuffer);
-			EditorRenderer.RenderCurrentItems((Graphics2D)g, items, scale, leftBuffer, upBuffer);
+			EditorRenderer.RenderTileMenu(this.TileSprites, g2, upBuffer, tileSize);
+			EditorRenderer.RenderEnemyMenu(this.EnemySprites, g2, upBuffer, tileSize);
+			EditorRenderer.RenderItemMenu(this.ItemSprites, g2, upBuffer, scale, tileSize);
+			EditorRenderer.RenderCurrentMap(g2, mapTiles, tileSize, leftBuffer, upBuffer);
+			EditorRenderer.RenderCurrentEnemies(g2, enemies, tileSize, leftBuffer, upBuffer);
+			EditorRenderer.RenderCurrentItems(g2, items, scale, leftBuffer, upBuffer);
 			if(selectedTile != null)
-				EditorRenderer.RenderCurrentTile((Graphics2D)g, selectedTile, mouseController.x, mouseController.y, tileSize);
+				EditorRenderer.RenderCurrentTile(g2, selectedTile, mouseController.x, mouseController.y, tileSize);
 			if(selectedEnemy != null)
-				EditorRenderer.RenderCurrentEnemy((Graphics2D)g, selectedEnemy, mouseController.x, mouseController.y, tileSize);
+				EditorRenderer.RenderCurrentEnemy(g2, selectedEnemy, mouseController.x, mouseController.y, tileSize);
 			if(selectedItem != null)
-				EditorRenderer.RenderCurrentItem((Graphics2D)g, selectedItem, mouseController.x, mouseController.y, scale);
+				EditorRenderer.RenderCurrentItem(g2, selectedItem, mouseController.x, mouseController.y, scale);
 			
 			
 		}
